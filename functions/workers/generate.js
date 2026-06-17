@@ -15,30 +15,14 @@ export async function onRequestPost(context) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${env.AIML_TEXT_KEY}`,
+        'Authorization': 'Bearer ' + env.AIML_TEXT_KEY,
       },
       body: JSON.stringify({
         model: 'gpt-4o-mini',
         max_tokens: 1000,
         messages: [{
           role: 'user',
-          content: `Crie uma letra de música personalizada em português brasileiro.
-          
-Para: ${data.dest}
-Ocasião: ${data.ocas}
-Nomes: ${data.seuNome} e ${data.nomeRecebe}
-Tempo juntos: ${data.tempo}
-História: ${data.relacao}
-O que representa: ${data.uniao}
-Qualidades: ${data.qualidades}
-Memória marcante: ${data.memoria}
-Mensagem final: ${data.mensagem}
-Estilo musical: ${data.estilo}
-Tom emocional: ${data.tom}
-Voz: ${data.voz}
-
-Escreva apenas a letra com: verso 1, pré-refrão, refrão, verso 2, refrão final.
-Use os nomes reais. Sem explicações, sem títulos de seção.`
+          content: 'Crie uma letra de música personalizada em português brasileiro.\n\nPara: ' + data.dest + '\nOcasião: ' + data.ocas + '\nNomes: ' + data.seuNome + ' e ' + data.nomeRecebe + '\nTempo juntos: ' + data.tempo + '\nHistória: ' + data.relacao + '\nO que representa: ' + data.uniao + '\nQualidades: ' + data.qualidades + '\nMemória marcante: ' + data.memoria + '\nMensagem final: ' + data.mensagem + '\nEstilo musical: ' + data.estilo + '\nTom emocional: ' + data.tom + '\nVoz: ' + data.voz + '\n\nEscreva apenas a letra com: verso 1, pré-refrão, refrão, verso 2, refrão final. Use os nomes reais. Sem explicações, sem títulos de seção.'
         }]
       })
     });
@@ -46,24 +30,45 @@ Use os nomes reais. Sem explicações, sem títulos de seção.`
     const letraData = await letraResponse.json();
     const letra = letraData.choices[0].message.content;
 
-    // 2. Gerar áudio com MiniMax via AIML
-    const audioResponse = await fetch('https://api.aimlapi.com/v2/generate/audio/minimax/music', {
+    // 2. Gerar áudio com Suno API
+    const estiloMap = {
+      'Sertanejo': 'sertanejo romântico brasileiro, violão, voz emotiva',
+      'Pop Romântico': 'pop romântico brasileiro, melodia emotiva',
+      'Samba e Pagode': 'pagode brasileiro, cavaquinho, pandeiro',
+      'Gospel': 'gospel brasileiro, coral, piano',
+      'MPB': 'MPB brasileira, voz suave, violão',
+      'R&B': 'R&B romântico, suave, intimista',
+    };
+
+    const estiloPrompt = estiloMap[data.estilo] || 'pop romântico brasileiro';
+    const vozPrompt = data.voz === 'Feminina' ? ', voz feminina' : ', voz masculina';
+
+    const sunoResponse = await fetch('https://api.sunoapi.org/api/v1/generate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${env.AIML_KEY}`,
+        'Authorization': 'Bearer ' + env.SUNO_KEY,
       },
       body: JSON.stringify({
-        model: 'music-01-lyrics',
-        lyrics: letra,
-        refer_instrumental: data.estilo === 'Sertanejo' ? 'sertanejo' : 
-                           data.estilo === 'Gospel' ? 'gospel' :
-                           data.estilo === 'Samba e Pagode' ? 'samba' : 'pop',
+        prompt: letra,
+        style: estiloPrompt + vozPrompt,
+        title: 'Para ' + data.nomeRecebe,
+        customMode: true,
+        instrumental: false,
+        model: 'V4',
+        negativeTags: 'heavy metal, rap, aggressive',
+        callBackUrl: 'https://lovetune.pages.dev/functions/workers/webhook'
       })
     });
 
-    const audioData = await audioResponse.json();
-    const generationId = audioData.task_id || audioData.id;
+    const sunoData = await sunoResponse.json();
+    console.log('Suno response:', JSON.stringify(sunoData));
+
+    const generationId = sunoData.data?.taskId || sunoData.taskId || sunoData.id;
+
+    if (!generationId) {
+      throw new Error('Suno nao retornou taskId: ' + JSON.stringify(sunoData));
+    }
 
     // 3. Salvar pedido no KV
     const orderId = crypto.randomUUID();
@@ -72,19 +77,21 @@ Use os nomes reais. Sem explicações, sem títulos de seção.`
       letra,
       generationId,
       status: 'generating',
+      provider: 'suno',
       createdAt: Date.now(),
     }));
 
-    return new Response(JSON.stringify({ 
+    return new Response(JSON.stringify({
       success: true,
-      orderId, 
+      orderId,
       generationId,
-      letra 
+      letra
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });
 
   } catch (err) {
+    console.error('Generate error:', err.message);
     return new Response(JSON.stringify({ error: err.message }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
