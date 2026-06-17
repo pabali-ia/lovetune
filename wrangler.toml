@@ -1,0 +1,10 @@
+name = "lovetune"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "ORDERS"
+id = "sua_kv_id_aqui"
+
+[[r2_buckets]]
+binding = "AUDIO_BUCKET"
+bucket_name = "lovetune-audio"
