@@ -1433,17 +1433,21 @@ async function submitQuiz(){
 
   try {
     // 1. Chamar Worker para gerar letra + áudio
+    console.log('Chamando /workers/generate...');
     const response = await fetch('/workers/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(qData)
     });
 
+    console.log('Status response:', response.status);
     const result = await response.json();
+    console.log('Result:', JSON.stringify(result));
 
     if (!result.success) throw new Error(result.error || 'Erro ao gerar música');
 
     const { orderId } = result;
+    console.log('OrderId:', orderId);
 
     // 2. Polling até áudio ficar pronto
     let attempts = 0;
