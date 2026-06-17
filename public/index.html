@@ -1411,7 +1411,7 @@ function goStep(n){
   showStep(n);
 }
 
-function submitQuiz(){
+async function submitQuiz(){
   const email=document.getElementById('q7email').value.trim();
   const wa=document.getElementById('q7whatsapp').value.trim();
   let ok=true;
@@ -1420,7 +1420,59 @@ function submitQuiz(){
   if(!ok) return;
   hideErr('err7');
   qData.email=email; qData.whatsapp=wa;
-  console.log('Quiz data:', qData);
+
+  // Mostrar loading
+  document.querySelectorAll('.quiz-step').forEach(s=>s.style.display='none');
+  document.querySelector('.quiz-progress-row').style.display='none';
+  document.getElementById('qLoading').style.display='block';
+  document.getElementById('quizModal').scrollTo(0,0);
+  startLoadingAnimation();
+
+  try {
+    // 1. Chamar Worker para gerar letra + áudio
+    const response = await fetch('/workers/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(qData)
+    });
+
+    const result = await response.json();
+
+    if (!result.success) throw new Error(result.error || 'Erro ao gerar música');
+
+    const { orderId } = result;
+
+    // 2. Polling até áudio ficar pronto
+    let attempts = 0;
+    const maxAttempts = 40; // ~2 minutos
+    
+    const poll = async () => {
+      if (attempts >= maxAttempts) {
+        document.getElementById('qloadStatus').textContent = 'Sua música está sendo finalizada... você receberá por e-mail em breve!';
+        return;
+      }
+      attempts++;
+
+      const statusRes = await fetch(`/workers/status?orderId=${orderId}`);
+      const statusData = await statusRes.json();
+
+      if (statusData.status === 'ready') {
+        // Áudio pronto — redireciona para preview
+        window.location.href = `/preview?orderId=${orderId}`;
+      } else {
+        // Ainda gerando — tenta de novo em 3s
+        setTimeout(poll, 3000);
+      }
+    };
+
+    // Aguarda 5s antes de começar polling
+    setTimeout(poll, 5000);
+
+  } catch(err) {
+    console.error(err);
+    document.getElementById('qloadStatus').textContent = 'Erro ao gerar música. Tente novamente.';
+  }
+}
 
   // Hide all steps, show loading
   document.querySelectorAll('.quiz-step').forEach(s=>s.style.display='none');
