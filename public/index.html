@@ -703,9 +703,12 @@ document.querySelectorAll('.fade-up').forEach(el=>{
 
 // Minhas Músicas modal
 const modal=document.getElementById('modalMinhas');
-document.querySelectorAll('.btn-minhas').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();modal.classList.add('open');document.body.style.overflow='hidden';}));
-document.getElementById('modalClose').addEventListener('click',()=>{modal.classList.remove('open');document.body.style.overflow='';});
-modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('open');document.body.style.overflow='';}});
+if(modal){
+  document.querySelectorAll('.btn-minhas').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();modal.classList.add('open');document.body.style.overflow='hidden';}));
+  const modalClose=document.getElementById('modalClose');
+  if(modalClose) modalClose.addEventListener('click',()=>{modal.classList.remove('open');document.body.style.overflow='';});
+  modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('open');document.body.style.overflow='';}});
+}
 
 // Fake audio progress
 let prog=0,playing=false,interval;
