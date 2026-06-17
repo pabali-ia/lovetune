@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sua Música – LoveTune</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(180deg,#F7F2FC 0%,#F9F1FA 50%,#F6F1FB 100%);min-height:100vh;padding:0 0 48px}
+
+/* HEADER */
+.header{text-align:center;padding:24px 20px 0}
+.header img{width:80px;height:auto}
+
+/* HERO */
+.hero{text-align:center;padding:20px 20px 0}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;color:#9CA3AF;text-transform:uppercase;margin-bottom:6px}
+.music-title{font-family:'Dancing Script',cursive;font-size:42px;color:#FF4D8D;margin-bottom:8px;line-height:1.1}
+.listen-hint{font-size:13px;color:#FF4D8D;display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:16px}
+
+/* PLAYER CARD */
+.player-card{background:white;border-radius:20px;padding:24px 20px 20px;max-width:480px;margin:0 auto 16px;box-shadow:0 8px 32px rgba(255,77,141,.1)}
+.vinyl-wrap{position:relative;width:180px;height:180px;margin:0 auto 12px}
+.vinyl{width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;
+  animation:vinylSpin 4s linear infinite;animation-play-state:paused;
+  background:
+    repeating-radial-gradient(circle at 50%, #111 0px, #1a1a2e 2px, #111 4px, #1e1e3a 6px, #111 8px);
+  box-shadow:0 8px 28px rgba(0,0,0,.35);
+}
+.vinyl.playing{animation-play-state:running}
+@keyframes vinylSpin{to{transform:rotate(360deg)}}
+/* white center circle */
+.vinyl-center{
+  position:absolute;width:56px;height:56px;background:white;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+.vinyl-center svg{color:#FF4D8D}
+.preview-label{font-size:11px;color:#9CA3AF;text-align:center;margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:6px}
+/* equalizer bars */
+.equalizer{display:inline-flex;align-items:flex-end;gap:2px;height:14px}
+.eq-bar{display:inline-block;width:3px;background:#FF4D8D;border-radius:2px;animation:none}
+.equalizer.active .eq-bar:nth-child(1){animation:eq1 .5s ease infinite alternate}
+.equalizer.active .eq-bar:nth-child(2){animation:eq2 .4s ease infinite alternate}
+.equalizer.active .eq-bar:nth-child(3){animation:eq3 .6s ease infinite alternate}
+.equalizer.active .eq-bar:nth-child(4){animation:eq4 .35s ease infinite alternate}
+@keyframes eq1{from{height:3px}to{height:13px}}
+@keyframes eq2{from{height:6px}to{height:10px}}
+@keyframes eq3{from{height:2px}to{height:14px}}
+@keyframes eq4{from{height:8px}to{height:5px}}
+audio{display:none}
+.progress-wrap{margin-bottom:4px;cursor:pointer;padding:6px 0}
+.progress-bar{height:5px;background:#F3F4F6;border-radius:4px;overflow:hidden}
+.progress-fill{
+  height:100%;width:0%;border-radius:4px;
+  background:linear-gradient(90deg, #FF4D8D 0%, #FF6B35 60%, #FFD700 100%);
+  background-size:200% 100%;
+  transition:width .1s linear;
+}
+.time-row{display:flex;justify-content:space-between;font-size:10px;color:#9CA3AF;margin-bottom:16px}
+.player-controls{display:flex;align-items:center;justify-content:center;gap:20px}
+.pctrl{width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#F9F0FB;color:#FF4D8D;transition:all .2s}
+.pctrl:hover{background:#FF4D8D;color:white}
+.pctrl.main{width:54px;height:54px;background:#FF4D8D;color:white;box-shadow:0 6px 16px rgba(255,77,141,.35)}
+.pctrl.main:hover{background:#e0356d}
+
+/* ACTION BTNS */
+.action-btns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:480px;margin:0 auto 8px}
+.abtn{display:flex;align-items:center;gap:6px;background:white;border:1.5px solid #E5E7EB;border-radius:999px;padding:8px 16px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;color:#374151;cursor:pointer;transition:all .2s}
+.abtn:hover{border-color:#FF4D8D;color:#FF4D8D}
+.abtn svg{width:14px;height:14px;flex-shrink:0}
+.btn-criar{display:flex;align-items:center;gap:6px;background:none;border:none;font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;color:#9CA3AF;cursor:pointer;margin:0 auto;padding:4px 0}
+.btn-criar:hover{color:#FF4D8D}
+
+/* LETRA */
+.letra-card{background:white;border-radius:16px;padding:20px;max-width:480px;margin:0 auto 16px;box-shadow:0 4px 16px rgba(255,77,141,.06)}
+.letra-card h3{font-size:14px;font-weight:700;color:#111827;margin-bottom:10px}
+.letra-card p{font-size:13px;color:#6B7280;line-height:1.7;white-space:pre-line}
+
+/* OFERTA */
+.oferta-card{background:white;border-radius:20px;padding:24px 20px;max-width:480px;margin:0 auto 16px;box-shadow:0 8px 32px rgba(255,77,141,.1)}
+.promo-banner{background:#FFF0F6;border-radius:10px;padding:8px 16px;text-align:center;margin-bottom:16px}
+.promo-banner p{font-size:11px;color:#FF4D8D;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:8px}
+.countdown{display:flex;gap:8px;justify-content:center;margin-bottom:4px}
+.count-block{text-align:center}
+.count-num{font-size:28px;font-weight:800;color:#111827;line-height:1}
+.count-label{font-size:10px;color:#9CA3AF}
+.count-sep{font-size:24px;font-weight:700;color:#111827;padding-top:2px}
+.promo-sub{font-size:11px;color:#FF4D8D;text-align:center;margin-top:4px}
+.oferta-title{font-size:22px;font-weight:800;color:#111827;margin-bottom:8px;line-height:1.3}
+.oferta-sub{font-size:13px;color:#6B7280;margin-bottom:16px;line-height:1.6}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.feat{display:flex;align-items:center;gap:6px;font-size:12px;color:#374151}
+.feat svg{color:#FF4D8D;flex-shrink:0}
+.price-row{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:16px}
+.price-old{font-size:14px;color:#9CA3AF;text-decoration:line-through}
+.price-new{font-size:32px;font-weight:800;color:#111827}
+.price-new span{font-size:14px;font-weight:500;color:#6B7280}
+.price-pix{font-size:12px;color:#6B7280}
+.btn-liberar{display:flex;align-items:center;justify-content:center;gap:8px;background:#10B981;border:none;border-radius:999px;padding:15px 32px;font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:white;cursor:pointer;width:100%;box-shadow:0 8px 24px rgba(16,185,129,.3);transition:all .25s;margin-bottom:8px}
+.btn-liberar:hover{background:#059669;transform:scale(1.02)}
+.seguro{font-size:11px;color:#9CA3AF;text-align:center;display:flex;align-items:center;justify-content:center;gap:12px}
+
+/* QR */
+.qr-card{background:white;border-radius:20px;padding:20px;max-width:480px;margin:0 auto;box-shadow:0 4px 16px rgba(255,77,141,.06)}
+.qr-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.qr-header svg{color:#FF4D8D}
+.qr-header div h4{font-size:14px;font-weight:700;color:#111827}
+.qr-header div p{font-size:12px;color:#6B7280}
+.qr-content{display:flex;align-items:center;gap:16px}
+.qr-img{width:90px;height:90px;background:#F3F4F6;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.qr-actions{flex:1;display:flex;flex-direction:column;gap:8px}
+.btn-qr{display:flex;align-items:center;justify-content:center;gap:6px;background:#10B981;border:none;border-radius:999px;padding:11px 20px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;color:white;cursor:pointer;transition:all .2s}
+.btn-qr:hover{background:#059669}
+.btn-copy{display:flex;align-items:center;justify-content:center;gap:6px;background:white;border:1.5px solid #E5E7EB;border-radius:999px;padding:10px 20px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#374151;cursor:pointer;transition:all .2s}
+.btn-copy:hover{border-color:#FF4D8D;color:#FF4D8D}
+.qr-note{font-size:11px;color:#9CA3AF;margin-top:10px;text-align:center}
+
+.container{max-width:480px;margin:0 auto;padding:0 16px}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <img src="images/logo.jpg" alt="LoveTune"/>
+</div>
+
+<!-- HERO -->
+<div class="hero container">
+  <p class="eyebrow">SUA MÚSICA</p>
+  <h1 class="music-title" id="musicTitle">Para você</h1>
+  <p class="listen-hint">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/></svg>
+    Escute a prévia da sua música abaixo
+  </p>
+</div>
+
+<!-- PLAYER -->
+<div class="container">
+  <div class="player-card">
+    <div class="vinyl-wrap">
+      <div class="vinyl" id="vinyl">
+        <div class="vinyl-center">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </div>
+      </div>
+    </div>
+    <audio id="audioEl"></audio>
+    <div class="preview-label">
+      <span class="equalizer" id="equalizer">
+        <span class="eq-bar" style="height:6px"></span>
+        <span class="eq-bar" style="height:10px"></span>
+        <span class="eq-bar" style="height:4px"></span>
+        <span class="eq-bar" style="height:8px"></span>
+      </span>
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      Prévia gratuita
+    </div>
+    <div class="progress-wrap" onclick="seekTo(event)">
+      <div class="progress-bar"><div class="progress-fill" id="pFill"></div></div>
+    </div>
+    <div class="time-row"><span id="tCur">0:00</span><span id="tTot">0:21</span></div>
+    <div class="player-controls">
+      <button class="pctrl" onclick="seek(-10)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 2 12 11 7"/><polyline points="22 17 13 12 22 7"/></svg>
+      </button>
+      <button class="pctrl main" id="playBtn" onclick="togglePlay()">
+        <svg id="playIcon" width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+      </button>
+      <button class="pctrl" onclick="seek(10)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 22 12 13 7"/><polyline points="2 17 11 12 2 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ACTION BUTTONS -->
+  <div class="action-btns">
+    <button class="abtn" onclick="baixarMusica()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Baixar música
+    </button>
+    <button class="abtn" onclick="compartilharLink()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      Compartilhar link
+    </button>
+    <button class="abtn" onclick="baixarQR()">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="8" height="8" rx="1.2" stroke="currentColor" stroke-width="1.8" fill="none"/><rect x="4" y="4" width="3" height="3" rx=".3" fill="currentColor"/><rect x="14" y="2" width="8" height="8" rx="1.2" stroke="currentColor" stroke-width="1.8" fill="none"/><rect x="16" y="4" width="3" height="3" rx=".3" fill="currentColor"/><rect x="2" y="14" width="8" height="8" rx="1.2" stroke="currentColor" stroke-width="1.8" fill="none"/><rect x="4" y="16" width="3" height="3" rx=".3" fill="currentColor"/><rect x="14" y="14" width="2.5" height="2.5" rx=".3" fill="currentColor"/><rect x="18.5" y="14" width="2.5" height="2.5" rx=".3" fill="currentColor"/><rect x="14" y="18.5" width="2.5" height="2.5" rx=".3" fill="currentColor"/><rect x="18.5" y="18.5" width="2.5" height="2.5" rx=".3" fill="currentColor"/></svg>
+      Baixar QR code
+    </button>
+  </div>
+  <div style="text-align:center;margin-bottom:16px">
+    <button class="btn-criar" onclick="window.location.href='/'">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      Criar Música
+    </button>
+  </div>
+
+  <!-- LETRA -->
+  <div class="letra-card" id="letraCard" style="display:none">
+    <h3>Letra</h3>
+    <p id="letraText">Desculpe, mas não posso cumprir esse pedido.</p>
+  </div>
+
+  <!-- OFERTA -->
+  <div class="oferta-card">
+    <div class="promo-banner">
+      <p>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+        Promoção válida apenas hoje – <span id="dataHoje"></span>
+      </p>
+      <div class="countdown">
+        <div class="count-block"><div class="count-num" id="cH">09</div><div class="count-label">horas</div></div>
+        <div class="count-sep">:</div>
+        <div class="count-block"><div class="count-num" id="cM">09</div><div class="count-label">min</div></div>
+        <div class="count-sep">:</div>
+        <div class="count-block"><div class="count-num" id="cS">58</div><div class="count-label">seg</div></div>
+      </div>
+      <p class="promo-sub">Após esse horário, o preço volta para R$47,00</p>
+    </div>
+
+    <h2 class="oferta-title">Libere a música completa e envie para ele(a)</h2>
+    <p class="oferta-sub">Essa prévia é só um respiro. A versão completa tem o refrão final, a ponte e o momento mais emocionante.</p>
+
+    <div class="features">
+      <div class="feat">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        MP3 em alta qualidade
+      </div>
+      <div class="feat">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        Letra completa
+      </div>
+      <div class="feat">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+        Link privado
+      </div>
+      <div class="feat">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Garantia de 7 dias
+      </div>
+    </div>
+
+    <div class="price-row">
+      <span class="price-old">R$ 47</span>
+      <span class="price-new">R$ 37 <span>à vista no Pix</span></span>
+    </div>
+
+    <button class="btn-liberar" onclick="gerarPix()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      Liberar minha música agora
+    </button>
+    <div class="seguro">
+      <span>🔒 Pagamento 100% seguro no PIX</span>
+      <span>✓ Acesso imediato após aprovação</span>
+    </div>
+  </div>
+
+  <!-- QR CODE -->
+  <div class="qr-card" style="margin-top:16px">
+    <div class="qr-header">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+      <div>
+        <h4>Compartilhe com quem te inspirou</h4>
+        <p>Mostre na tela ou baixe o QR code em PNG para imprimir e entregar.</p>
+      </div>
+    </div>
+    <div class="qr-content">
+      <div class="qr-img" id="qrImg">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="8" height="8" rx="1" stroke="#E5E7EB" stroke-width="1.5" fill="none"/><rect x="4" y="4" width="3" height="3" rx=".3" fill="#E5E7EB"/><rect x="14" y="2" width="8" height="8" rx="1" stroke="#E5E7EB" stroke-width="1.5" fill="none"/><rect x="16" y="4" width="3" height="3" rx=".3" fill="#E5E7EB"/><rect x="2" y="14" width="8" height="8" rx="1" stroke="#E5E7EB" stroke-width="1.5" fill="none"/><rect x="4" y="16" width="3" height="3" rx=".3" fill="#E5E7EB"/><rect x="14" y="14" width="2" height="2" rx=".3" fill="#E5E7EB"/><rect x="18" y="14" width="2" height="2" rx=".3" fill="#E5E7EB"/><rect x="14" y="18" width="2" height="2" rx=".3" fill="#E5E7EB"/><rect x="18" y="18" width="2" height="2" rx=".3" fill="#E5E7EB"/></svg>
+      </div>
+      <div class="qr-actions">
+        <button class="btn-qr" onclick="baixarQR()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar QR Code (PNG)
+        </button>
+        <button class="btn-copy" onclick="copiarLink()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar link
+        </button>
+        <p class="qr-note">Quem escanear abre direto a página da música no celular.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const orderId = params.get('orderId');
+const audio = document.getElementById('audioEl');
+const vinyl = document.getElementById('vinyl');
+
+// Data de hoje
+const hoje = new Date();
+document.getElementById('dataHoje').textContent = hoje.toLocaleDateString('pt-BR');
+
+// Countdown
+let total = 9 * 3600 + 9 * 60 + 58;
+function updateCountdown(){
+  if(total <= 0) return;
+  total--;
+  document.getElementById('cH').textContent = String(Math.floor(total/3600)).padStart(2,'0');
+  document.getElementById('cM').textContent = String(Math.floor((total%3600)/60)).padStart(2,'0');
+  document.getElementById('cS').textContent = String(total%60).padStart(2,'0');
+}
+setInterval(updateCountdown, 1000);
+
+// Carregar preview
+async function loadPreview(){
+  if(!orderId) return;
+  try {
+    const res = await fetch(`/workers/status?orderId=${orderId}`);
+    const data = await res.json();
+    if(data.audioUrl){ audio.src = data.audioUrl; audio.load(); }
+    if(data.letra){
+      document.getElementById('letraText').textContent = data.letra;
+      document.getElementById('letraCard').style.display = 'block';
+    }
+    if(data.nomeRecebe) document.getElementById('musicTitle').textContent = 'Para ' + data.nomeRecebe;
+  } catch(e){ console.error(e); }
+}
+
+// Player
+const PREVIEW_LIMIT = 21;
+function togglePlay(){
+  if(audio.paused){
+    audio.play();
+    vinyl.classList.add('playing');
+    document.getElementById('equalizer').classList.add('active');
+    document.getElementById('playIcon').innerHTML='<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+  } else {
+    audio.pause();
+    vinyl.classList.remove('playing');
+    document.getElementById('equalizer').classList.remove('active');
+    document.getElementById('playIcon').innerHTML='<polygon points="5,3 19,12 5,21"/>';
+  }
+}
+function seek(s){ audio.currentTime = Math.max(0, Math.min(PREVIEW_LIMIT, audio.currentTime + s)); }
+function seekTo(e){ const pct = e.offsetX / e.currentTarget.offsetWidth; audio.currentTime = Math.min(PREVIEW_LIMIT, pct * (audio.duration||0)); }
+function fmt(s){ return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'); }
+audio.addEventListener('timeupdate',()=>{
+  const cur = Math.min(audio.currentTime, PREVIEW_LIMIT);
+  const total = PREVIEW_LIMIT;
+  const pct = (cur / total) * 100;
+  document.getElementById('pFill').style.width = pct + '%';
+  document.getElementById('tCur').textContent = fmt(cur);
+  // Stop at 21s
+  if(audio.currentTime >= PREVIEW_LIMIT){
+    audio.pause();
+    audio.currentTime = PREVIEW_LIMIT;
+    vinyl.classList.remove('playing');
+    document.getElementById('equalizer').classList.remove('active');
+    document.getElementById('playIcon').innerHTML='<polygon points="5,3 19,12 5,21"/>';
+  }
+});
+audio.addEventListener('loadedmetadata',()=>{ document.getElementById('tTot').textContent = fmt(PREVIEW_LIMIT); });
+audio.addEventListener('ended',()=>{
+  vinyl.classList.remove('playing');
+  document.getElementById('equalizer').classList.remove('active');
+  document.getElementById('playIcon').innerHTML='<polygon points="5,3 19,12 5,21"/>';
+});
+
+// Actions
+function baixarMusica(){ if(audio.src) window.open(audio.src); else alert('Música ainda não disponível.'); }
+function compartilharLink(){ navigator.clipboard.writeText(window.location.href); alert('Link copiado!'); }
+function copiarLink(){ navigator.clipboard.writeText(window.location.href); alert('Link copiado!'); }
+function baixarQR(){ alert('QR Code disponível após pagamento.'); }
+async function gerarPix(){
+  const btn = document.querySelector('.btn-liberar');
+  btn.innerHTML = '⏳ Gerando PIX...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('/workers/payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ orderId })
+    });
+
+    const data = await res.json();
+
+    if(data.paymentUrl){
+      window.location.href = data.paymentUrl;
+    } else {
+      throw new Error(data.error || 'Erro ao gerar PIX');
+    }
+  } catch(e) {
+    btn.innerHTML = '♡ Liberar minha música agora';
+    btn.disabled = false;
+    alert('Erro ao gerar PIX. Tente novamente.');
+  }
+}
+
+loadPreview();
+</script>
+</body>
+</html>
