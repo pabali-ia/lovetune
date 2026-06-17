@@ -363,10 +363,32 @@ audio.addEventListener('ended',()=>{
 });
 
 // Actions
-function baixarMusica(){ if(audio.src) window.open(audio.src); else alert('Música ainda não disponível.'); }
+let isPaid = false;
+
+function baixarMusica(){
+  if(!isPaid){
+    // Scroll para o card de oferta
+    document.querySelector('.oferta-card').scrollIntoView({ behavior: 'smooth' });
+    // Pisca o botão de pagamento
+    const btn = document.querySelector('.btn-liberar');
+    btn.style.transform = 'scale(1.05)';
+    btn.style.boxShadow = '0 0 0 4px rgba(16,185,129,0.3)';
+    setTimeout(()=>{ btn.style.transform=''; btn.style.boxShadow=''; }, 600);
+    return;
+  }
+  if(audio.src) window.open(audio.src);
+}
+
 function compartilharLink(){ navigator.clipboard.writeText(window.location.href); alert('Link copiado!'); }
 function copiarLink(){ navigator.clipboard.writeText(window.location.href); alert('Link copiado!'); }
-function baixarQR(){ alert('QR Code disponível após pagamento.'); }
+function baixarQR(){
+  if(!isPaid){
+    document.querySelector('.oferta-card').scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+  alert('QR Code disponível em breve!');
+}
+
 async function gerarPix(){
   const btn = document.querySelector('.btn-liberar');
   btn.innerHTML = '⏳ Gerando PIX...';
@@ -380,6 +402,7 @@ async function gerarPix(){
     });
 
     const data = await res.json();
+    console.log('Payment response:', JSON.stringify(data));
 
     if(data.paymentUrl){
       window.location.href = data.paymentUrl;
@@ -387,9 +410,10 @@ async function gerarPix(){
       throw new Error(data.error || 'Erro ao gerar PIX');
     }
   } catch(e) {
+    console.error(e);
     btn.innerHTML = '♡ Liberar minha música agora';
     btn.disabled = false;
-    alert('Erro ao gerar PIX. Tente novamente.');
+    alert('Erro ao gerar PIX: ' + e.message);
   }
 }
 
