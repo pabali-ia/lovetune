@@ -10,7 +10,6 @@ export async function onRequestPost(context) {
   try {
     const { orderId } = await request.json();
 
-    // Buscar pedido no KV
     const orderRaw = await env.ORDERS.get(orderId);
     if (!orderRaw) {
       return new Response('Order not found', { status: 404 });
@@ -23,20 +22,20 @@ export async function onRequestPost(context) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${env.ABACATE_KEY}`,
+        'Authorization': 'Bearer ' + env.ABACATE_KEY,
       },
       body: JSON.stringify({
         frequency: 'ONE_TIME',
         methods: ['PIX'],
         products: [{
           externalId: orderId,
-          name: `Música personalizada para ${order.nomeRecebe}`,
-          description: `${order.ocas} • ${order.estilo}`,
+          name: 'Musica personalizada para ' + order.nomeRecebe,
+          description: order.ocas + ' - ' + order.estilo,
           quantity: 1,
-          price: 3700, // R$ 37,00 em centavos
+          price: 3700,
         }],
         metadata: {
-          orderId,
+          orderId: orderId,
           email: order.email,
           whatsapp: order.whatsapp,
         },
@@ -44,30 +43,25 @@ export async function onRequestPost(context) {
           name: order.seuNome,
           email: order.email,
           cellphone: order.whatsapp,
-          taxId: {
-            type: 'CPF',
-            number: '00000000000', // será preenchido pelo cliente
-          }
+          taxId: '00000000000',
         },
-        returnUrl: `https://meulovetune.com.br/preview?orderId=${orderId}`,
-        completionUrl: `https://meulovetune.com.br/obrigado?orderId=${orderId}`,
+        returnUrl: 'https://lovetune.pages.dev/preview?orderId=' + orderId,
+        completionUrl: 'https://lovetune.pages.dev/obrigado?orderId=' + orderId,
       })
     });
 
     const data = await response.json();
     console.log('AbacatePay response:', JSON.stringify(data));
 
-    if (!data.data?.url) {
-      throw new Error('Erro ao criar cobrança: ' + JSON.stringify(data));
+    if (!data.data || !data.data.url) {
+      throw new Error('Erro ao criar cobranca: ' + JSON.stringify(data));
     }
 
-    // Salvar URL de pagamento no KV
-    await env.ORDERS.put(orderId, JSON.stringify({
-      ...order,
+    await env.ORDERS.put(orderId, JSON.stringify(Object.assign({}, order, {
       status: 'pending_payment',
       paymentUrl: data.data.url,
       billingId: data.data.id,
-    }));
+    })));
 
     return new Response(JSON.stringify({
       success: true,
