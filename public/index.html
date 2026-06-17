@@ -1477,14 +1477,6 @@ async function submitQuiz(){
   }
 }
 
-  // Hide all steps, show loading
-  document.querySelectorAll('.quiz-step').forEach(s=>s.style.display='none');
-  document.querySelector('.quiz-progress-row').style.display='none';
-  document.getElementById('qLoading').style.display='block';
-  document.getElementById('quizModal').scrollTo(0,0);
-  startLoadingAnimation();
-}
-
 function startLoadingAnimation(){
   const circumference = 2 * Math.PI * 70; // 439.8
   const ring = document.getElementById('qloadRingFill');
