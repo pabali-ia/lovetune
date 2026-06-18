@@ -1688,7 +1688,8 @@ window.goToTrack = function(n) {
 
 window.nextTrack = function() { window.goToTrack((exCurrent + 1) % 3); };
 window.prevTrack = function() { window.goToTrack((exCurrent + 2) % 3); };
-(textareaId, btn){
+
+async function corrigirGramatica(textareaId, btn){
   const el = document.getElementById(textareaId);
   const texto = el.value.trim();
   if(!texto || texto.length < 5) return;
