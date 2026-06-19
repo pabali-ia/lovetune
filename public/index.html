@@ -302,7 +302,7 @@ footer{background:white;border-top:1px solid rgba(255,77,141,.08);padding:56px 4
     <img src="images/logo.jpg" alt="LoveTune" style="width:32px;height:32px;object-fit:contain;border-radius:6px"/>
     <span>LoveTune</span>
   </a>
-  <a href="#" class="btn-minhas">🎵 Minhas músicas</a>
+  <a href="#" class="btn-minhas" onclick="event.preventDefault();document.getElementById('modalMinhas').style.display='flex';document.body.style.overflow='hidden'">🎵 Minhas músicas</a>
 </header>
 
 <!-- HERO -->
@@ -879,7 +879,7 @@ if(btn){
 </style>
 
   <div class="modal-box">
-    <button class="modal-close" id="modalClose" aria-label="Fechar">✕</button>
+    <button class="modal-close" id="modalClose" onclick="document.getElementById('modalMinhas').style.display='none';document.body.style.overflow=''" aria-label="Fechar">✕</button>
     <p class="modal-eyebrow">MINHAS MÚSICAS</p>
     <h2 class="modal-title">Ouça o que você criou</h2>
     <p class="modal-desc">Coloque seu <strong>e-mail</strong> ou <strong>telefone</strong> usado na hora da compra e acesse todas as suas músicas.</p>
