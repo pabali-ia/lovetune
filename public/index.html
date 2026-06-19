@@ -967,7 +967,7 @@ async function buscarMusicas(){
 }
 
 function closeQuizFromModal(){
-  if(modal) modal.classList.remove('open');
+  document.getElementById('modalMinhas').style.display='none';
   document.body.style.overflow='';
   openQuiz();
 }
