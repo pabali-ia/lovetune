@@ -1566,104 +1566,113 @@ async function submitQuiz(){
   document.querySelector('.quiz-progress-row').style.display='none';
   document.getElementById('qLoading').style.display='block';
   document.getElementById('quizModal').scrollTo(0,0);
-  startLoadingAnimation();
+
+  // Inicia em 0%
+  setLoadingProgress(0, 'Preparando sua música...');
 
   try {
-    // 1. Chamar Worker para gerar letra + áudio
+    // FASE 1: Gerar letra (0% → 30%)
     console.log('Chamando /workers/generate...');
+    animateProgress(0, 25, 3000, 'Escrevendo a letra...');
+    setLoadStep(1, 'active');
+
     const response = await fetch('/workers/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(qData)
     });
 
-    console.log('Status response:', response.status);
     const result = await response.json();
     console.log('Result:', JSON.stringify(result));
-
     if (!result.success) throw new Error(result.error || 'Erro ao gerar música');
 
     const { orderId } = result;
-    console.log('OrderId:', orderId);
 
-    // 2. Polling até áudio ficar pronto
+    // Letra pronta → 30%
+    setLoadingProgress(30, 'Letra criada! Compondo a melodia...');
+    setLoadStep(1, 'done');
+    setLoadStep(2, 'active');
+
+    // FASE 2: Polling áudio (30% → 95%)
     let attempts = 0;
-    const maxAttempts = 40; // ~2 minutos
-    
+    const maxAttempts = 60; // ~3 minutos
+    let currentPct = 30;
+
     const poll = async () => {
       if (attempts >= maxAttempts) {
-        document.getElementById('qloadStatus').textContent = 'Sua música está sendo finalizada... você receberá por e-mail em breve!';
+        setLoadingProgress(95, 'Finalizando... você receberá por e-mail em breve!');
         return;
       }
       attempts++;
 
-      const statusRes = await fetch(`/workers/status?orderId=${orderId}`);
+      // Avança progresso gradualmente de 30 a 92%
+      if (currentPct < 92) {
+        currentPct = Math.min(92, currentPct + (attempts < 10 ? 3 : attempts < 20 ? 2 : 1));
+        setLoadingProgress(currentPct, getLoadingStatus(currentPct));
+      }
+
+      const statusRes = await fetch('/workers/status?orderId=' + orderId);
       const statusData = await statusRes.json();
 
       if (statusData.status === 'ready') {
-        // Áudio pronto — redireciona para preview
-        window.location.href = `/preview?orderId=${orderId}`;
+        // Áudio pronto!
+        setLoadStep(2, 'done');
+        setLoadStep(3, 'active');
+        setLoadingProgress(95, 'Gravando e mixando...');
+
+        setTimeout(() => {
+          setLoadStep(3, 'done');
+          setLoadingProgress(100, '🎵 Sua música está pronta!');
+          setTimeout(() => {
+            window.location.href = '/preview?orderId=' + orderId;
+          }, 1200);
+        }, 1500);
       } else {
-        // Ainda gerando — tenta de novo em 3s
         setTimeout(poll, 3000);
       }
     };
 
-    // Aguarda 5s antes de começar polling
-    setTimeout(poll, 5000);
+    setTimeout(poll, 4000);
 
   } catch(err) {
     console.error(err);
+    setLoadingProgress(0, '');
     document.getElementById('qloadStatus').textContent = 'Erro ao gerar música. Tente novamente.';
   }
 }
 
-function startLoadingAnimation(){
-  const circumference = 2 * Math.PI * 70; // 439.8
+function getLoadingStatus(pct) {
+  if (pct < 40) return 'Compondo a melodia...';
+  if (pct < 60) return 'Afinando os instrumentos...';
+  if (pct < 75) return 'Adicionando a voz...';
+  if (pct < 88) return 'Gravando e mixando...';
+  return 'Quase pronta...';
+}
+
+function setLoadingProgress(pct, status) {
+  const circumference = 2 * Math.PI * 70;
   const ring = document.getElementById('qloadRingFill');
   const pctEl = document.getElementById('qloadPct');
   const statusEl = document.getElementById('qloadStatus');
+  if (ring) ring.style.strokeDashoffset = circumference - (pct / 100) * circumference;
+  if (pctEl) pctEl.textContent = pct;
+  if (statusEl && status) statusEl.textContent = status;
+}
 
-  const phases = [
-    { pct:0,  step:null,  status:'Preparando sua música...' },
-    { pct:12, step:1,     status:'Escrevendo a letra...' },
-    { pct:35, step:null,  status:'Afinando a melodia...' },
-    { pct:55, step:'done1', status:'Compondo a melodia...' },
-    { pct:72, step:2,     status:'Afinando a melodia...' },
-    { pct:88, step:'done2', status:'Gravando e mixando...' },
-    { pct:95, step:3,     status:'Gravando e mixando...' },
-    { pct:100,step:'done3', status:'Sua música está pronta! 🎵' },
-  ];
+function animateProgress(from, to, duration, status) {
+  const steps = 20;
+  const interval = duration / steps;
+  const increment = (to - from) / steps;
+  let current = from;
+  const timer = setInterval(() => {
+    current = Math.min(to, current + increment);
+    setLoadingProgress(Math.round(current), status);
+    if (current >= to) clearInterval(timer);
+  }, interval);
+}
 
-  // timing per phase (ms)
-  const delays = [300, 1200, 1400, 1600, 1800, 1800, 1600, 1400];
-  let elapsed = 0;
-
-  phases.forEach((phase, i) => {
-    elapsed += delays[i];
-    setTimeout(() => {
-      // Update percentage
-      const pct = phase.pct;
-      pctEl.textContent = pct;
-      const offset = circumference - (pct / 100) * circumference;
-      ring.style.strokeDashoffset = offset;
-
-      // Update status text
-      statusEl.textContent = phase.status;
-
-      // Update steps
-      if(phase.step === 1){ setLoadStep(1,'active'); }
-      if(phase.step === 'done1'){ setLoadStep(1,'done'); setLoadStep(2,'active'); }
-      if(phase.step === 2){ /* already active */ }
-      if(phase.step === 'done2'){ setLoadStep(2,'done'); setLoadStep(3,'active'); }
-      if(phase.step === 3){ /* already active */ }
-      if(phase.step === 'done3'){
-        setLoadStep(3,'done');
-        // brief pause then could redirect/show result
-        setTimeout(()=>{ statusEl.textContent = '🎵 Sua música está pronta!'; }, 600);
-      }
-    }, elapsed);
-  });
+function startLoadingAnimation(){
+  // Mantida por compatibilidade mas não usada mais
 }
 
 function setLoadStep(n, state){
@@ -1674,10 +1683,10 @@ function setLoadStep(n, state){
 
 // ===== CAROUSEL PLAYER =====
 const exTracks = [
-  { name: 'Porque Amar Você é Certeza', genre: 'Sertanejo',       dur: '3:44', src: 'audios/sertanejo.mp3' },
-  { name: '18 Anos',                    genre: 'Tema Aniversário', dur: '3:07', src: 'audios/aniversario.mp3' },
-  { name: 'A Gente Se Encontrou',       genre: 'Pagode',           dur: '2:37', src: 'audios/pagode.mp3' },
-  { name: 'Meu Tesouro',               genre: 'Pai para filha',   dur: '3:34', src: 'audios/tesouro.mp3' },
+  { name: 'Porque Amar Você é Certeza', genre: 'Sertanejo',       dur: '3:44', src: 'audios/1.mp3' },
+  { name: '18 Anos',                    genre: 'Tema Aniversário', dur: '3:07', src: 'audios/2.mp3' },
+  { name: 'A Gente Se Encontrou',       genre: 'Pagode',           dur: '2:37', src: 'audios/3.mp3' },
+  { name: 'Meu Tesouro',               genre: 'Pai para filha',   dur: '3:34', src: 'audios/4.mp3' },
 ];
 let exCurrent = 0;
 let exAudio = new Audio();
