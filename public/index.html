@@ -1320,6 +1320,12 @@ function closeQuizFromModal(){
       <input class="quiz-input" id="q7whatsapp" type="tel" placeholder="(11) 91234-5678"/>
       <p class="quiz-wa-note">Enviaremos uma <span>amostra gratuita</span> da sua música no WhatsApp. Nada de spam — promessa.</p>
 
+      <div class="quiz-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>
+        CPF (para emissão do recibo)
+      </div>
+      <input class="quiz-input" id="q7cpf" type="text" placeholder="000.000.000-00" maxlength="14" oninput="formatCPF(this)"/>
+
       <div class="quiz-success-banner" id="q7success" style="display:none">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
         Sucesso!
@@ -1554,12 +1560,14 @@ function goStep(n){
 async function submitQuiz(){
   const email=document.getElementById('q7email').value.trim();
   const wa=document.getElementById('q7whatsapp').value.trim();
+  const cpf=document.getElementById('q7cpf').value.replace(/\D/g,'');
   let ok=true;
   if(!email || !email.includes('@')){ markInvalid('q7email'); showErr('err7','Informe um e-mail válido.'); ok=false; }
   else if(wa.length < 10){ markInvalid('q7whatsapp'); showErr('err7','Informe um WhatsApp válido com DDD.'); ok=false; }
+  else if(cpf.length !== 11){ markInvalid('q7cpf'); showErr('err7','Informe um CPF válido.'); ok=false; }
   if(!ok) return;
   hideErr('err7');
-  qData.email=email; qData.whatsapp=wa;
+  qData.email=email; qData.whatsapp=wa; qData.cpf=cpf;
 
   // Mostrar loading
   document.querySelectorAll('.quiz-step').forEach(s=>s.style.display='none');
@@ -1754,6 +1762,14 @@ window.prevTrack = function() { window.goToTrack((exCurrent + exTracks.length - 
 
 // Init
 updateExUI();
+
+function formatCPF(input){
+  let v = input.value.replace(/\D/g,'').substring(0,11);
+  v = v.replace(/(\d{3})(\d)/,'$1.$2');
+  v = v.replace(/(\d{3})(\d)/,'$1.$2');
+  v = v.replace(/(\d{3})(\d{1,2})$/,'$1-$2');
+  input.value = v;
+}
 
 async function corrigirGramatica(textareaId, btn){
   const el = document.getElementById(textareaId);

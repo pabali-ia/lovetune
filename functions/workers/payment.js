@@ -43,6 +43,7 @@ export async function onRequestPost(context) {
           name: order.seuNome,
           email: order.email,
           cellphone: order.whatsapp,
+          taxId: order.cpf || '00000000000',
         },
         returnUrl: 'https://lovetune.pages.dev/preview?orderId=' + orderId,
         completionUrl: 'https://lovetune.pages.dev/obrigado?orderId=' + orderId,
