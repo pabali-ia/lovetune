@@ -57,23 +57,29 @@ export async function onRequestPost(context) {
       throw new Error('Erro ao criar cobranca: ' + JSON.stringify(data));
     }
 
-    // Pegar código PIX da resposta
-    const pixCode = data.data.pixQrCode || 
-                    data.data.pix?.qrCode || 
-                    data.data.pix?.code ||
-                    data.data.charges?.[0]?.pixQrCode ||
-                    data.data.charges?.[0]?.pix?.code ||
-                    null;
+    const billingId = data.data.id;
 
-    const pixQrCodeImage = data.data.pixQrCodeImage ||
-                           data.data.pix?.qrCodeImage ||
-                           data.data.charges?.[0]?.pixQrCodeImage ||
-                           null;
+    // Buscar o código PIX da cobrança criada
+    const pixResponse = await fetch('https://api.abacatepay.com/v1/billing/' + billingId + '/pix', {
+      headers: {
+        'Authorization': 'Bearer ' + env.ABACATE_KEY,
+      }
+    });
+
+    let pixCode = null;
+    let pixQrCodeImage = null;
+
+    if(pixResponse.ok){
+      const pixData = await pixResponse.json();
+      console.log('PIX data:', JSON.stringify(pixData));
+      pixCode = pixData.data?.code || pixData.data?.qrCode || pixData.code || pixData.qrCode || null;
+      pixQrCodeImage = pixData.data?.qrCodeImage || pixData.qrCodeImage || null;
+    }
 
     await env.ORDERS.put(orderId, JSON.stringify(Object.assign({}, order, {
       status: 'pending_payment',
       paymentUrl: data.data.url,
-      billingId: data.data.id,
+      billingId: billingId,
       pixCode: pixCode,
     })));
 
@@ -82,8 +88,7 @@ export async function onRequestPost(context) {
       pixCode: pixCode,
       pixQrCodeImage: pixQrCodeImage,
       paymentUrl: data.data.url,
-      billingId: data.data.id,
-      rawData: data.data, // temporário para debug
+      billingId: billingId,
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });
