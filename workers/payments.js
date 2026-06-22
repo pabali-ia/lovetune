@@ -53,20 +53,37 @@ export async function onRequestPost(context) {
     const data = await response.json();
     console.log('AbacatePay response:', JSON.stringify(data));
 
-    if (!data.data || !data.data.url) {
+    if (!data.data) {
       throw new Error('Erro ao criar cobranca: ' + JSON.stringify(data));
     }
+
+    // Pegar código PIX da resposta
+    const pixCode = data.data.pixQrCode || 
+                    data.data.pix?.qrCode || 
+                    data.data.pix?.code ||
+                    data.data.charges?.[0]?.pixQrCode ||
+                    data.data.charges?.[0]?.pix?.code ||
+                    null;
+
+    const pixQrCodeImage = data.data.pixQrCodeImage ||
+                           data.data.pix?.qrCodeImage ||
+                           data.data.charges?.[0]?.pixQrCodeImage ||
+                           null;
 
     await env.ORDERS.put(orderId, JSON.stringify(Object.assign({}, order, {
       status: 'pending_payment',
       paymentUrl: data.data.url,
       billingId: data.data.id,
+      pixCode: pixCode,
     })));
 
     return new Response(JSON.stringify({
       success: true,
+      pixCode: pixCode,
+      pixQrCodeImage: pixQrCodeImage,
       paymentUrl: data.data.url,
       billingId: data.data.id,
+      rawData: data.data, // temporário para debug
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });
