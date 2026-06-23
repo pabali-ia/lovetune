@@ -80,6 +80,7 @@ export async function onRequestPost(context) {
           'Authorization': 'Bearer ' + env.ABACATE_KEY,
         },
         body: JSON.stringify({
+          methods: ['CREDIT_CARD'],
           products: [{
             externalId: env.ABACATE_PRODUCT_ID || 'prod_lovetune_37',
             quantity: 1,
