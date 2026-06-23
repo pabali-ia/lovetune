@@ -18,7 +18,6 @@ export async function onRequestGet(context) {
       });
     }
 
-    // Buscar pedido no KV
     const orderRaw = await env.ORDERS.get(orderId);
     if (!orderRaw) {
       return new Response(JSON.stringify({ error: 'Order not found' }), {
@@ -28,72 +27,104 @@ export async function onRequestGet(context) {
     }
 
     const order = JSON.parse(orderRaw);
+    const r2Domain = env.R2_PUBLIC_DOMAIN || 'lovetune-audio.r2.dev';
 
-    // Se já tiver áudio pronto retorna direto
-    if (order.status === 'ready' || order.status === 'paid' || order.status === 'delivered') {
+    // ── JÁ ENTREGUE ───────────────────────────────────────────
+    if (order.status === 'delivered') {
       return new Response(JSON.stringify({
-        status: order.status,
-        audioUrl: order.previewUrl,
+        status: 'delivered',
+        audioUrl: order.audioUrl || `https://${r2Domain}/${orderId}.mp3`,
         letra: order.letra,
         nomeRecebe: order.nomeRecebe,
-        orderId
+        orderId,
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });
     }
 
-    // Verificar status no Suno API
-    const statusResponse = await fetch('https://api.sunoapi.org/api/v1/generate/record-info?taskId=' + order.generationId, {
-      headers: {
-        'Authorization': 'Bearer ' + env.SUNO_KEY,
-      }
-    });
+    // ── PAGO MAS DELIVERY AINDA PROCESSANDO ──────────────────
+    if (order.status === 'paid') {
+      return new Response(JSON.stringify({
+        status: 'paid',
+        // preview ainda usa URL do Suno enquanto R2 não está pronto
+        audioUrl: order.previewUrl || null,
+        letra: order.letra,
+        nomeRecebe: order.nomeRecebe,
+        orderId,
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    // ── ÁUDIO PRONTO (ainda não pago) ─────────────────────────
+    if (order.status === 'ready') {
+      return new Response(JSON.stringify({
+        status: 'ready',
+        audioUrl: order.previewUrl,
+        letra: order.letra,
+        nomeRecebe: order.nomeRecebe,
+        orderId,
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    // ── AINDA GERANDO: consultar Suno ─────────────────────────
+    const statusResponse = await fetch(
+      'https://api.sunoapi.org/api/v1/generate/record-info?taskId=' + order.generationId,
+      { headers: { 'Authorization': 'Bearer ' + env.SUNO_KEY } }
+    );
 
     const statusData = await statusResponse.json();
     console.log('Suno status:', JSON.stringify(statusData));
 
-    // Verificar se tem audio_url nos dados
-    const sunoItems = statusData.data?.response?.sunoData || [];
-    const audioUrl = sunoItems[0]?.audioUrl || sunoItems[0]?.audio_url;
+    const sunoItems  = statusData.data?.response?.sunoData || [];
+    const audioUrl   = sunoItems[0]?.audioUrl || sunoItems[0]?.audio_url;
     const taskStatus = statusData.data?.status;
+    const isDone     = taskStatus === 'complete' || taskStatus === 'completed' || taskStatus === 'SUCCESS';
 
-    if (audioUrl && (taskStatus === 'complete' || taskStatus === 'completed' || taskStatus === 'SUCCESS')) {
-      // Salvar áudio no R2
+    if (audioUrl && isDone) {
+      // ── SALVAR NO R2 com nome correto (sem prefixo) ─────────
+      // delivery.js procura por orderId + '.mp3'
       try {
-        const audioFile = await fetch(audioUrl);
+        const audioFile   = await fetch(audioUrl);
         const audioBuffer = await audioFile.arrayBuffer();
-        await env.AUDIO_BUCKET.put('preview_' + orderId + '.mp3', audioBuffer, {
+
+        // Salva o MP3 final (usado pelo delivery)
+        await env.AUDIO_BUCKET.put(orderId + '.mp3', audioBuffer, {
           httpMetadata: { contentType: 'audio/mpeg' }
         });
-      } catch(r2err) {
+
+        console.log('R2 salvo:', orderId + '.mp3');
+      } catch (r2err) {
         console.error('R2 error:', r2err.message);
+        // Não bloqueia — preview ainda funciona via URL do Suno
       }
 
-      const previewUrl = audioUrl; // usa URL do Suno diretamente por enquanto
-
-      // Atualizar KV
-      await env.ORDERS.put(orderId, JSON.stringify(Object.assign({}, order, {
+      // Atualizar KV: status ready, previewUrl = URL Suno (curto prazo)
+      await env.ORDERS.put(orderId, JSON.stringify({
+        ...order,
         status: 'ready',
-        previewUrl,
+        previewUrl: audioUrl,
         completedAt: Date.now(),
-      })));
+      }));
 
       return new Response(JSON.stringify({
         status: 'ready',
-        audioUrl: previewUrl,
+        audioUrl,
         letra: order.letra,
         nomeRecebe: order.nomeRecebe,
-        orderId
+        orderId,
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });
     }
 
-    // Ainda gerando
+    // ── AINDA PROCESSANDO ─────────────────────────────────────
     return new Response(JSON.stringify({
       status: 'generating',
       taskStatus: taskStatus || 'pending',
-      orderId
+      orderId,
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });

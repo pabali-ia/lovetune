@@ -8,61 +8,119 @@ export async function onRequestPost(context) {
   };
 
   try {
-    const { orderId } = await request.json();
+    const body = await request.json();
+    const { orderId, method = 'pix' } = body;
 
     const orderRaw = await env.ORDERS.get(orderId);
     if (!orderRaw) {
-      return new Response('Order not found', { status: 404 });
+      return new Response(JSON.stringify({ error: 'Order not found' }), {
+        status: 404,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
     }
 
     const order = JSON.parse(orderRaw);
 
-    // Criar cobrança PIX transparente no AbacatePay v2
-    const response = await fetch('https://api.abacatepay.com/v2/transparents/create', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + env.ABACATE_KEY,
-      },
-      body: JSON.stringify({
-        method: 'PIX',
-        data: {
-          amount: 3700,
-          expiresIn: 1800,
-          description: 'Musica personalizada para ' + order.nomeRecebe + ' - ' + order.ocas,
-          externalId: orderId,
-          metadata: {
-            orderId: orderId,
-            email: order.email,
-            whatsapp: order.whatsapp,
+    // ── PIX TRANSPARENTE ─────────────────────────────────────
+    if (method === 'pix') {
+      const response = await fetch('https://api.abacatepay.com/v2/transparents/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + env.ABACATE_KEY,
+        },
+        body: JSON.stringify({
+          method: 'PIX',
+          data: {
+            amount: 3700,
+            expiresIn: 1800,
+            description: 'Música personalizada para ' + order.nomeRecebe + ' - ' + order.ocas,
+            externalId: orderId,
+            metadata: {
+              orderId,
+              email: order.email,
+              whatsapp: order.whatsapp,
+            }
           }
-        }
-      })
-    });
+        })
+      });
 
-    const data = await response.json();
-    console.log('AbacatePay transparent response:', JSON.stringify(data));
+      const data = await response.json();
+      console.log('AbacatePay PIX response:', JSON.stringify(data));
 
-    if (!data.data || !data.data.brCode) {
-      throw new Error('Erro ao criar PIX: ' + JSON.stringify(data));
+      if (!data.data?.brCode) {
+        throw new Error('Erro ao criar PIX: ' + JSON.stringify(data));
+      }
+
+      // Salvar billingId no KV para o webhook conseguir identificar o pedido
+      await env.ORDERS.put(orderId, JSON.stringify({
+        ...order,
+        status: 'pending_payment',
+        billingId: data.data.id,
+        pixCode: data.data.brCode,
+      }));
+
+      return new Response(JSON.stringify({
+        success: true,
+        pixCode: data.data.brCode,
+        pixQrCodeImage: data.data.brCodeBase64,
+        billingId: data.data.id,
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
     }
 
-    const pixCode = data.data.brCode;
-    const pixQrCodeImage = data.data.brCodeBase64;
-    const billingId = data.data.id;
+    // ── CARTÃO (checkout externo AbacatePay) ─────────────────
+    if (method === 'card') {
+      const baseUrl = new URL(request.url).origin;
 
-    await env.ORDERS.put(orderId, JSON.stringify(Object.assign({}, order, {
-      status: 'pending_payment',
-      billingId: billingId,
-      pixCode: pixCode,
-    })));
+      const response = await fetch('https://api.abacatepay.com/v1/billing/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + env.ABACATE_KEY,
+        },
+        body: JSON.stringify({
+          products: [{
+            externalId: env.ABACATE_PRODUCT_ID || 'prod_lovetune_37',
+            quantity: 1,
+          }],
+          customer: {
+            name: order.nomeDe || 'Cliente LoveTune',
+            email: order.email || '',
+            cellphone: order.whatsapp || '',
+          },
+          returnUrl: `${baseUrl}/preview?orderId=${orderId}&paid=true`,
+          completionUrl: `${baseUrl}/preview?orderId=${orderId}&paid=true`,
+          metadata: { orderId },
+        })
+      });
 
-    return new Response(JSON.stringify({
-      success: true,
-      pixCode: pixCode,
-      pixQrCodeImage: pixQrCodeImage,
-      billingId: billingId,
-    }), {
+      const data = await response.json();
+      console.log('AbacatePay card response:', JSON.stringify(data));
+
+      const paymentUrl = data.data?.url || data.url;
+      if (!paymentUrl) {
+        throw new Error('URL de checkout não retornada: ' + JSON.stringify(data));
+      }
+
+      await env.ORDERS.put(orderId, JSON.stringify({
+        ...order,
+        status: 'pending_payment',
+        billingId: data.data?.id || data.id,
+      }));
+
+      return new Response(JSON.stringify({
+        success: true,
+        paymentUrl,
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    // método desconhecido
+    return new Response(JSON.stringify({ error: 'Método inválido: ' + method }), {
+      status: 400,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });
 
@@ -70,7 +128,7 @@ export async function onRequestPost(context) {
     console.error('Payment error:', err.message);
     return new Response(JSON.stringify({ error: err.message }), {
       status: 500,
-      headers: corsHeaders
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });
   }
 }
