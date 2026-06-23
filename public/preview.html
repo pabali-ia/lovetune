@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+]<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"/>
@@ -24,21 +24,14 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(180deg,#F7F2FC 
 .vinyl-wrap{position:relative;width:180px;height:180px;margin:0 auto 12px}
 .vinyl{width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;
   animation:vinylSpin 4s linear infinite;animation-play-state:paused;
-  background:
-    repeating-radial-gradient(circle at 50%, #111 0px, #1a1a2e 2px, #111 4px, #1e1e3a 6px, #111 8px);
+  background:repeating-radial-gradient(circle at 50%, #111 0px, #1a1a2e 2px, #111 4px, #1e1e3a 6px, #111 8px);
   box-shadow:0 8px 28px rgba(0,0,0,.35);
 }
 .vinyl.playing{animation-play-state:running}
 @keyframes vinylSpin{to{transform:rotate(360deg)}}
-/* white center circle */
-.vinyl-center{
-  position:absolute;width:56px;height:56px;background:white;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 2px 8px rgba(0,0,0,.15);
-}
+.vinyl-center{position:absolute;width:56px;height:56px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 .vinyl-center svg{color:#FF4D8D}
 .preview-label{font-size:11px;color:#9CA3AF;text-align:center;margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:6px}
-/* equalizer bars */
 .equalizer{display:inline-flex;align-items:flex-end;gap:2px;height:14px}
 .eq-bar{display:inline-block;width:3px;background:#FF4D8D;border-radius:2px;animation:none}
 .equalizer.active .eq-bar:nth-child(1){animation:eq1 .5s ease infinite alternate}
@@ -52,12 +45,7 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(180deg,#F7F2FC 
 audio{display:none}
 .progress-wrap{margin-bottom:4px;cursor:pointer;padding:6px 0}
 .progress-bar{height:5px;background:#F3F4F6;border-radius:4px;overflow:hidden}
-.progress-fill{
-  height:100%;width:0%;border-radius:4px;
-  background:linear-gradient(90deg, #FF4D8D 0%, #FF6B35 60%, #FFD700 100%);
-  background-size:200% 100%;
-  transition:width .1s linear;
-}
+.progress-fill{height:100%;width:0%;border-radius:4px;background:linear-gradient(90deg,#FF4D8D 0%,#FF6B35 60%,#FFD700 100%);transition:width .1s linear}
 .time-row{display:flex;justify-content:space-between;font-size:10px;color:#9CA3AF;margin-bottom:16px}
 .player-controls{display:flex;align-items:center;justify-content:center;gap:20px}
 .pctrl{width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#F9F0FB;color:#FF4D8D;transition:all .2s}
@@ -74,48 +62,88 @@ audio{display:none}
 .btn-criar:hover{color:#FF4D8D}
 
 /* LETRA */
-.letra-card{background:white;border-radius:16px;padding:20px;max-width:480px;margin:0 auto 16px;box-shadow:0 4px 16px rgba(255,77,141,.06)}
-.letra-card h3{font-size:14px;font-weight:700;color:#111827;margin-bottom:10px}
-.letra-card p{font-size:13px;color:#6B7280;line-height:1.7;white-space:pre-line}
+.letra-card{background:white;border-radius:16px;padding:20px;max-width:480px;margin:0 auto 16px;box-shadow:0 4px 16px rgba(255,77,141,.06);max-height:340px;overflow-y:auto;position:relative}
+.letra-card::-webkit-scrollbar{width:4px}
+.letra-card::-webkit-scrollbar-thumb{background:#FF4D8D;border-radius:2px}
+.letra-card h3{font-size:15px;font-weight:800;color:#111827;margin-bottom:14px}
+.letra-section{margin-bottom:16px}
+.letra-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;padding:2px 8px;margin-bottom:8px}
+.letra-tag.refrao{background:#FFF0F6;color:#FF4D8D}
+.letra-tag.ponte{background:#F0F0FF;color:#6366F1}
+.letra-tag.verso{background:#F0FFF4;color:#059669}
+.letra-card p{font-size:13px;color:#374151;line-height:1.8;white-space:pre-line}
+.letra-fade{position:sticky;bottom:0;height:48px;background:linear-gradient(to bottom,transparent,white);pointer-events:none;margin:-4px -20px 0}
 
 /* OFERTA */
 .oferta-card{background:white;border-radius:20px;padding:24px 20px;max-width:480px;margin:0 auto 16px;box-shadow:0 8px 32px rgba(255,77,141,.1)}
 .promo-banner{background:#FFF0F6;border-radius:10px;padding:8px 16px;text-align:center;margin-bottom:16px}
-.promo-banner p{font-size:11px;color:#FF4D8D;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:8px}
+.promo-banner-label{font-size:11px;color:#FF4D8D;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:8px}
 .countdown{display:flex;gap:8px;justify-content:center;margin-bottom:4px}
 .count-block{text-align:center}
-.count-num{font-size:28px;font-weight:800;color:#111827;line-height:1}
+.count-num{font-size:28px;font-weight:800;color:#FF4D8D;line-height:1}
 .count-label{font-size:10px;color:#9CA3AF}
-.count-sep{font-size:24px;font-weight:700;color:#111827;padding-top:2px}
+.count-sep{font-size:24px;font-weight:700;color:#FF4D8D;padding-top:2px}
 .promo-sub{font-size:11px;color:#FF4D8D;text-align:center;margin-top:4px}
 .oferta-title{font-size:22px;font-weight:800;color:#111827;margin-bottom:8px;line-height:1.3}
 .oferta-sub{font-size:13px;color:#6B7280;margin-bottom:16px;line-height:1.6}
 .features{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
-.feat{display:flex;align-items:center;gap:6px;font-size:12px;color:#374151}
-.feat svg{color:#FF4D8D;flex-shrink:0}
-.price-row{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:16px}
+.feat{display:flex;align-items:center;gap:8px;font-size:12px;color:#374151;background:#FAFAFA;border:1px solid #F3F4F6;border-radius:10px;padding:10px 12px}
+.feat svg{color:#FF4D8D;flex-shrink:0;width:15px;height:15px}
+.price-row{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:20px}
 .price-old{font-size:14px;color:#9CA3AF;text-decoration:line-through}
-.price-new{font-size:32px;font-weight:800;color:#111827}
-.price-new span{font-size:14px;font-weight:500;color:#6B7280}
-.price-pix{font-size:12px;color:#6B7280}
-.btn-liberar{display:flex;align-items:center;justify-content:center;gap:8px;background:#10B981;border:none;border-radius:999px;padding:15px 32px;font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:white;cursor:pointer;width:100%;box-shadow:0 8px 24px rgba(16,185,129,.3);transition:all .25s;margin-bottom:8px}
-.btn-liberar:hover{background:#059669;transform:scale(1.02)}
-.seguro{font-size:11px;color:#9CA3AF;text-align:center;display:flex;align-items:center;justify-content:center;gap:12px}
+.price-new{font-size:36px;font-weight:800;color:#10B981}
+.price-new-label{font-size:14px;font-weight:400;color:#6B7280}
 
-/* QR */
+/* PAYMENT FLOW */
+.payment-area{margin-bottom:8px}
+.btn-liberar{display:flex;align-items:center;justify-content:center;gap:8px;background:#10B981;border:none;border-radius:999px;padding:15px 32px;font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:white;cursor:pointer;width:100%;box-shadow:0 8px 24px rgba(16,185,129,.3);transition:all .25s}
+.btn-liberar:hover{background:#059669;transform:scale(1.02)}
+.payment-buttons{display:none;gap:10px;margin-bottom:0}
+.payment-buttons.visible{display:flex}
+.btn-pix{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:#10B981;border:none;border-radius:999px;padding:14px 20px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;color:white;cursor:pointer;box-shadow:0 6px 20px rgba(16,185,129,.3);transition:all .2s}
+.btn-pix:hover{background:#059669}
+.btn-pix:disabled{opacity:.7;cursor:not-allowed;transform:none}
+.btn-cartao{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:white;border:1.5px solid #D1D5DB;border-radius:999px;padding:14px 20px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;color:#374151;cursor:pointer;transition:all .2s}
+.btn-cartao:hover{border-color:#374151}
+.btn-cartao:disabled{opacity:.7;cursor:not-allowed}
+.seguro{font-size:11px;color:#9CA3AF;text-align:center;display:flex;align-items:center;justify-content:center;gap:12px;margin-top:10px;flex-wrap:wrap}
+
+/* PIX INLINE PANEL */
+.pix-panel{display:none;border:1.5px solid #D1FAE5;border-radius:16px;padding:20px;margin-top:12px;background:linear-gradient(135deg,#F0FDF9 0%,#ECFDF5 100%)}
+.pix-panel.visible{display:block}
+.pix-panel-header{display:flex;align-items:center;gap:8px;margin-bottom:16px;justify-content:center}
+.pix-panel-header span{font-size:14px;font-weight:700;color:#059669}
+.pix-qr-wrap{text-align:center;margin-bottom:14px}
+.pix-qr-wrap img{width:200px;height:200px;border-radius:12px;border:1px solid #E5E7EB;display:block;margin:0 auto}
+.pix-qr-placeholder{width:200px;height:200px;background:#F3F4F6;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto}
+.pix-hint{font-size:12px;color:#6B7280;text-align:center;margin-bottom:12px}
+.pix-code-row{display:flex;gap:8px;align-items:stretch;margin-bottom:14px}
+.pix-code-box{flex:1;background:white;border:1.5px solid #E5E7EB;border-radius:10px;padding:10px 12px;font-size:11px;color:#374151;font-family:monospace;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;min-width:0}
+.btn-copiar-pix{display:flex;align-items:center;gap:6px;background:#10B981;border:none;border-radius:10px;padding:10px 16px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;color:white;cursor:pointer;white-space:nowrap;transition:all .2s;flex-shrink:0}
+.btn-copiar-pix:hover{background:#059669}
+.btn-copiar-pix.copied{background:#059669}
+.pix-status{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:#6B7280}
+.pix-status .spinner{width:14px;height:14px;border:2px solid #10B981;border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pix-note{font-size:11px;color:#9CA3AF;text-align:center;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:4px}
+.pix-expiry{font-weight:700;color:#059669}
+.pix-status-ok{color:#059669;font-weight:700;font-size:13px;text-align:center}
+
+/* QR CARD */
 .qr-card{background:white;border-radius:20px;padding:20px;max-width:480px;margin:0 auto;box-shadow:0 4px 16px rgba(255,77,141,.06)}
 .qr-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.qr-header svg{color:#FF4D8D}
+.qr-header svg{color:#FF4D8D;flex-shrink:0}
 .qr-header div h4{font-size:14px;font-weight:700;color:#111827}
 .qr-header div p{font-size:12px;color:#6B7280}
-.qr-content{display:flex;align-items:center;gap:16px}
-.qr-img{width:90px;height:90px;background:#F3F4F6;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.qr-content{display:flex;align-items:flex-start;gap:16px}
+.qr-img{width:110px;height:110px;background:#F3F4F6;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.qr-img img{width:100%;height:100%;object-fit:cover;border-radius:12px}
 .qr-actions{flex:1;display:flex;flex-direction:column;gap:8px}
-.btn-qr{display:flex;align-items:center;justify-content:center;gap:6px;background:#10B981;border:none;border-radius:999px;padding:11px 20px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;color:white;cursor:pointer;transition:all .2s}
-.btn-qr:hover{background:#059669}
+.btn-qr{display:flex;align-items:center;justify-content:center;gap:6px;background:#FF4D8D;border:none;border-radius:999px;padding:11px 20px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;color:white;cursor:pointer;transition:all .2s}
+.btn-qr:hover{background:#e0356d}
 .btn-copy{display:flex;align-items:center;justify-content:center;gap:6px;background:white;border:1.5px solid #E5E7EB;border-radius:999px;padding:10px 20px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#374151;cursor:pointer;transition:all .2s}
 .btn-copy:hover{border-color:#FF4D8D;color:#FF4D8D}
-.qr-note{font-size:11px;color:#9CA3AF;margin-top:10px;text-align:center}
+.qr-note{font-size:11px;color:#9CA3AF;margin-top:6px;text-align:center}
 
 .container{max-width:480px;margin:0 auto;padding:0 16px}
 </style>
@@ -200,13 +228,14 @@ audio{display:none}
   <!-- LETRA -->
   <div class="letra-card" id="letraCard" style="display:none">
     <h3>Letra</h3>
-    <p id="letraText">Desculpe, mas não posso cumprir esse pedido.</p>
+    <div id="letraContent"></div>
+    <div class="letra-fade"></div>
   </div>
 
   <!-- OFERTA -->
   <div class="oferta-card">
     <div class="promo-banner">
-      <p>
+      <p class="promo-banner-label">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
         Promoção válida apenas hoje – <span id="dataHoje"></span>
       </p>
@@ -217,7 +246,7 @@ audio{display:none}
         <div class="count-sep">:</div>
         <div class="count-block"><div class="count-num" id="cS">58</div><div class="count-label">seg</div></div>
       </div>
-      <p class="promo-sub">Após esse horário, o preço volta para R$47,00</p>
+      <p class="promo-sub">Após esse horário, o preço volta para R$ 97,00</p>
     </div>
 
     <h2 class="oferta-title">Libere a música completa e envie para ele(a)</h2>
@@ -225,42 +254,91 @@ audio{display:none}
 
     <div class="features">
       <div class="feat">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         MP3 em alta qualidade
       </div>
       <div class="feat">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
         Letra completa
       </div>
       <div class="feat">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
         Link privado
       </div>
       <div class="feat">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         Garantia de 7 dias
       </div>
     </div>
 
     <div class="price-row">
-      <span class="price-old">R$ 47</span>
-      <span class="price-new">R$ 37 <span>à vista no Pix</span></span>
+      <span class="price-old">R$ 97</span>
+      <span class="price-new">R$ 37</span>
+      <span class="price-new-label">à vista no Pix</span>
     </div>
 
-    <button class="btn-liberar" onclick="gerarPix()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-      Liberar minha música agora
-    </button>
+    <!-- ── PAYMENT AREA ── -->
+    <div class="payment-area" id="paymentArea">
+
+      <!-- Step 1: botão único -->
+      <button class="btn-liberar" id="btnLiberar" onclick="mostrarBotoesPagamento()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        Liberar minha música agora
+      </button>
+
+      <!-- Step 2: dois botões PIX / Cartão -->
+      <div class="payment-buttons" id="paymentButtons">
+        <button class="btn-pix" id="btnPix" onclick="gerarPix()">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 7.5h4.5v4.5H7.5zM7.5 20H12v4.5H7.5zM20 7.5h4.5V12H20zM20 20h4.5v4.5H20zM13.5 13.5h5v5h-5z"/></svg>
+          Pagar com PIX
+        </button>
+        <button class="btn-cartao" id="btnCartao" onclick="gerarCartao()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          Pagar com Cartão
+        </button>
+      </div>
+
+      <!-- Step 3: PIX inline panel -->
+      <div class="pix-panel" id="pixPanel">
+        <div class="pix-panel-header">
+          <svg width="18" height="18" viewBox="0 0 32 32" fill="#059669" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 7.5h4.5v4.5H7.5zM7.5 20H12v4.5H7.5zM20 7.5h4.5V12H20zM20 20h4.5v4.5H20zM13.5 13.5h5v5h-5z"/></svg>
+          <span id="pixPanelTitle">Pague R$ 37,00 no PIX para liberar</span>
+        </div>
+        <div class="pix-qr-wrap" id="pixQrWrap">
+          <div class="pix-qr-placeholder" id="pixQrPlaceholder">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#D1D5DB" stroke-width="1.5"><rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="2" y="14" width="8" height="8" rx="1"/><rect x="14" y="14" width="3" height="3" rx=".3"/><rect x="19" y="14" width="3" height="3" rx=".3"/><rect x="14" y="19" width="3" height="3" rx=".3"/><rect x="19" y="19" width="3" height="3" rx=".3"/></svg>
+          </div>
+        </div>
+        <p class="pix-hint">Escaneie o QR Code ou use o copia-e-cola abaixo</p>
+        <div class="pix-code-row">
+          <div class="pix-code-box" id="pixCodeBox">Gerando código PIX...</div>
+          <button class="btn-copiar-pix" id="btnCopiarPix" onclick="copiarCodigoPix()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copiar
+          </button>
+        </div>
+        <div class="pix-status" id="pixStatus">
+          <div class="spinner"></div>
+          <span>Aguardando pagamento... expira em <strong class="pix-expiry" id="pixExpiry">30:00</strong></span>
+        </div>
+        <p class="pix-note">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          A música é liberada automaticamente após o pagamento
+        </p>
+      </div>
+
+    </div><!-- /payment-area -->
+
     <div class="seguro">
-      <span>🔒 Pagamento 100% seguro no PIX</span>
+      <span>🔒 Pagamento 100% seguro via PIX ou cartão</span>
       <span>✓ Acesso imediato após aprovação</span>
     </div>
   </div>
 
-  <!-- QR CODE -->
+  <!-- QR CODE COMPARTILHAR -->
   <div class="qr-card" style="margin-top:16px">
     <div class="qr-header">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
       <div>
         <h4>Compartilhe com quem te inspirou</h4>
         <p>Mostre na tela ou baixe o QR code em PNG para imprimir e entregar.</p>
@@ -271,7 +349,7 @@ audio{display:none}
         <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="8" height="8" rx="1" stroke="#E5E7EB" stroke-width="1.5" fill="none"/><rect x="4" y="4" width="3" height="3" rx=".3" fill="#E5E7EB"/><rect x="14" y="2" width="8" height="8" rx="1" stroke="#E5E7EB" stroke-width="1.5" fill="none"/><rect x="16" y="4" width="3" height="3" rx=".3" fill="#E5E7EB"/><rect x="2" y="14" width="8" height="8" rx="1" stroke="#E5E7EB" stroke-width="1.5" fill="none"/><rect x="4" y="16" width="3" height="3" rx=".3" fill="#E5E7EB"/><rect x="14" y="14" width="2" height="2" rx=".3" fill="#E5E7EB"/><rect x="18" y="14" width="2" height="2" rx=".3" fill="#E5E7EB"/><rect x="14" y="18" width="2" height="2" rx=".3" fill="#E5E7EB"/><rect x="18" y="18" width="2" height="2" rx=".3" fill="#E5E7EB"/></svg>
       </div>
       <div class="qr-actions">
-        <button class="btn-qr" onclick="baixarQR()">
+        <button class="btn-qr" onclick="baixarQRReal()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Baixar QR Code (PNG)
         </button>
@@ -287,42 +365,69 @@ audio{display:none}
 </div><!-- /container -->
 
 <script>
-const params = new URLSearchParams(window.location.search);
-const orderId = params.get('orderId');
-const audio = document.getElementById('audioEl');
-const vinyl = document.getElementById('vinyl');
+// ─── STATE ────────────────────────────────────────────────────
+const params   = new URLSearchParams(window.location.search);
+const orderId  = params.get('orderId');
+const audio    = document.getElementById('audioEl');
+const vinyl    = document.getElementById('vinyl');
+let isPaid     = false;
+let pixCode    = '';
+let pixPollTimer = null;
+let pixExpiryTimer = null;
+let pixSecondsLeft = 30 * 60; // 30 min
 
-// Data de hoje
+// ─── INIT ─────────────────────────────────────────────────────
 const hoje = new Date();
 document.getElementById('dataHoje').textContent = hoje.toLocaleDateString('pt-BR');
 
-// Countdown
-let total = 9 * 3600 + 9 * 60 + 58;
-function updateCountdown(){
-  if(total <= 0) return;
-  total--;
-  document.getElementById('cH').textContent = String(Math.floor(total/3600)).padStart(2,'0');
-  document.getElementById('cM').textContent = String(Math.floor((total%3600)/60)).padStart(2,'0');
-  document.getElementById('cS').textContent = String(total%60).padStart(2,'0');
-}
-setInterval(updateCountdown, 1000);
+// Countdown promoção
+let promoTotal = 9 * 3600 + 9 * 60 + 58;
+setInterval(() => {
+  if(promoTotal <= 0) return;
+  promoTotal--;
+  document.getElementById('cH').textContent = String(Math.floor(promoTotal/3600)).padStart(2,'0');
+  document.getElementById('cM').textContent = String(Math.floor((promoTotal%3600)/60)).padStart(2,'0');
+  document.getElementById('cS').textContent = String(promoTotal%60).padStart(2,'0');
+}, 1000);
 
-// Carregar preview
+// ─── LOAD PREVIEW ─────────────────────────────────────────────
 async function loadPreview(){
   if(!orderId) return;
   try {
-    const res = await fetch(`/workers/status?orderId=${orderId}`);
+    const res  = await fetch(`/workers/status?orderId=${orderId}`);
     const data = await res.json();
     if(data.audioUrl){ audio.src = data.audioUrl; audio.load(); }
-    if(data.letra){
-      document.getElementById('letraText').textContent = data.letra;
-      document.getElementById('letraCard').style.display = 'block';
-    }
+    if(data.letra){ renderLetra(data.letra); document.getElementById('letraCard').style.display = 'block'; }
     if(data.nomeRecebe) document.getElementById('musicTitle').textContent = 'Para ' + data.nomeRecebe;
+    // Se já pago, marcar estado
+    if(data.status === 'paid' || data.status === 'delivered') isPaid = true;
   } catch(e){ console.error(e); }
 }
 
-// Player
+// ─── RENDER LETRA ─────────────────────────────────────────────
+function renderLetra(texto){
+  const container = document.getElementById('letraContent');
+  const tagMap = { 'REFRÃO':'refrao','REFRÃO:':'refrao','PONTE':'ponte','PONTE:':'ponte','VERSO':'verso','VERSO:':'verso','INTRO':'verso','OUTRO':'verso','PRÉ-REFRÃO':'refrao' };
+  const lines = texto.split('\n');
+  let html = '', currentLines = [], pendingTag = null, pendingCls = null;
+  function flush(){
+    if(!currentLines.length && !pendingTag) return;
+    html += `<div class="letra-section">`;
+    if(pendingTag) html += `<span class="letra-tag ${pendingCls}">${pendingTag}</span>`;
+    if(currentLines.length) html += `<p>${currentLines.join('\n')}</p>`;
+    html += `</div>`;
+  }
+  for(const line of lines){
+    const up = line.trim().toUpperCase();
+    const found = Object.entries(tagMap).find(([k]) => up === k);
+    if(found){ flush(); currentLines=[]; pendingTag=found[0].replace(':',''); pendingCls=found[1]; }
+    else { currentLines.push(line); }
+  }
+  flush();
+  container.innerHTML = html || `<p style="font-size:13px;color:#374151;line-height:1.8;white-space:pre-line">${texto}</p>`;
+}
+
+// ─── PLAYER ──────────────────────────────────────────────────
 const PREVIEW_LIMIT = 60;
 function togglePlay(){
   if(audio.paused){
@@ -337,19 +442,15 @@ function togglePlay(){
     document.getElementById('playIcon').innerHTML='<polygon points="5,3 19,12 5,21"/>';
   }
 }
-function seek(s){ audio.currentTime = Math.max(0, Math.min(PREVIEW_LIMIT, audio.currentTime + s)); }
-function seekTo(e){ const pct = e.offsetX / e.currentTarget.offsetWidth; audio.currentTime = Math.min(PREVIEW_LIMIT, pct * (audio.duration||0)); }
+function seek(s){ audio.currentTime = Math.max(0, Math.min(PREVIEW_LIMIT, audio.currentTime+s)); }
+function seekTo(e){ const pct = e.offsetX/e.currentTarget.offsetWidth; audio.currentTime = Math.min(PREVIEW_LIMIT, pct*(audio.duration||0)); }
 function fmt(s){ return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'); }
 audio.addEventListener('timeupdate',()=>{
   const cur = Math.min(audio.currentTime, PREVIEW_LIMIT);
-  const total = PREVIEW_LIMIT;
-  const pct = (cur / total) * 100;
-  document.getElementById('pFill').style.width = pct + '%';
+  document.getElementById('pFill').style.width = (cur/PREVIEW_LIMIT*100)+'%';
   document.getElementById('tCur').textContent = fmt(cur);
-  // Stop at 21s
   if(audio.currentTime >= PREVIEW_LIMIT){
-    audio.pause();
-    audio.currentTime = PREVIEW_LIMIT;
+    audio.pause(); audio.currentTime = PREVIEW_LIMIT;
     vinyl.classList.remove('playing');
     document.getElementById('equalizer').classList.remove('active');
     document.getElementById('playIcon').innerHTML='<polygon points="5,3 19,12 5,21"/>';
@@ -362,140 +463,184 @@ audio.addEventListener('ended',()=>{
   document.getElementById('playIcon').innerHTML='<polygon points="5,3 19,12 5,21"/>';
 });
 
-// Actions
-let isPaid = false;
-
+// ─── ACTION BUTTONS ───────────────────────────────────────────
 function baixarMusica(){
-  if(!isPaid){
-    // Scroll para o card de oferta
-    document.querySelector('.oferta-card').scrollIntoView({ behavior: 'smooth' });
-    // Pisca o botão de pagamento
-    const btn = document.querySelector('.btn-liberar');
-    btn.style.transform = 'scale(1.05)';
-    btn.style.boxShadow = '0 0 0 4px rgba(16,185,129,0.3)';
-    setTimeout(()=>{ btn.style.transform=''; btn.style.boxShadow=''; }, 600);
-    return;
-  }
+  if(!isPaid){ scrollToOffer(); return; }
   if(audio.src) window.open(audio.src);
 }
-
-function compartilharLink(){ navigator.clipboard.writeText(window.location.href); alert('Link copiado!'); }
-function copiarLink(){ navigator.clipboard.writeText(window.location.href); alert('Link copiado!'); }
-function baixarQR(){
-  if(!isPaid){
-    document.querySelector('.oferta-card').scrollIntoView({ behavior: 'smooth' });
-    return;
-  }
-  alert('QR Code disponível em breve!');
+function compartilharLink(){ navigator.clipboard.writeText(window.location.href).then(()=>toast('Link copiado!')); }
+function copiarLink(){ navigator.clipboard.writeText(window.location.href).then(()=>toast('Link copiado!')); }
+function baixarQR(){ if(!isPaid){ scrollToOffer(); return; } baixarQRReal(); }
+function baixarQRReal(){ alert('QR Code disponível em breve!'); }
+function scrollToOffer(){
+  document.querySelector('.oferta-card').scrollIntoView({ behavior:'smooth' });
+  const btn = document.getElementById('btnLiberar');
+  if(btn){ btn.style.transform='scale(1.05)'; btn.style.boxShadow='0 0 0 4px rgba(16,185,129,0.3)'; setTimeout(()=>{ btn.style.transform=''; btn.style.boxShadow=''; },600); }
+}
+function toast(msg){
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText='position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:#111827;color:white;padding:10px 20px;border-radius:999px;font-size:13px;font-weight:500;z-index:9999;animation:fadeIn .2s';
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(), 2200);
 }
 
+// ─── STEP 1 → 2: mostrar botões PIX/Cartão ────────────────────
+function mostrarBotoesPagamento(){
+  document.getElementById('btnLiberar').style.display = 'none';
+  const pb = document.getElementById('paymentButtons');
+  pb.classList.add('visible');
+  pb.scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+// ─── STEP 2A: PIX via AbacatePay ──────────────────────────────
 async function gerarPix(){
-  const btn = document.querySelector('.btn-liberar');
-  btn.innerHTML = '⏳ Gerando PIX...';
+  const btn = document.getElementById('btnPix');
+  btn.innerHTML = '<span style="display:inline-block;width:14px;height:14px;border:2px solid white;border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite;margin-right:6px"></span>Gerando PIX...';
   btn.disabled = true;
+  document.getElementById('btnCartao').disabled = true;
 
   try {
-    const res = await fetch('/workers/payment', {
+    const res  = await fetch('/workers/payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ orderId })
+      body: JSON.stringify({ orderId, method: 'pix' })
     });
-
     const data = await res.json();
-    console.log('Payment response:', JSON.stringify(data));
+    if(!res.ok) throw new Error(data.error || 'Erro ao gerar PIX');
 
-    if(data.pixCode){
-      mostrarModalPix(data.pixCode, data.pixQrCodeImage);
-    } else if(data.paymentUrl){
-      // fallback para checkout externo
-      window.location.href = data.paymentUrl;
-    } else {
-      throw new Error(data.error || 'Erro ao gerar PIX');
-    }
-  } catch(e) {
+    // AbacatePay retorna: pixCode (string copia-e-cola), pixQrCodeImage (base64 ou URL)
+    pixCode = data.pixCode || data.brCode || data.pix_code || '';
+    const qrImage = data.pixQrCodeImage || data.qr_code_image || data.qrCodeImage || '';
+
+    if(!pixCode) throw new Error('Código PIX não retornado');
+
+    mostrarPixPanel(pixCode, qrImage);
+  } catch(e){
     console.error(e);
-    btn.innerHTML = '♡ Liberar minha música agora';
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 7.5h4.5v4.5H7.5zM7.5 20H12v4.5H7.5zM20 7.5h4.5V12H20zM20 20h4.5v4.5H20zM13.5 13.5h5v5h-5z"/></svg> Pagar com PIX';
     btn.disabled = false;
+    document.getElementById('btnCartao').disabled = false;
     alert('Erro ao gerar PIX: ' + e.message);
   }
 }
 
-function mostrarModalPix(pixCode, qrImageUrl){
-  // Resetar botão
-  const btn = document.querySelector('.btn-liberar');
-  btn.innerHTML = '♡ Liberar minha música agora';
+function mostrarPixPanel(code, qrImage){
+  // Resetar botões
+  const btn = document.getElementById('btnPix');
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 7.5h4.5v4.5H7.5zM7.5 20H12v4.5H7.5zM20 7.5h4.5V12H20zM20 20h4.5v4.5H20zM13.5 13.5h5v5h-5z"/></svg> Pagar com PIX';
   btn.disabled = false;
+  document.getElementById('btnCartao').disabled = false;
 
-  // Criar modal
-  const modal = document.createElement('div');
-  modal.id = 'pixModal';
-  modal.style.cssText = 'position:fixed;inset:0;z-index:999;background:rgba(247,242,252,0.95);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;padding:20px';
-  modal.innerHTML = `
-    <div style="background:white;border-radius:28px;padding:36px 32px;max-width:480px;width:100%;box-shadow:0 24px 80px rgba(255,77,141,.15);text-align:center;position:relative">
-      <button onclick="document.getElementById('pixModal').remove()" style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:#F3F4F6;cursor:pointer;font-size:16px;color:#6B7280">✕</button>
-      
-      <div style="width:48px;height:48px;background:#ECFDF5;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-      </div>
-      
-      <h2 style="font-size:22px;font-weight:800;color:#111827;margin-bottom:8px">Pague com PIX</h2>
-      <p style="font-size:13px;color:#6B7280;margin-bottom:24px">Escaneie o QR Code ou copie o código abaixo</p>
+  // Preencher código
+  document.getElementById('pixCodeBox').textContent = code;
 
-      ${qrImageUrl ? `<img src="${qrImageUrl}" style="width:180px;height:180px;margin:0 auto 20px;display:block;border-radius:12px;border:1px solid #E5E7EB"/>` : 
-        `<div style="width:180px;height:180px;margin:0 auto 20px;background:#F9F0FB;border-radius:12px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,77,141,.2)">
-          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="8" height="8" rx="1" stroke="#FF4D8D" stroke-width="1.5" fill="none"/><rect x="4" y="4" width="3" height="3" rx=".3" fill="#FF4D8D"/><rect x="14" y="2" width="8" height="8" rx="1" stroke="#FF4D8D" stroke-width="1.5" fill="none"/><rect x="16" y="4" width="3" height="3" rx=".3" fill="#FF4D8D"/><rect x="2" y="14" width="8" height="8" rx="1" stroke="#FF4D8D" stroke-width="1.5" fill="none"/><rect x="4" y="16" width="3" height="3" rx=".3" fill="#FF4D8D"/><rect x="14" y="14" width="2" height="2" rx=".3" fill="#FF4D8D"/><rect x="18" y="14" width="2" height="2" rx=".3" fill="#FF4D8D"/><rect x="14" y="18" width="2" height="2" rx=".3" fill="#FF4D8D"/><rect x="18" y="18" width="2" height="2" rx=".3" fill="#FF4D8D"/></svg>
-        </div>`
-      }
+  // QR code
+  const qrWrap = document.getElementById('pixQrWrap');
+  if(qrImage){
+    // Se vier como base64 sem prefixo, adicionar
+    const src = qrImage.startsWith('data:') || qrImage.startsWith('http') ? qrImage : 'data:image/png;base64,' + qrImage;
+    qrWrap.innerHTML = `<img src="${src}" alt="QR Code PIX" style="width:200px;height:200px;border-radius:12px;border:1px solid #E5E7EB;display:block;margin:0 auto"/>`;
+  } else {
+    // sem imagem, manter placeholder
+    document.getElementById('pixQrPlaceholder').style.display = 'flex';
+  }
 
-      <div style="background:#F9F9F9;border:1.5px solid #E5E7EB;border-radius:12px;padding:12px 16px;margin-bottom:16px;word-break:break-all;font-size:11px;color:#374151;font-family:monospace;text-align:left;max-height:80px;overflow:hidden">
-        ${pixCode}
-      </div>
+  // Mostrar panel
+  const panel = document.getElementById('pixPanel');
+  panel.classList.add('visible');
+  panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
 
-      <button onclick="copiarPix('${pixCode.replace(/'/g, "\\'")}')" style="width:100%;background:#10B981;border:none;border-radius:999px;padding:14px;font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:white;cursor:pointer;margin-bottom:12px;box-shadow:0 6px 20px rgba(16,185,129,.3)" id="btnCopiarPix">
-        📋 Copiar código PIX
-      </button>
+  // Timer de expiração (30 min)
+  pixSecondsLeft = 30 * 60;
+  clearInterval(pixExpiryTimer);
+  pixExpiryTimer = setInterval(() => {
+    pixSecondsLeft--;
+    const m = String(Math.floor(pixSecondsLeft/60)).padStart(2,'0');
+    const s = String(pixSecondsLeft%60).padStart(2,'0');
+    const el = document.getElementById('pixExpiry');
+    if(el) el.textContent = `${m}:${s}`;
+    if(pixSecondsLeft <= 0){
+      clearInterval(pixExpiryTimer);
+      clearTimeout(pixPollTimer);
+      const status = document.getElementById('pixStatus');
+      if(status) status.innerHTML = '<span style="color:#EF4444">⏰ PIX expirado. Gere um novo.</span>';
+    }
+  }, 1000);
 
-      <p style="font-size:11px;color:#9CA3AF">Após o pagamento, sua música será liberada automaticamente.<br>🔒 Pagamento 100% seguro • Expira em 30 minutos</p>
-      
-      <div id="pixStatusCheck" style="margin-top:16px;font-size:12px;color:#6B7280">
-        Aguardando pagamento...
-        <span style="display:inline-block;animation:spin .8s linear infinite">⏳</span>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(modal);
-
-  // Polling para verificar pagamento
-  let pollCount = 0;
-  const pollPayment = async () => {
-    pollCount++;
-    if(pollCount > 60) return; // 5 minutos
-    try {
-      const res = await fetch('/workers/status?orderId=' + orderId);
-      const data = await res.json();
-      if(data.status === 'paid' || data.status === 'delivered'){
-        document.getElementById('pixStatusCheck').innerHTML = '✅ Pagamento confirmado! Liberando sua música...';
-        setTimeout(() => { window.location.href = '/preview?orderId=' + orderId + '&paid=true'; }, 1500);
-        return;
-      }
-    } catch(e){}
-    setTimeout(pollPayment, 5000);
-  };
-  setTimeout(pollPayment, 5000);
+  // Polling de status
+  iniciarPollingPix();
 }
 
-function copiarPix(code){
-  navigator.clipboard.writeText(code).then(() => {
+// ─── COPIAR PIX ───────────────────────────────────────────────
+function copiarCodigoPix(){
+  if(!pixCode) return;
+  navigator.clipboard.writeText(pixCode).then(() => {
     const btn = document.getElementById('btnCopiarPix');
-    btn.innerHTML = '✅ Código copiado!';
-    btn.style.background = '#059669';
+    btn.classList.add('copied');
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copiado!';
     setTimeout(() => {
-      btn.innerHTML = '📋 Copiar código PIX';
-      btn.style.background = '#10B981';
+      btn.classList.remove('copied');
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copiar';
     }, 3000);
   });
 }
 
+// ─── POLLING STATUS ───────────────────────────────────────────
+function iniciarPollingPix(){
+  clearTimeout(pixPollTimer);
+  let pollCount = 0;
+  const poll = async () => {
+    pollCount++;
+    if(pollCount > 72) return; // 6 min (72 × 5s)
+    try {
+      const res  = await fetch('/workers/status?orderId=' + orderId);
+      const data = await res.json();
+      if(data.status === 'paid' || data.status === 'delivered'){
+        clearInterval(pixExpiryTimer);
+        isPaid = true;
+        const status = document.getElementById('pixStatus');
+        if(status) status.innerHTML = '<span class="pix-status-ok">✅ Pagamento confirmado! Liberando sua música...</span>';
+        setTimeout(() => { window.location.href = '/preview?orderId=' + orderId + '&paid=true'; }, 1800);
+        return;
+      }
+    } catch(e){}
+    pixPollTimer = setTimeout(poll, 5000);
+  };
+  pixPollTimer = setTimeout(poll, 5000);
+}
+
+// ─── STEP 2B: CARTÃO via AbacatePay ───────────────────────────
+async function gerarCartao(){
+  const btn = document.getElementById('btnCartao');
+  btn.innerHTML = '⏳ Aguarde...';
+  btn.disabled = true;
+  document.getElementById('btnPix').disabled = true;
+
+  try {
+    const res  = await fetch('/workers/payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ orderId, method: 'card' })
+    });
+    const data = await res.json();
+    if(!res.ok) throw new Error(data.error || 'Erro ao abrir checkout');
+
+    // AbacatePay retorna paymentUrl para o checkout de cartão
+    const url = data.paymentUrl || data.checkoutUrl || data.checkout_url || '';
+    if(!url) throw new Error('URL de checkout não retornada');
+    window.location.href = url;
+
+  } catch(e){
+    console.error(e);
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> Pagar com Cartão';
+    btn.disabled = false;
+    document.getElementById('btnPix').disabled = false;
+    alert('Erro: ' + e.message);
+  }
+}
+
+// ─── START ────────────────────────────────────────────────────
 loadPreview();
 </script>
 </body>
