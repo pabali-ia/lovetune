@@ -1,4 +1,4 @@
-]<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"/>
@@ -470,8 +470,6 @@ function baixarMusica(){
 }
 function compartilharLink(){ navigator.clipboard.writeText(window.location.href).then(()=>toast('Link copiado!')); }
 function copiarLink(){ navigator.clipboard.writeText(window.location.href).then(()=>toast('Link copiado!')); }
-function baixarQR(){ if(!isPaid){ scrollToOffer(); return; } baixarQRReal(); }
-function baixarQRReal(){ alert('QR Code disponível em breve!'); }
 function scrollToOffer(){
   document.querySelector('.oferta-card').scrollIntoView({ behavior:'smooth' });
   const btn = document.getElementById('btnLiberar');
@@ -640,8 +638,39 @@ async function gerarCartao(){
   }
 }
 
+// ─── QR CODE COMPARTILHAR ─────────────────────────────────────
+function gerarQRCode(){
+  if(!orderId) return;
+  const url = window.location.origin + '/preview?orderId=' + orderId;
+  const qrApiUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(url);
+
+  const img = document.createElement('img');
+  img.src = qrApiUrl;
+  img.style.cssText = 'width:110px;height:110px;border-radius:10px;display:block';
+  img.alt = 'QR Code';
+
+  const qrImg = document.getElementById('qrImg');
+  qrImg.innerHTML = '';
+  qrImg.appendChild(img);
+
+  window._qrImageUrl = qrApiUrl;
+  window._qrPageUrl  = url;
+}
+
+function baixarQRReal(){
+  if(!window._qrImageUrl){ alert('QR Code ainda carregando, tente em instantes.'); return; }
+  const a = document.createElement('a');
+  a.href = window._qrImageUrl + '&format=png';
+  a.download = 'lovetune-qrcode.png';
+  a.target = '_blank';
+  a.click();
+}
+
+function baixarQR(){ baixarQRReal(); }
+
 // ─── START ────────────────────────────────────────────────────
 loadPreview();
+gerarQRCode();
 </script>
 </body>
 </html>
