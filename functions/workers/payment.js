@@ -69,50 +69,11 @@ export async function onRequestPost(context) {
       });
     }
 
-    // ── CARTÃO — checkout externo (chave v1) ──────────────────
+    // ── CARTÃO — redirect direto PerfectPay ───────────────────
     if (method === 'card') {
-      const origin = new URL(request.url).origin;
-
-      const response = await fetch('https://api.abacatepay.com/v1/billing/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + env.ABACATE_KEY,
-        },
-        body: JSON.stringify({
-          methods: ['CREDIT_CARD'],
-          products: [{
-            externalId: env.ABACATE_PRODUCT_ID || 'prod_lovetune_37',
-            quantity: 1,
-          }],
-          customer: {
-            name: order.nomeDe || order.seuNome || 'Cliente LoveTune',
-            email: order.email || '',
-            cellphone: order.whatsapp || '',
-          },
-          returnUrl: `${origin}/preview?orderId=${orderId}&paid=true`,
-          completionUrl: `${origin}/preview?orderId=${orderId}&paid=true`,
-          metadata: { orderId },
-        })
-      });
-
-      const data = await response.json();
-      console.log('AbacatePay card response:', JSON.stringify(data));
-
-      const paymentUrl = data.data?.url || data.url;
-      if (!paymentUrl) {
-        throw new Error('URL de checkout não retornada: ' + JSON.stringify(data));
-      }
-
-      await env.ORDERS.put(orderId, JSON.stringify({
-        ...order,
-        status: 'pending_payment',
-        billingId: data.data?.id || data.id,
-      }));
-
       return new Response(JSON.stringify({
         success: true,
-        paymentUrl,
+        paymentUrl: 'https://go.perfectpay.com.br/PPU38CQDEO0',
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });
