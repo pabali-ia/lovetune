@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <title>LoveTune – Músicas Personalizadas</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
@@ -1024,9 +1024,10 @@ function closeQuizFromModal(){
 .btn-grammar.loading svg{animation:spin .7s linear infinite}
 .quiz-input,.quiz-textarea{
   width:100%;border:1.5px solid #E5E7EB;border-radius:12px;
-  padding:12px 16px;font-family:'Poppins',sans-serif;font-size:14px;color:#111827;
+ padding:12px 16px;font-family:'Poppins',sans-serif;font-size:16px;color:#111827;
   outline:none;transition:border .2s;background:white;
   margin-bottom:16px;
+  touch-action:manipulation;
 }
 .quiz-input:focus,.quiz-textarea:focus{border-color:#FF4D8D}
 .quiz-textarea{resize:vertical;min-height:110px}
@@ -1349,8 +1350,9 @@ function closeQuizFromModal(){
     .qload-ring svg{position:absolute;top:0;left:0;transform:rotate(-90deg)}
     .qload-ring-bg{fill:none;stroke:#E5E7EB;stroke-width:8}
     .qload-ring-fill{fill:none;stroke:url(#ringGrad);stroke-width:8;stroke-linecap:round;stroke-dasharray:440;stroke-dashoffset:440;transition:stroke-dashoffset .6s ease}
-    .qload-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
-    .qload-heart{width:44px;height:44px;background:linear-gradient(135deg,#FF4D8D,#FF6A9C);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(255,77,141,.35)}
+    .qload-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+    .qload-heart{width:44px;height:44px;background:linear-gradient(135deg,#FF4D8D,#FF6A9C);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(255,77,141,.35);animation:heartbeat .9s ease infinite}
+    @keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
     .qload-pct{font-size:22px;font-weight:800;color:#111827}
     .qload-status{font-size:17px;font-style:italic;color:#374151;font-weight:600;margin-bottom:32px;min-height:28px}
     .qload-steps{display:flex;flex-direction:column;gap:10px;max-width:380px;margin:0 auto 28px}
@@ -1783,20 +1785,13 @@ async function corrigirGramatica(textareaId, btn){
   btn.innerHTML = iconeStar + 'Corrigindo...';
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('/workers/grammar', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        messages: [{
-          role: 'user',
-          content: `Corrija apenas os erros gramaticais e ortográficos do texto abaixo em português brasileiro. Mantenha exatamente o mesmo estilo, tom, vocabulário e conteúdo da pessoa. Não reescreva, não melhore, não adicione nada. Retorne SOMENTE o texto corrigido, sem explicações, sem aspas, sem introdução.\n\nTexto: ${texto}`
-        }]
-      })
+      body: JSON.stringify({ texto })
     });
     const data = await res.json();
-    const corrigido = data.content?.[0]?.text?.trim();
+    const corrigido = data.corrigido?.trim();
     if(corrigido){ el.value = corrigido; el.style.borderColor='#10B981'; setTimeout(()=>{el.style.borderColor='';},2000); }
     btn.classList.remove('loading');
     btn.classList.add('done');
