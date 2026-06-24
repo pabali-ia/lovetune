@@ -12,9 +12,9 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(180deg,#F7F2FC 
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .fade-up{opacity:0;animation:fadeUp .6s ease forwards}
 .delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}.delay-4{animation-delay:.4s}
-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,77,141,0.08);padding:14px 40px;display:flex;align-items:center;justify-content:space-between}
+header{position:sticky;top:0;z-index:100;background:transparent;padding:14px 40px;display:flex;align-items:center;justify-content:space-between}
 .logo-sm{display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#111827;text-decoration:none}
-.btn-minhas{display:flex;align-items:center;gap:6px;background:white;border:1.5px solid rgba(255,77,141,0.2);border-radius:999px;padding:8px 18px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#111827;cursor:pointer;text-decoration:none;transition:all .25s}
+.btn-minhas{display:flex;align-items:center;gap:6px;background:#F7F2FC;border:1.5px solid rgba(255,77,141,0.2);border-radius:999px;padding:8px 18px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#111827;cursor:pointer;text-decoration:none;transition:all .25s}
 .btn-minhas:hover{border-color:#FF4D8D;color:#FF4D8D;transform:scale(1.03)}
 .container{max-width:1100px;margin:0 auto;padding:0 24px}
 .hero{text-align:center;padding:64px 24px 56px}
@@ -454,14 +454,14 @@ function closeQuizFromModal(){document.getElementById('modalMinhas').style.displ
 .quiz-success-banner{background:#ECFDF5;border:1.5px solid #6EE7B7;border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:13px;color:#065F46;font-weight:500;margin-bottom:16px}
 
 /* ── LOADING SCREEN — FIXED ── */
-.qload-ring{position:relative;width:160px;height:160px;margin:0 auto 32px;flex-shrink:0}
-.qload-ring svg{position:absolute;top:0;left:0;width:160px;height:160px;transform:rotate(-90deg);z-index:1}
-.qload-ring-bg{fill:none;stroke:#E5E7EB;stroke-width:8}
-.qload-ring-fill{fill:none;stroke:url(#ringGrad);stroke-width:8;stroke-linecap:round;stroke-dasharray:440;stroke-dashoffset:440;transition:stroke-dashoffset .6s ease}
-.qload-center{position:absolute;top:0;left:0;width:160px;height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;z-index:2}
-.qload-heart{width:52px;height:52px;background:linear-gradient(135deg,#FF4D8D,#FF6A9C);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(255,77,141,.35);flex-shrink:0}
-@keyframes heartPulse{0%,100%{opacity:1}50%{opacity:.85}}
-.qload-pct{font-size:15px;font-weight:800;color:#111827;line-height:1}
+.qload-ring-wrap{display:flex;flex-direction:column;align-items:center;margin:0 auto 32px;position:relative;width:200px;height:200px}
+.qload-ring-wrap svg{position:absolute;top:0;left:0;width:200px;height:200px;transform:rotate(-90deg)}
+.qload-ring-bg{fill:none;stroke:#E5E7EB;stroke-width:6}
+.qload-ring-fill{fill:none;stroke:url(#ringGrad);stroke-width:6;stroke-linecap:round;stroke-dasharray:565;stroke-dashoffset:565;transition:stroke-dashoffset .6s ease}
+.qload-center{position:absolute;top:0;left:0;width:200px;height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.qload-heart{width:56px;height:56px;background:linear-gradient(135deg,#FF4D8D,#FF6A9C);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(255,77,141,.4);flex-shrink:0;animation:heartGlow 1.5s ease infinite}
+@keyframes heartGlow{0%,100%{box-shadow:0 6px 20px rgba(255,77,141,.4)}50%{box-shadow:0 6px 28px rgba(255,77,141,.7)}}
+.qload-pct{font-size:18px;font-weight:800;color:#111827;line-height:1}
 .qload-status{font-size:17px;font-style:italic;color:#374151;font-weight:600;margin-bottom:32px;min-height:28px}
 .qload-steps{display:flex;flex-direction:column;gap:10px;max-width:380px;margin:0 auto 28px}
 .qload-step{display:flex;align-items:center;gap:12px;background:white;border-radius:14px;padding:14px 18px;font-size:14px;font-weight:500;color:#374151;border:1.5px solid #E5E7EB;transition:all .5s}
@@ -677,16 +677,16 @@ function closeQuizFromModal(){document.getElementById('modalMinhas').style.displ
 
   <!-- LOADING -->
   <div id="qLoading" style="display:none;text-align:center;padding:40px 20px">
-    <div class="qload-ring">
-      <svg width="160" height="160" viewBox="0 0 160 160" style="display:block">
+    <div class="qload-ring-wrap">
+      <svg width="200" height="200" viewBox="0 0 200 200" style="display:block">
         <defs>
           <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stop-color="#FF4D8D"/>
             <stop offset="100%" stop-color="#FF8C42"/>
           </linearGradient>
         </defs>
-        <circle class="qload-ring-bg" cx="80" cy="80" r="70"/>
-        <circle class="qload-ring-fill" id="qloadRingFill" cx="80" cy="80" r="70"/>
+        <circle class="qload-ring-bg" cx="100" cy="100" r="90"/>
+        <circle class="qload-ring-fill" id="qloadRingFill" cx="100" cy="100" r="90"/>
       </svg>
       <div class="qload-center">
         <div class="qload-heart">
@@ -784,7 +784,7 @@ async function submitQuiz(){
 }
 function getLoadingStatus(pct){if(pct<40)return'Compondo a melodia...';if(pct<60)return'Afinando os instrumentos...';if(pct<75)return'Adicionando a voz...';if(pct<88)return'Gravando e mixando...';return'Quase pronta...'}
 function setLoadingProgress(pct,status){
-  const circumference=2*Math.PI*70;
+  const circumference=2*Math.PI*90;
   const ring=document.getElementById('qloadRingFill');
   const pctEl=document.getElementById('qloadPct');
   const statusEl=document.getElementById('qloadStatus');
