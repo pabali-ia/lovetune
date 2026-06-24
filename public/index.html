@@ -8,222 +8,76 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(180deg,#F7F2FC 0%,#F9F1FA 50%,#F6F1FB 100%);
-  min-height:100vh;
-  color:#111827;
-}
-
-/* ANIMATIONS */
+body{font-family:'Poppins',sans-serif;background:linear-gradient(180deg,#F7F2FC 0%,#F9F1FA 50%,#F6F1FB 100%);min-height:100vh;color:#111827}
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .fade-up{opacity:0;animation:fadeUp .6s ease forwards}
 .delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}.delay-4{animation-delay:.4s}
-
-/* HEADER */
-header{
-  position:sticky;top:0;z-index:100;
-  background:rgba(255,255,255,0.85);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(255,77,141,0.08);
-  padding:14px 40px;
-  display:flex;align-items:center;justify-content:space-between;
-}
+header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,77,141,0.08);padding:14px 40px;display:flex;align-items:center;justify-content:space-between}
 .logo-sm{display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#111827;text-decoration:none}
-.logo-sm svg{width:32px;height:32px}
-.btn-minhas{
-  display:flex;align-items:center;gap:6px;
-  background:white;border:1.5px solid rgba(255,77,141,0.2);
-  border-radius:999px;padding:8px 18px;
-  font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#111827;
-  cursor:pointer;text-decoration:none;
-  transition:all .25s;
-}
+.btn-minhas{display:flex;align-items:center;gap:6px;background:white;border:1.5px solid rgba(255,77,141,0.2);border-radius:999px;padding:8px 18px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#111827;cursor:pointer;text-decoration:none;transition:all .25s}
 .btn-minhas:hover{border-color:#FF4D8D;color:#FF4D8D;transform:scale(1.03)}
-
-/* CONTAINER */
 .container{max-width:1100px;margin:0 auto;padding:0 24px}
-
-/* HERO */
 .hero{text-align:center;padding:64px 24px 56px}
 .logo-hero{display:flex;flex-direction:column;align-items:center;margin-bottom:32px}
-.logo-hero img,.logo-hero-svg{width:80px;height:80px}
-.logo-hero-name{font-size:22px;font-weight:700;color:#111827;margin-top:4px;letter-spacing:-.3px}
-.logo-hero-name span{color:#FF4D8D}
-.badge{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(255,255,255,.8);border:1.5px solid rgba(255,77,141,.2);
-  border-radius:999px;padding:6px 16px;
-  font-size:11px;font-weight:600;letter-spacing:.08em;color:#6B7280;
-  margin-bottom:28px;
-}
-.hero-title{
-  font-size:clamp(32px,5vw,56px);font-weight:800;line-height:1.15;
-  color:#111827;max-width:760px;margin:0 auto 20px;
-}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.8);border:1.5px solid rgba(255,77,141,.2);border-radius:999px;padding:6px 16px;font-size:11px;font-weight:600;letter-spacing:.08em;color:#6B7280;margin-bottom:28px}
+.hero-title{font-size:clamp(32px,5vw,56px);font-weight:800;line-height:1.15;color:#111827;max-width:760px;margin:0 auto 20px}
 .hero-title .pink{color:#FF4D8D}
 .hero-sub{font-size:15px;color:#FF4D8D;font-weight:600;margin-bottom:20px}
-.video-frame{
-  position:relative;width:100%;max-width:340px;margin:0 auto 10px;
-  border:3px solid #FF4D8D;border-radius:20px;overflow:hidden;
-  background:#1a1a2e;aspect-ratio:9/16;
-  box-shadow:0 20px 60px rgba(255,77,141,.2);
-}
-.video-inner{
-  width:100%;height:100%;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  background:linear-gradient(160deg,#1a1a2e 0%,#16213e 100%);
-  gap:12px;padding:24px;
-}
-.play-btn{
-  width:64px;height:64px;background:#FF4D8D;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;border:none;
-  box-shadow:0 8px 24px rgba(255,77,141,.4);
-  transition:transform .25s,box-shadow .25s;
-}
+.video-frame{position:relative;width:100%;max-width:340px;margin:0 auto 10px;border:3px solid #FF4D8D;border-radius:20px;overflow:hidden;background:#1a1a2e;aspect-ratio:9/16;box-shadow:0 20px 60px rgba(255,77,141,.2)}
+.video-inner{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,#1a1a2e 0%,#16213e 100%);gap:12px;padding:24px}
+.play-btn{width:64px;height:64px;background:#FF4D8D;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;box-shadow:0 8px 24px rgba(255,77,141,.4);transition:transform .25s,box-shadow .25s}
 .play-btn:hover{transform:scale(1.1);box-shadow:0 12px 32px rgba(255,77,141,.5)}
 .play-btn svg{width:28px;height:28px;fill:white;margin-left:4px}
 .video-caption{font-size:12px;color:#6B7280;margin-bottom:24px;display:flex;align-items:center;gap:6px}
-.cta-green{
-  display:inline-flex;align-items:center;gap:8px;
-  background:#10B981;border:none;border-radius:999px;
-  padding:16px 36px;font-family:'Poppins',sans-serif;
-  font-size:16px;font-weight:700;color:white;cursor:pointer;text-decoration:none;
-  box-shadow:0 8px 24px rgba(16,185,129,.3);
-  transition:all .25s;
-}
+.cta-green{display:inline-flex;align-items:center;gap:8px;background:#10B981;border:none;border-radius:999px;padding:16px 36px;font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;color:white;cursor:pointer;text-decoration:none;box-shadow:0 8px 24px rgba(16,185,129,.3);transition:all .25s}
 .cta-green:hover{background:#059669;transform:scale(1.03);box-shadow:0 12px 32px rgba(16,185,129,.4)}
 .cta-row{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:8px}
 .cta-side{font-size:13px;color:#6B7280}
-
-/* EXEMPLO */
 .section{padding:72px 24px}
 .section-title{font-size:clamp(22px,3.5vw,32px);font-weight:800;color:#111827;text-align:center;margin-bottom:8px}
 .section-sub{font-size:14px;color:#6B7280;text-align:center;margin-bottom:40px}
-.example-card{
-  background:white;border-radius:24px;
-  box-shadow:0 10px 40px rgba(255,77,141,.08);
-  padding:36px;max-width:500px;margin:0 auto 16px;
-}
-.vinyl{
-  width:140px;height:140px;background:#1a1a2e;border-radius:50%;
-  margin:0 auto 28px;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 8px 24px rgba(0,0,0,.2);
-  position:relative;
-}
-.vinyl::before{
-  content:'';position:absolute;
-  width:42px;height:42px;background:#2d2d4e;
-  border-radius:50%;
-}
-.vinyl-icon{position:relative;z-index:1;color:#FF4D8D}
+.example-card{background:white;border-radius:24px;box-shadow:0 10px 40px rgba(255,77,141,.08);padding:36px;max-width:500px;margin:0 auto 16px}
+.vinyl{width:160px;height:160px;border-radius:50%;background:repeating-radial-gradient(circle at 50%,#111 0px,#1a1a2e 2px,#111 4px,#1e1e3a 6px,#111 8px);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(0,0,0,.3);position:relative;transition:transform .1s}
+.vinyl.spinning{animation:vinylSpinEx 4s linear infinite}
+@keyframes vinylSpinEx{to{transform:rotate(360deg)}}
+.vinyl-center-ex{position:absolute;width:52px;height:52px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 .track-name{font-weight:700;font-size:15px;text-align:center;margin-bottom:4px}
 .track-genre{font-size:12px;color:#6B7280;text-align:center;margin-bottom:16px}
 .track-time{display:flex;justify-content:space-between;font-size:11px;color:#6B7280;margin-bottom:8px}
 .progress-bar{height:4px;background:#F3F4F6;border-radius:4px;margin-bottom:20px}
 .progress-fill{height:100%;width:0%;background:#FF4D8D;border-radius:4px}
 .player-controls{display:flex;align-items:center;justify-content:center;gap:20px}
-.ctrl-btn{
-  width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  background:#F9F0FB;color:#FF4D8D;transition:all .25s;
-}
+.ctrl-btn{width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#F9F0FB;color:#FF4D8D;transition:all .25s}
 .ctrl-btn:hover{background:#FF4D8D;color:white;transform:scale(1.03)}
 .ctrl-btn.play-main{width:52px;height:52px;background:#FF4D8D;color:white;box-shadow:0 6px 18px rgba(255,77,141,.35)}
 .ctrl-btn.play-main:hover{background:#e0356d}
 .dots{display:flex;gap:6px;justify-content:center;margin-top:20px}
-.dot{width:8px;height:8px;border-radius:50%;background:#E5E7EB}
+.dot{width:8px;height:8px;border-radius:50%;background:#E5E7EB;cursor:pointer;transition:all .25s}
 .dot.active{background:#FF4D8D;width:20px;border-radius:4px}
 .example-note{font-size:12px;color:#6B7280;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
-
-/* CAROUSEL */
-.carousel-wrap{position:relative;max-width:500px;margin:0 auto;overflow:hidden}
-.carousel-card{display:none;animation:fadeIn .4s ease}
-.carousel-card.active{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.carousel-arrow{display:none}
-.vinyl{
-  width:160px;height:160px;border-radius:50%;
-  background:repeating-radial-gradient(circle at 50%,#111 0px,#1a1a2e 2px,#111 4px,#1e1e3a 6px,#111 8px);
-  margin:0 auto 20px;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 8px 28px rgba(0,0,0,.3);position:relative;
-  transition:transform .1s;
-}
-.vinyl.spinning{animation:vinylSpinEx 4s linear infinite}
-@keyframes vinylSpinEx{to{transform:rotate(360deg)}}
-.vinyl-center-ex{
-  position:absolute;width:52px;height:52px;background:white;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 2px 8px rgba(0,0,0,.15);
-}
-.dot{cursor:pointer;transition:all .25s}
-
-/* DESTINATÁRIOS */
-.recipients-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
-  max-width:900px;margin:0 auto;
-}
-.recipient-card{
-  background:white;border-radius:16px;padding:16px 18px;
-  box-shadow:0 4px 16px rgba(255,77,141,.06);
-  border:1.5px solid rgba(255,77,141,.08);
-}
+.recipients-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:900px;margin:0 auto}
+.recipient-card{background:white;border-radius:16px;padding:16px 18px;box-shadow:0 4px 16px rgba(255,77,141,.06);border:1.5px solid rgba(255,77,141,.08)}
 .recipient-card h4{font-size:13px;font-weight:600;color:#111827;margin-bottom:3px}
 .recipient-card p{font-size:11px;color:#6B7280;line-height:1.4}
-
-/* BENEFÍCIOS */
 .benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto}
-.benefit-card{
-  background:white;border-radius:24px;padding:32px 24px;
-  box-shadow:0 10px 40px rgba(255,77,141,.08);
-  text-align:center;transition:all .25s;
-}
+.benefit-card{background:white;border-radius:24px;padding:32px 24px;box-shadow:0 10px 40px rgba(255,77,141,.08);text-align:center;transition:all .25s}
 .benefit-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(255,77,141,.14)}
-.benefit-icon{
-  width:52px;height:52px;background:#FFF0F6;border-radius:16px;
-  display:flex;align-items:center;justify-content:center;margin:0 auto 16px;
-  color:#FF4D8D;font-size:22px;
-}
+.benefit-icon{width:52px;height:52px;background:#FFF0F6;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:#FF4D8D;font-size:22px}
 .benefit-card h3{font-size:15px;font-weight:700;margin-bottom:8px}
 .benefit-card p{font-size:13px;color:#6B7280;line-height:1.6}
-
-/* COMO FUNCIONA */
 .steps{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
-.step-card{
-  background:white;border-radius:20px;padding:28px 32px;
-  box-shadow:0 6px 24px rgba(255,77,141,.06);
-  text-align:center;transition:all .25s;
-}
+.step-card{background:white;border-radius:20px;padding:28px 32px;box-shadow:0 6px 24px rgba(255,77,141,.06);text-align:center;transition:all .25s}
 .step-card:hover{box-shadow:0 10px 32px rgba(255,77,141,.12)}
-.step-num{
-  width:40px;height:40px;background:#FF4D8D;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:16px;font-weight:700;color:white;margin:0 auto 12px;
-  box-shadow:0 4px 12px rgba(255,77,141,.3);
-}
+.step-num{width:40px;height:40px;background:#FF4D8D;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:white;margin:0 auto 12px;box-shadow:0 4px 12px rgba(255,77,141,.3)}
 .step-card h3{font-size:15px;font-weight:700;margin-bottom:8px}
 .step-card p{font-size:13px;color:#6B7280;line-height:1.6}
-
-/* DEPOIMENTOS */
 .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto}
-.testimonial-card{
-  background:white;border-radius:20px;padding:24px;
-  box-shadow:0 6px 24px rgba(255,77,141,.07);
-  transition:all .25s;
-}
+.testimonial-card{background:white;border-radius:20px;padding:24px;box-shadow:0 6px 24px rgba(255,77,141,.07);transition:all .25s}
 .testimonial-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(255,77,141,.12)}
 .stars{color:#FFB800;font-size:16px;margin-bottom:12px;letter-spacing:2px}
 .testimonial-card blockquote{font-size:13px;color:#374151;line-height:1.65;margin-bottom:14px;font-style:italic}
 .testimonial-card cite{font-size:12px;color:#9CA3AF;font-style:normal;font-weight:500}
-
-/* CTA CARD */
-.cta-card{
-  background:linear-gradient(135deg,#fff5f8 0%,#fff8f0 50%,#f5fff8 100%);
-  border-radius:28px;padding:56px 48px;max-width:700px;margin:0 auto;
-  box-shadow:0 16px 56px rgba(255,77,141,.1);
-  text-align:center;
-}
+.cta-card{background:linear-gradient(135deg,#fff5f8 0%,#fff8f0 50%,#f5fff8 100%);border-radius:28px;padding:56px 48px;max-width:700px;margin:0 auto;box-shadow:0 16px 56px rgba(255,77,141,.1);text-align:center}
 .cta-card-title{font-size:clamp(24px,4vw,38px);font-weight:800;line-height:1.2;margin-bottom:36px}
 .checklist{list-style:none;text-align:left;max-width:380px;margin:0 auto 36px;display:flex;flex-direction:column;gap:16px}
 .checklist li{display:flex;align-items:center;justify-content:space-between;font-size:14px;color:#374151;font-weight:500;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.04)}
@@ -231,42 +85,20 @@ header{
 .check-left{display:flex;align-items:center;gap:12px}
 .check-left .icon{color:#FF4D8D;font-size:15px}
 .check-green{color:#10B981;font-weight:700;font-size:16px}
-
-/* FAQ */
 .faq-icon{font-size:28px;text-align:center;color:#FF4D8D;margin-bottom:12px}
 .faq-list{max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
-.faq-item{
-  background:white;border-radius:16px;
-  border:1.5px solid rgba(255,77,141,.1);
-  overflow:hidden;transition:all .25s;
-}
+.faq-item{background:white;border-radius:16px;border:1.5px solid rgba(255,77,141,.1);overflow:hidden;transition:all .25s}
 .faq-item.open{border-color:rgba(255,77,141,.25)}
-.faq-q{
-  width:100%;background:none;border:none;
-  padding:18px 24px;display:flex;align-items:center;justify-content:space-between;
-  font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;color:#111827;
-  cursor:pointer;text-align:left;gap:12px;
-}
+.faq-q{width:100%;background:none;border:none;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;color:#111827;cursor:pointer;text-align:left;gap:12px}
 .faq-q:hover{color:#FF4D8D}
 .faq-chevron{color:#FF4D8D;font-size:18px;flex-shrink:0;transition:transform .25s}
 .faq-item.open .faq-chevron{transform:rotate(180deg)}
-.faq-a{
-  max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;
-  font-size:13px;color:#6B7280;line-height:1.7;padding:0 24px;
-}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;font-size:13px;color:#6B7280;line-height:1.7;padding:0 24px}
 .faq-item.open .faq-a{max-height:300px;padding:0 24px 18px}
-
-/* CTA FINAL */
 .cta-final{text-align:center;padding:48px 24px 72px}
 .cta-final p{font-size:15px;color:#6B7280;margin-bottom:20px}
-
-/* FOOTER */
 footer{background:white;border-top:1px solid rgba(255,77,141,.08);padding:56px 40px 32px}
-.footer-grid{
-  max-width:1100px;margin:0 auto;
-  display:grid;grid-template-columns:2fr 1.2fr 1.2fr 1.2fr;gap:40px;
-  margin-bottom:40px;
-}
+.footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1.2fr 1.2fr 1.2fr;gap:40px;margin-bottom:40px}
 .footer-logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px;color:#111827;margin-bottom:12px}
 .footer-desc{font-size:13px;color:#6B7280;line-height:1.7}
 .footer-col h4{font-size:12px;font-weight:700;letter-spacing:.08em;color:#9CA3AF;text-transform:uppercase;margin-bottom:16px}
@@ -276,27 +108,12 @@ footer{background:white;border-top:1px solid rgba(255,77,141,.08);padding:56px 4
 .footer-bottom{max-width:1100px;margin:0 auto;text-align:center}
 .footer-copy{font-size:12px;color:#9CA3AF;margin-bottom:4px}
 .footer-disclaimer{font-size:11px;color:#C4B5C9;line-height:1.6;max-width:700px;margin:8px auto 0}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .benefits-grid{grid-template-columns:repeat(2,1fr)}
-  .recipients-grid{grid-template-columns:repeat(2,1fr)}
-  .testimonials-grid{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:640px){
-  header{padding:12px 20px}
-  .benefits-grid{grid-template-columns:1fr}
-  .recipients-grid{grid-template-columns:repeat(2,1fr)}
-  .footer-grid{grid-template-columns:1fr}
-  .cta-card{padding:36px 24px}
-  .section{padding:48px 20px}
-}
+@media(max-width:900px){.benefits-grid{grid-template-columns:repeat(2,1fr)}.recipients-grid{grid-template-columns:repeat(2,1fr)}.testimonials-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){header{padding:12px 20px}.benefits-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.cta-card{padding:36px 24px}.section{padding:48px 20px}}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <a href="#" class="logo-sm">
     <img src="images/logo.jpg" alt="LoveTune" style="width:32px;height:32px;object-fit:contain;border-radius:6px"/>
@@ -305,93 +122,54 @@ footer{background:white;border-top:1px solid rgba(255,77,141,.08);padding:56px 4
   <a href="#" class="btn-minhas" onclick="event.preventDefault();document.getElementById('modalMinhas').style.display='flex';document.body.style.overflow='hidden'">🎵 Minhas músicas</a>
 </header>
 
-<!-- HERO -->
 <section class="hero container fade-up">
   <div class="logo-hero">
     <img src="images/logo.jpg" alt="LoveTune" style="width:80px;height:80px;object-fit:contain;border-radius:16px"/>
   </div>
-
   <div class="badge fade-up delay-1">✨ A PLATAFORMA #1 DE MÚSICAS PERSONALIZADAS</div>
-
-  <h1 class="hero-title fade-up delay-2">
-    O presente que ela(e) <span class="pink">nunca vai esquecer</span> — Uma <span class="pink">música</span> feita só pra vocês.
-  </h1>
-
+  <h1 class="hero-title fade-up delay-2">O presente que ela(e) <span class="pink">nunca vai esquecer</span> — Uma <span class="pink">música</span> feita só pra vocês.</h1>
   <p class="hero-sub fade-up delay-3">Veja o vídeo abaixo</p>
-
   <div class="video-frame fade-up delay-3">
     <div class="video-inner">
       <div style="background:rgba(255,255,255,.1);border-radius:12px;padding:16px 20px;width:100%;margin-bottom:8px">
         <p style="font-size:12px;font-weight:700;color:white;margin-bottom:4px">especial?</p>
         <p style="font-size:11px;color:rgba(255,255,255,.7);margin-bottom:12px">Detalhes reais geram letras que emocionam de verdade.</p>
-        <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:8px 10px;margin-bottom:8px">
-          <p style="font-size:10px;color:rgba(255,255,255,.6);margin-bottom:4px">As belas qualidades dele</p>
-          <p style="font-size:11px;color:white">É linda e amorosa</p>
-        </div>
-        <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:8px 10px">
-          <p style="font-size:10px;color:rgba(255,255,255,.6);margin-bottom:4px">Uma memória marcante</p>
-          <p style="font-size:11px;color:white">No dia</p>
-        </div>
+        <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:8px 10px;margin-bottom:8px"><p style="font-size:10px;color:rgba(255,255,255,.6);margin-bottom:4px">As belas qualidades dele</p><p style="font-size:11px;color:white">É linda e amorosa</p></div>
+        <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:8px 10px"><p style="font-size:10px;color:rgba(255,255,255,.6);margin-bottom:4px">Uma memória marcante</p><p style="font-size:11px;color:white">No dia</p></div>
       </div>
-      <button class="play-btn" aria-label="Reproduzir">
-        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-      </button>
-      <div style="background:#FF4D8D;padding:4px 12px;border-radius:6px;margin-top:4px">
-        <p style="font-size:10px;font-weight:700;color:white;text-align:center;letter-spacing:.04em">QUE A MÚSICA SAIA PERFEITA</p>
-      </div>
+      <button class="play-btn" aria-label="Reproduzir"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button>
+      <div style="background:#FF4D8D;padding:4px 12px;border-radius:6px;margin-top:4px"><p style="font-size:10px;font-weight:700;color:white;text-align:center;letter-spacing:.04em">QUE A MÚSICA SAIA PERFEITA</p></div>
     </div>
   </div>
-
   <p class="video-caption fade-up delay-4">
     <svg width="14" height="14" fill="none" stroke="#6B7280" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5"/><path d="M17.5 2.5a2.121 2.121 0 013 3L12 14l-4 1 1-4z"/></svg>
     Verifique se o som está ligado
   </p>
-
   <div class="cta-row fade-up delay-4">
     <a href="javascript:void(0)" class="cta-green">♡ Criar minha música agora</a>
     <span class="cta-side">Leva menos de 3 minutos</span>
   </div>
 </section>
 
-<!-- EXEMPLO -->
 <section class="section">
   <div class="container">
     <h2 class="section-title fade-up">🎵 Ouça um <span style="color:#FF4D8D">Exemplo</span></h2>
     <p class="section-sub fade-up delay-1">Cada faixa é produzida com instrumentos reais e vocais profissionais</p>
-
-    <div class="example-card fade-up delay-2" style="max-width:500px;margin:0 auto">
-      <!-- Disco fixo — não troca -->
-      <div class="vinyl spinning-when-playing" id="vinylDisc">
+    <div class="example-card fade-up delay-2">
+      <div class="vinyl" id="vinylDisc">
         <div class="vinyl-center-ex">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
         </div>
       </div>
-
-      <!-- Nome e estilo trocam -->
       <p class="track-name" id="exTrackName">Porque Amar Você é Certeza</p>
       <p class="track-genre" id="exTrackGenre">Sertanejo</p>
-
-      <div class="track-time">
-        <span id="exTc">0:00</span>
-        <span id="exDur">3:44</span>
-      </div>
-      <div class="progress-bar" onclick="seekExMain(event)">
-        <div class="progress-fill" id="exPf"></div>
-      </div>
-
+      <div class="track-time"><span id="exTc">0:00</span><span id="exDur">3:44</span></div>
+      <div class="progress-bar" onclick="seekExMain(event)"><div class="progress-fill" id="exPf"></div></div>
       <div class="player-controls">
-        <button class="ctrl-btn" onclick="window.prevTrack()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <button class="ctrl-btn play-main" id="exPlayBtn" onclick="toggleExMain()">
-          <svg id="exPlayIcon" width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
-        </button>
-        <button class="ctrl-btn" onclick="window.nextTrack()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
+        <button class="ctrl-btn" onclick="window.prevTrack()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="ctrl-btn play-main" id="exPlayBtn" onclick="toggleExMain()"><svg id="exPlayIcon" width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></button>
+        <button class="ctrl-btn" onclick="window.nextTrack()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
       </div>
-
-      <!-- DOTS -->
       <div class="dots" style="margin-top:16px">
         <div class="dot active" onclick="window.goToTrack(0)"></div>
         <div class="dot" onclick="window.goToTrack(1)"></div>
@@ -399,12 +177,10 @@ footer{background:white;border-top:1px solid rgba(255,77,141,.08);padding:56px 4
         <div class="dot" onclick="window.goToTrack(3)"></div>
       </div>
     </div>
-
     <p class="example-note fade-up delay-3" style="margin-top:16px">🎵 Músicas reais de clientes. A sua será 100% única!</p>
   </div>
 </section>
 
-<!-- DESTINATÁRIOS -->
 <section class="section" style="background:rgba(255,255,255,.4)">
   <div class="container">
     <h2 class="section-title fade-up">Uma música pra cada pessoa que importa</h2>
@@ -422,464 +198,159 @@ footer{background:white;border-top:1px solid rgba(255,77,141,.08);padding:56px 4
   </div>
 </section>
 
-<!-- BENEFÍCIOS -->
 <section class="section">
   <div class="container">
     <h2 class="section-title fade-up">Por que escolher o <span style="color:#FF4D8D">LoveTune</span>?</h2>
     <p class="section-sub fade-up delay-1">Mais do que uma música — uma experiência emocional única.</p>
     <div class="benefits-grid fade-up delay-2">
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
-        </div>
-        <h3>Amostra Grátis</h3>
-        <p>Você só paga depois de ver e ouvir a prévia da sua música. Sem compromisso.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        </div>
-        <h3>Entrega Rápida</h3>
-        <p>Em poucos minutos você já pode ouvir a prévia da sua música.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-        </div>
-        <h3>Presente Inesquecível</h3>
-        <p>O presente mais memorável que alguém pode receber — som e sentimento juntos.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <h3>Qualidade Premium</h3>
-        <p>Áudio em alta qualidade, letra bem estruturada e produção cuidadosa.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-        </div>
-        <h3>Todos os Estilos</h3>
-        <p>Pop, sertanejo, MPB, gospel, samba, acústico ou o estilo que você preferir.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- top-left square -->
-            <rect x="2" y="2" width="9" height="9" rx="1.5" stroke="#FF4D8D" stroke-width="1.8" fill="none"/>
-            <rect x="4.5" y="4.5" width="4" height="4" rx=".5" fill="#FF4D8D"/>
-            <!-- top-right square -->
-            <rect x="13" y="2" width="9" height="9" rx="1.5" stroke="#FF4D8D" stroke-width="1.8" fill="none"/>
-            <rect x="15.5" y="4.5" width="4" height="4" rx=".5" fill="#FF4D8D"/>
-            <!-- bottom-left square -->
-            <rect x="2" y="13" width="9" height="9" rx="1.5" stroke="#FF4D8D" stroke-width="1.8" fill="none"/>
-            <rect x="4.5" y="15.5" width="4" height="4" rx=".5" fill="#FF4D8D"/>
-            <!-- bottom-right dots -->
-            <rect x="13" y="13" width="3" height="3" rx=".5" fill="#FF4D8D"/>
-            <rect x="18" y="13" width="3" height="3" rx=".5" fill="#FF4D8D"/>
-            <rect x="13" y="18" width="3" height="3" rx=".5" fill="#FF4D8D"/>
-            <rect x="18" y="18" width="3" height="3" rx=".5" fill="#FF4D8D"/>
-          </svg>
-        </div>
-        <h3>QR Code</h3>
-        <p>Receba um QR Code com sua música pra imprimir, presentear ou compartilhar.</p>
-      </div>
+      <div class="benefit-card"><div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg></div><h3>Amostra Grátis</h3><p>Você só paga depois de ver e ouvir a prévia da sua música. Sem compromisso.</p></div>
+      <div class="benefit-card"><div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><h3>Entrega Rápida</h3><p>Em poucos minutos você já pode ouvir a prévia da sua música.</p></div>
+      <div class="benefit-card"><div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><h3>Presente Inesquecível</h3><p>O presente mais memorável que alguém pode receber — som e sentimento juntos.</p></div>
+      <div class="benefit-card"><div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><h3>Qualidade Premium</h3><p>Áudio em alta qualidade, letra bem estruturada e produção cuidadosa.</p></div>
+      <div class="benefit-card"><div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><h3>Todos os Estilos</h3><p>Pop, sertanejo, MPB, gospel, samba, acústico ou o estilo que você preferir.</p></div>
+      <div class="benefit-card"><div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="9" height="9" rx="1.5" stroke="#FF4D8D" stroke-width="1.8" fill="none"/><rect x="4.5" y="4.5" width="4" height="4" rx=".5" fill="#FF4D8D"/><rect x="13" y="2" width="9" height="9" rx="1.5" stroke="#FF4D8D" stroke-width="1.8" fill="none"/><rect x="15.5" y="4.5" width="4" height="4" rx=".5" fill="#FF4D8D"/><rect x="2" y="13" width="9" height="9" rx="1.5" stroke="#FF4D8D" stroke-width="1.8" fill="none"/><rect x="4.5" y="15.5" width="4" height="4" rx=".5" fill="#FF4D8D"/><rect x="13" y="13" width="3" height="3" rx=".5" fill="#FF4D8D"/><rect x="18" y="13" width="3" height="3" rx=".5" fill="#FF4D8D"/><rect x="13" y="18" width="3" height="3" rx=".5" fill="#FF4D8D"/><rect x="18" y="18" width="3" height="3" rx=".5" fill="#FF4D8D"/></svg></div><h3>QR Code</h3><p>Receba um QR Code com sua música pra imprimir, presentear ou compartilhar.</p></div>
     </div>
   </div>
 </section>
 
-<!-- COMO FUNCIONA -->
 <section class="section" style="background:rgba(255,255,255,.4)">
   <div class="container">
     <h2 class="section-title fade-up">🎵 Como funciona</h2>
     <div style="height:32px"></div>
     <div class="steps">
-      <div class="step-card fade-up delay-1">
-        <div class="step-num">1</div>
-        <h3>Envie as informações</h3>
-        <p>Pra quem é a música, a ocasião e o nome da pessoa que vai receber.</p>
-      </div>
-      <div class="step-card fade-up delay-2">
-        <div class="step-num">2</div>
-        <h3>Conte a história</h3>
-        <p>Há quanto tempo se conhecem, como essa pessoa chegou na sua vida e o que vocês viveram juntos.</p>
-      </div>
-      <div class="step-card fade-up delay-3">
-        <div class="step-num">3</div>
-        <h3>Escolha o sentimento</h3>
-        <p>Amor, saudade, gratidão, celebração ou outro tom que você queira transmitir.</p>
-      </div>
-      <div class="step-card fade-up delay-4">
-        <div class="step-num">4</div>
-        <h3>Defina ritmo, melodia e voz</h3>
-        <p>Estilo musical (pop, sertanejo, gospel, MPB...) e se prefere voz feminina ou masculina.</p>
-      </div>
-      <div class="step-card fade-up">
-        <div class="step-num">5</div>
-        <h3>Receba sua música</h3>
-        <p>Em menos de 2 minutos, letra e áudio em alta qualidade, prontos pra emocionar quem importa.</p>
-      </div>
+      <div class="step-card fade-up delay-1"><div class="step-num">1</div><h3>Envie as informações</h3><p>Pra quem é a música, a ocasião e o nome da pessoa que vai receber.</p></div>
+      <div class="step-card fade-up delay-2"><div class="step-num">2</div><h3>Conte a história</h3><p>Há quanto tempo se conhecem, como essa pessoa chegou na sua vida e o que vocês viveram juntos.</p></div>
+      <div class="step-card fade-up delay-3"><div class="step-num">3</div><h3>Escolha o sentimento</h3><p>Amor, saudade, gratidão, celebração ou outro tom que você queira transmitir.</p></div>
+      <div class="step-card fade-up delay-4"><div class="step-num">4</div><h3>Defina ritmo, melodia e voz</h3><p>Estilo musical (pop, sertanejo, gospel, MPB...) e se prefere voz feminina ou masculina.</p></div>
+      <div class="step-card fade-up"><div class="step-num">5</div><h3>Receba sua música</h3><p>Em menos de 2 minutos, letra e áudio em alta qualidade, prontos pra emocionar quem importa.</p></div>
     </div>
   </div>
 </section>
 
-<!-- DEPOIMENTOS -->
 <section class="section">
   <div class="container">
     <h2 class="section-title fade-up">Histórias reais</h2>
     <div style="height:32px"></div>
     <div class="testimonials-grid fade-up delay-2">
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <blockquote>"Fiz uma música pra minha mãe no Dia das Mães. Ela chorou no primeiro refrão — foi o melhor presente que já dei."</blockquote>
-        <cite>Mariana, 28</cite>
-      </div>
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <blockquote>"Pedi minha noiva em casamento com uma música personalizada. Ela ouviu em silêncio, depois só disse 'sim'."</blockquote>
-        <cite>Rafael, 34</cite>
-      </div>
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <blockquote>"Meu melhor amigo fez 30 anos e não sabia o que dar. A música virou o momento mais emocionante do aniversário."</blockquote>
-        <cite>Beatriz, 25</cite>
-      </div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><blockquote>"Fiz uma música pra minha mãe no Dia das Mães. Ela chorou no primeiro refrão — foi o melhor presente que já dei."</blockquote><cite>Mariana, 28</cite></div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><blockquote>"Pedi minha noiva em casamento com uma música personalizada. Ela ouviu em silêncio, depois só disse 'sim'."</blockquote><cite>Rafael, 34</cite></div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><blockquote>"Meu melhor amigo fez 30 anos e não sabia o que dar. A música virou o momento mais emocionante do aniversário."</blockquote><cite>Beatriz, 25</cite></div>
     </div>
   </div>
 </section>
 
-<!-- CTA CARD -->
 <section class="section" id="cta-principal">
   <div class="container">
     <div class="cta-card fade-up">
       <h2 class="cta-card-title">Transforme o que você sente em <span style="color:#FF4D8D">música</span>.</h2>
       <ul class="checklist">
-        <li>
-          <div class="check-left">
-            <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
-            Sua música pronta em minutos
-          </div>
-          <span class="check-green">✓</span>
-        </li>
-        <li>
-          <div class="check-left">
-            <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></span>
-            Prévia da sua música grátis
-          </div>
-          <span class="check-green">✓</span>
-        </li>
-        <li>
-          <div class="check-left">
-            <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
-            Música ao seu estilo
-          </div>
-          <span class="check-green">✓</span>
-        </li>
-        <li>
-          <div class="check-left">
-            <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
-            Baixar em mp3 em alta qualidade
-          </div>
-          <span class="check-green">✓</span>
-        </li>
-        <li>
-          <div class="check-left">
-            <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="8" height="8" rx="1.2" stroke="#FF4D8D" stroke-width="1.8" fill="none"/><rect x="4" y="4" width="3" height="3" rx=".3" fill="#FF4D8D"/><rect x="14" y="2" width="8" height="8" rx="1.2" stroke="#FF4D8D" stroke-width="1.8" fill="none"/><rect x="16" y="4" width="3" height="3" rx=".3" fill="#FF4D8D"/><rect x="2" y="14" width="8" height="8" rx="1.2" stroke="#FF4D8D" stroke-width="1.8" fill="none"/><rect x="4" y="16" width="3" height="3" rx=".3" fill="#FF4D8D"/><rect x="14" y="14" width="2.5" height="2.5" rx=".3" fill="#FF4D8D"/><rect x="18.5" y="14" width="2.5" height="2.5" rx=".3" fill="#FF4D8D"/><rect x="14" y="18.5" width="2.5" height="2.5" rx=".3" fill="#FF4D8D"/><rect x="18.5" y="18.5" width="2.5" height="2.5" rx=".3" fill="#FF4D8D"/></svg></span>
-            QR code para compartilhar
-          </div>
-          <span class="check-green">✓</span>
-        </li>
+        <li><div class="check-left"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>Sua música pronta em minutos</div><span class="check-green">✓</span></li>
+        <li><div class="check-left"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></span>Prévia da sua música grátis</div><span class="check-green">✓</span></li>
+        <li><div class="check-left"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>Música ao seu estilo</div><span class="check-green">✓</span></li>
+        <li><div class="check-left"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF4D8D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>Baixar em mp3 em alta qualidade</div><span class="check-green">✓</span></li>
+        <li><div class="check-left"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="8" height="8" rx="1.2" stroke="#FF4D8D" stroke-width="1.8" fill="none"/><rect x="4" y="4" width="3" height="3" rx=".3" fill="#FF4D8D"/><rect x="14" y="2" width="8" height="8" rx="1.2" stroke="#FF4D8D" stroke-width="1.8" fill="none"/><rect x="16" y="4" width="3" height="3" rx=".3" fill="#FF4D8D"/><rect x="2" y="14" width="8" height="8" rx="1.2" stroke="#FF4D8D" stroke-width="1.8" fill="none"/><rect x="4" y="16" width="3" height="3" rx=".3" fill="#FF4D8D"/><rect x="14" y="14" width="2.5" height="2.5" rx=".3" fill="#FF4D8D"/><rect x="18.5" y="14" width="2.5" height="2.5" rx=".3" fill="#FF4D8D"/><rect x="14" y="18.5" width="2.5" height="2.5" rx=".3" fill="#FF4D8D"/><rect x="18.5" y="18.5" width="2.5" height="2.5" rx=".3" fill="#FF4D8D"/></svg></span>QR code para compartilhar</div><span class="check-green">✓</span></li>
       </ul>
       <a href="javascript:void(0)" class="cta-green">♡ Criar minha música →</a>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
 <section class="section" style="background:rgba(255,255,255,.4)">
   <div class="container">
     <div class="faq-icon">❓</div>
     <h2 class="section-title fade-up">Perguntas frequentes</h2>
-    <p class="section-sub fade-up delay-1">Tudo que você precisa saber antes de criar sua música. Se sobrar alguma dúvida, é só chamar a gente no WhatsApp.</p>
-
+    <p class="section-sub fade-up delay-1">Tudo que você precisa saber antes de criar sua música.</p>
     <div class="faq-list fade-up delay-2">
-      <div class="faq-item open">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Quanto tempo demora pra ficar pronta?
-          <span class="faq-chevron">⌄</span>
-        </button>
-        <div class="faq-a">Geralmente entre 1 e 3 minutos já enviamos a sua prévia. Você acompanha o progresso direto na tela de geração.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Posso ouvir antes de pagar?
-          <span class="faq-chevron">⌄</span>
-        </button>
-        <div class="faq-a">Sim! A prévia da sua música é completamente gratuita. Você só paga se quiser baixar o arquivo em alta qualidade e receber o QR Code.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          A música é realmente única e personalizada?
-          <span class="faq-chevron">⌄</span>
-        </button>
-        <div class="faq-a">Sim! Cada música é gerada exclusivamente a partir das informações que você fornece — nome, história, sentimento e estilo. Nenhuma outra pessoa terá a mesma música que você.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Posso escolher o estilo musical e a voz?
-          <span class="faq-chevron">⌄</span>
-        </button>
-        <div class="faq-a">Sim! Durante a criação você escolhe o gênero musical (pop, sertanejo, gospel, MPB, acústico...) e se prefere voz feminina ou masculina.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Posso usar a música em redes sociais ou no casamento?
-          <span class="faq-chevron">⌄</span>
-        </button>
-        <div class="faq-a">Sim! A música é sua. Você pode compartilhar nas redes sociais, usar no casamento, aniversário ou em qualquer ocasião especial.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Como recebo a música depois de pronta?
-          <span class="faq-chevron">⌄</span>
-        </button>
-        <div class="faq-a">Após a confirmação do pagamento, você recebe um e-mail com o link para download do arquivo MP3 em alta qualidade e o QR Code personalizado.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          E se eu não gostar do resultado?
-          <span class="faq-chevron">⌄</span>
-        </button>
-        <div class="faq-a">Você pode ouvir a prévia antes de pagar. Se não gostar, simplesmente não finaliza. Sem cobranças, sem compromisso.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Meus dados e a história ficam protegidos?
-          <span class="faq-chevron">⌄</span>
-        </button>
-        <div class="faq-a">Sim. Todos os dados fornecidos são tratados com total sigilo e utilizados exclusivamente para gerar sua música. Não compartilhamos nenhuma informação com terceiros.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Funciona pra qualquer pessoa, não só relacionamento?
-          <span class="faq-chevron">⌄</span>
-        </button>
-        <div class="faq-a">Com certeza! Você pode criar músicas para mãe, pai, filho, amigo, homenagem — qualquer pessoa especial na sua vida. Não é só para casais.</div>
-      </div>
+      <div class="faq-item open"><button class="faq-q" onclick="toggleFaq(this)">Quanto tempo demora pra ficar pronta?<span class="faq-chevron">⌄</span></button><div class="faq-a">Geralmente entre 1 e 3 minutos já enviamos a sua prévia. Você acompanha o progresso direto na tela de geração.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Posso ouvir antes de pagar?<span class="faq-chevron">⌄</span></button><div class="faq-a">Sim! A prévia da sua música é completamente gratuita. Você só paga se quiser baixar o arquivo em alta qualidade e receber o QR Code.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">A música é realmente única e personalizada?<span class="faq-chevron">⌄</span></button><div class="faq-a">Sim! Cada música é gerada exclusivamente a partir das informações que você fornece — nome, história, sentimento e estilo. Nenhuma outra pessoa terá a mesma música que você.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Posso escolher o estilo musical e a voz?<span class="faq-chevron">⌄</span></button><div class="faq-a">Sim! Durante a criação você escolhe o gênero musical (pop, sertanejo, gospel, MPB, acústico...) e se prefere voz feminina ou masculina.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Posso usar a música em redes sociais ou no casamento?<span class="faq-chevron">⌄</span></button><div class="faq-a">Sim! A música é sua. Você pode compartilhar nas redes sociais, usar no casamento, aniversário ou em qualquer ocasião especial.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Como recebo a música depois de pronta?<span class="faq-chevron">⌄</span></button><div class="faq-a">Após a confirmação do pagamento, você recebe um e-mail com o link para download do arquivo MP3 em alta qualidade e o QR Code personalizado.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">E se eu não gostar do resultado?<span class="faq-chevron">⌄</span></button><div class="faq-a">Você pode ouvir a prévia antes de pagar. Se não gostar, simplesmente não finaliza. Sem cobranças, sem compromisso.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Meus dados e a história ficam protegidos?<span class="faq-chevron">⌄</span></button><div class="faq-a">Sim. Todos os dados fornecidos são tratados com total sigilo e utilizados exclusivamente para gerar sua música.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Funciona pra qualquer pessoa, não só relacionamento?<span class="faq-chevron">⌄</span></button><div class="faq-a">Com certeza! Você pode criar músicas para mãe, pai, filho, amigo, homenagem — qualquer pessoa especial na sua vida.</div></div>
     </div>
   </div>
 </section>
 
-<!-- CTA FINAL -->
 <div class="cta-final">
   <p>Pronto pra transformar a sua história em música?</p>
   <a href="javascript:void(0)" class="cta-green">♡ Criar minha música →</a>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="footer-logo">
-        <img src="images/logo.jpg" alt="LoveTune" style="width:28px;height:28px;object-fit:contain;border-radius:6px"/>
-        <span>LoveTune</span>
-      </div>
+      <div class="footer-logo"><img src="images/logo.jpg" alt="LoveTune" style="width:28px;height:28px;object-fit:contain;border-radius:6px"/><span>LoveTune</span></div>
       <p class="footer-desc">Transformamos sua história em uma música personalizada e única, feita pra emocionar quem você ama.</p>
     </div>
-    <div class="footer-col">
-      <h4>Links Rápidos</h4>
-      <a href="#">Criar minha música</a>
-      <a href="#">Minhas músicas</a>
-      <a href="#">Perguntas frequentes</a>
-      <a href="#">Termos de uso</a>
-      <a href="#">Política de privacidade</a>
-    </div>
-    <div class="footer-col">
-      <h4>Contato</h4>
-      <p style="display:flex;align-items:center;gap:6px">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
-        contato@meulovetune.com.br
-      </p>
-    </div>
-    <div class="footer-col">
-      <h4>Redes Sociais</h4>
-      <a href="#" style="display:flex;align-items:center;gap:7px">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        @meulovetune
-      </a>
-    </div>
+    <div class="footer-col"><h4>Links Rápidos</h4><a href="#">Criar minha música</a><a href="#">Minhas músicas</a><a href="#">Perguntas frequentes</a><a href="#">Termos de uso</a><a href="#">Política de privacidade</a></div>
+    <div class="footer-col"><h4>Contato</h4><p>contato@meulovetune.com.br</p></div>
+    <div class="footer-col"><h4>Redes Sociais</h4><a href="#">@meulovetune</a></div>
   </div>
   <div class="footer-divider"></div>
   <div class="footer-bottom">
     <p class="footer-copy">© 2026 LoveTune. Todos os direitos reservados.</p>
     <p class="footer-copy" style="margin-top:2px">CNPJ: 90.223.814/0001-88</p>
-    <p class="footer-disclaimer">Esta página é de responsabilidade do produto/serviço apresentado. A LoveTune não é uma plataforma de Meta (Facebook) e Instagram, e não se responsabiliza por qualquer produto, serviço ou afirmação feita neste site.</p>
+    <p class="footer-disclaimer">Esta página é de responsabilidade do produto/serviço apresentado.</p>
   </div>
 </footer>
 
 <script>
-// FAQ toggle
-function toggleFaq(btn){
-  const item=btn.closest('.faq-item');
-  const isOpen=item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-  if(!isOpen)item.classList.add('open');
-}
-
-// Scroll animations
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.style.animationPlayState='running'}})
-},{threshold:0.1});
-document.querySelectorAll('.fade-up').forEach(el=>{
-  el.style.animationPlayState='paused';
-  obs.observe(el);
-});
-
-// Minhas Músicas modal
+function toggleFaq(btn){const item=btn.closest('.faq-item');const isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!isOpen)item.classList.add('open')}
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.animationPlayState='running'}})},{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el=>{el.style.animationPlayState='paused';obs.observe(el)});
 const modal=document.getElementById('modalMinhas');
 if(modal){
-  document.querySelectorAll('.btn-minhas').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();modal.classList.add('open');document.body.style.overflow='hidden';}));
+  document.querySelectorAll('.btn-minhas').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();modal.classList.add('open');document.body.style.overflow='hidden'}));
   const modalClose=document.getElementById('modalClose');
-  if(modalClose) modalClose.addEventListener('click',()=>{modal.classList.remove('open');document.body.style.overflow='';});
-  modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('open');document.body.style.overflow='';}});
-}
-
-// Fake audio progress
-let prog=0,playing=false,interval;
-const btn=document.getElementById('audioPlay');
-const pf=document.getElementById('pf');
-if(btn){
-  btn.addEventListener('click',()=>{
-    playing=!playing;
-    if(playing){
-      btn.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="white"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
-      interval=setInterval(()=>{
-        prog=Math.min(prog+0.3,100);
-        pf.style.width=prog+'%';
-        if(prog>=100){clearInterval(interval);playing=false;prog=0;btn.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>';}
-      },100);
-    } else {
-      clearInterval(interval);
-      btn.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>';
-    }
-  });
+  if(modalClose)modalClose.addEventListener('click',()=>{modal.classList.remove('open');document.body.style.overflow=''});
+  modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('open');document.body.style.overflow=''}});
 }
 </script>
 
-<!-- MODAL: MINHAS MÚSICAS -->
-<div id="modalMinhas" style="
-  display:none;position:fixed;inset:0;z-index:999;
-  background:rgba(247,242,252,0.92);backdrop-filter:blur(18px);
-  align-items:center;justify-content:center;
-">
+<!-- MODAL MINHAS MÚSICAS -->
+<div id="modalMinhas" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(247,242,252,0.92);backdrop-filter:blur(18px);align-items:center;justify-content:center;">
 <style>
 #modalMinhas.open{display:flex!important}
 @keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(16px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.modal-box{
-  background:white;border-radius:28px;
-  box-shadow:0 24px 80px rgba(255,77,141,.15);
-  padding:56px 48px 48px;max-width:680px;width:90%;
-  position:relative;text-align:center;
-  animation:modalIn .35s ease forwards;
-}
-.modal-eyebrow{
-  font-size:11px;font-weight:700;letter-spacing:.12em;color:#9CA3AF;
-  text-transform:uppercase;margin-bottom:14px;
-}
-.modal-title{
-  font-size:clamp(32px,5vw,52px);font-weight:800;font-style:italic;
-  color:#111827;line-height:1.1;margin-bottom:20px;
-}
-.modal-desc{
-  font-size:16px;color:#6B7280;line-height:1.65;margin-bottom:40px;max-width:500px;margin-left:auto;margin-right:auto;
-}
+.modal-box{background:white;border-radius:28px;box-shadow:0 24px 80px rgba(255,77,141,.15);padding:56px 48px 48px;max-width:680px;width:90%;position:relative;text-align:center;animation:modalIn .35s ease forwards}
+.modal-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;color:#9CA3AF;text-transform:uppercase;margin-bottom:14px}
+.modal-title{font-size:clamp(32px,5vw,52px);font-weight:800;font-style:italic;color:#111827;line-height:1.1;margin-bottom:20px}
+.modal-desc{font-size:16px;color:#6B7280;line-height:1.65;margin-bottom:40px;max-width:500px;margin-left:auto;margin-right:auto}
 .modal-desc strong{color:#111827}
-.modal-card{
-  background:linear-gradient(135deg,#FFF6F9 0%,#FFF0F6 100%);
-  border-radius:20px;padding:28px 32px;
-}
-.modal-card label{
-  display:block;font-size:15px;font-weight:700;color:#111827;
-  text-align:left;margin-bottom:14px;
-}
+.modal-card{background:linear-gradient(135deg,#FFF6F9 0%,#FFF0F6 100%);border-radius:20px;padding:28px 32px}
+.modal-card label{display:block;font-size:15px;font-weight:700;color:#111827;text-align:left;margin-bottom:14px}
 .modal-input-row{display:flex;gap:10px;align-items:stretch}
-.modal-input{
-  flex:1;display:flex;align-items:center;gap:10px;
-  background:white;border:1.5px solid #FF4D8D;
-  border-radius:999px;padding:0 20px;height:52px;
-  font-family:'Poppins',sans-serif;font-size:14px;color:#111827;
-  outline:none;
-}
+.modal-input{flex:1;display:flex;align-items:center;gap:10px;background:white;border:1.5px solid #FF4D8D;border-radius:999px;padding:0 20px;height:52px;font-family:'Poppins',sans-serif;font-size:14px;color:#111827;outline:none}
 .modal-input svg{flex-shrink:0;color:#FF4D8D}
-.modal-input input{
-  border:none;outline:none;background:transparent;
-  font-family:'Poppins',sans-serif;font-size:14px;color:#111827;width:100%;
-}
+.modal-input input{border:none;outline:none;background:transparent;font-family:'Poppins',sans-serif;font-size:14px;color:#111827;width:100%}
 .modal-input input::placeholder{color:#C4B5C9}
-.modal-btn{
-  display:flex;align-items:center;gap:8px;
-  background:#FF4D8D;border:none;border-radius:999px;
-  padding:0 28px;height:52px;
-  font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:white;
-  cursor:pointer;white-space:nowrap;
-  box-shadow:0 8px 24px rgba(255,77,141,.3);
-  transition:all .25s;
-}
+.modal-btn{display:flex;align-items:center;gap:8px;background:#FF4D8D;border:none;border-radius:999px;padding:0 28px;height:52px;font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:white;cursor:pointer;white-space:nowrap;box-shadow:0 8px 24px rgba(255,77,141,.3);transition:all .25s}
 .modal-btn:hover{background:#e0356d;transform:scale(1.03)}
-.modal-close{
-  position:absolute;top:20px;right:24px;
-  width:36px;height:36px;border-radius:50%;border:none;
-  background:#F3F4F6;cursor:pointer;font-size:18px;color:#6B7280;
-  display:flex;align-items:center;justify-content:center;
-  transition:all .2s;
-}
+.modal-close{position:absolute;top:20px;right:24px;width:36px;height:36px;border-radius:50%;border:none;background:#F3F4F6;cursor:pointer;font-size:18px;color:#6B7280;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .modal-close:hover{background:#FFE4EE;color:#FF4D8D}
-/* minhas musicas results */
 .mm-results{margin-top:20px;display:none}
 .mm-count{font-size:13px;color:#FF4D8D;font-weight:600;display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.mm-count a{font-size:12px;color:#FF4D8D;text-decoration:none;font-weight:500}
-.mm-count a:hover{text-decoration:underline}
-.mm-music-card{
-  background:white;border-radius:16px;padding:16px 20px;
-  display:flex;align-items:center;justify-content:space-between;
-  border:1.5px solid #F3F4F6;margin-bottom:10px;cursor:pointer;
-  transition:all .2s;
-}
+.mm-music-card{background:white;border-radius:16px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border:1.5px solid #F3F4F6;margin-bottom:10px;cursor:pointer;transition:all .2s}
 .mm-music-card:hover{border-color:#FF4D8D;box-shadow:0 4px 16px rgba(255,77,141,.1)}
 .mm-music-info h4{font-size:15px;font-weight:700;color:#111827;font-style:italic;margin-bottom:4px}
 .mm-music-info p{font-size:11px;color:#9CA3AF}
-.mm-badge{
-  font-size:10px;font-weight:700;letter-spacing:.06em;
-  padding:3px 8px;border-radius:999px;margin-left:8px;
-}
+.mm-badge{font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 8px;border-radius:999px;margin-left:8px}
 .mm-badge.preview{background:#FFF0F6;color:#FF4D8D;border:1px solid rgba(255,77,141,.2)}
 .mm-badge.paid{background:#ECFDF5;color:#059669;border:1px solid rgba(16,185,129,.2)}
 .mm-arrow{color:#FF4D8D;font-size:20px}
-.mm-help{
-  background:#F0FFF4;border-radius:16px;padding:16px 20px;
-  display:flex;align-items:center;gap:14px;margin-top:8px;
-}
+.mm-help{background:#F0FFF4;border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:14px;margin-top:8px}
 .mm-help-icon{width:40px;height:40px;background:#10B981;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .mm-help-text h4{font-size:13px;font-weight:700;color:#111827;margin-bottom:2px}
 .mm-help-text p{font-size:12px;color:#6B7280}
-.mm-wa-btn{
-  display:flex;align-items:center;gap:6px;
-  background:#25D366;border:none;border-radius:999px;
-  padding:9px 16px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:white;
-  cursor:pointer;white-space:nowrap;transition:all .2s;margin-left:auto;
-}
+.mm-wa-btn{display:flex;align-items:center;gap:6px;background:#25D366;border:none;border-radius:999px;padding:9px 16px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:white;cursor:pointer;white-space:nowrap;transition:all .2s;margin-left:auto}
 .mm-wa-btn:hover{background:#1ebe5d}
-@media(max-width:520px){
-  .modal-box{padding:40px 20px 32px}
-  .modal-input-row{flex-direction:column}
-  .modal-btn{justify-content:center}
-  .mm-help{flex-wrap:wrap}
-}
+@media(max-width:520px){.modal-box{padding:40px 20px 32px}.modal-input-row{flex-direction:column}.mm-help{flex-wrap:wrap}}
 </style>
-
   <div class="modal-box">
-    <button class="modal-close" id="modalClose" onclick="document.getElementById('modalMinhas').style.display='none';document.body.style.overflow=''" aria-label="Fechar">✕</button>
+    <button class="modal-close" id="modalClose" onclick="document.getElementById('modalMinhas').style.display='none';document.body.style.overflow=''">✕</button>
     <p class="modal-eyebrow">MINHAS MÚSICAS</p>
     <h2 class="modal-title">Ouça o que você criou</h2>
     <p class="modal-desc">Coloque seu <strong>e-mail</strong> ou <strong>telefone</strong> usado na hora da compra e acesse todas as suas músicas.</p>
@@ -896,28 +367,16 @@ if(btn){
         </button>
       </div>
     </div>
-
-    <!-- RESULTADOS -->
     <div class="mm-results" id="mmResults">
-      <div class="mm-count">
-        <span>🎵 <span id="mmCount">0</span> música encontrada</span>
-        <a href="javascript:void(0)" onclick="closeQuizFromModal()">+ Criar nova música</a>
-      </div>
+      <div class="mm-count"><span>🎵 <span id="mmCount">0</span> música encontrada</span><a href="javascript:void(0)" onclick="closeQuizFromModal()">+ Criar nova música</a></div>
       <div id="mmList"></div>
     </div>
-
-    <!-- AJUDA — sempre visível -->
     <div class="mm-help" style="margin-top:16px">
-      <div class="mm-help-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-      </div>
-      <div class="mm-help-text">
-        <h4>Precisa de ajuda?</h4>
-        <p>Fale com nosso suporte no WhatsApp — respondemos rapidinho.</p>
-      </div>
+      <div class="mm-help-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+      <div class="mm-help-text"><h4>Precisa de ajuda?</h4><p>Fale com nosso suporte no WhatsApp.</p></div>
       <button class="mm-wa-btn" onclick="window.open('https://wa.me/5500000000000')">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.5 2C6.253 2 2 6.253 2 11.5c0 1.916.557 3.7 1.518 5.21L2 22l5.42-1.495A9.456 9.456 0 0011.5 21C16.747 21 21 16.747 21 11.5S16.747 2 11.5 2z"/></svg>
-        Chamar no WhatsApp
+        WhatsApp
       </button>
     </div>
   </div>
@@ -926,63 +385,29 @@ if(btn){
 <script>
 async function buscarMusicas(){
   const val=document.getElementById('modalEmailInput').value.trim();
-  if(!val){document.getElementById('modalEmailInput').focus();return;}
-
-  const btn = document.querySelector('.modal-btn');
-  btn.innerHTML = '⏳ Buscando...';
-  btn.disabled = true;
-
-  try {
-    const res = await fetch('/workers/minhas?q=' + encodeURIComponent(val));
-    const data = await res.json();
-
-    const results = document.getElementById('mmResults');
-    const list = document.getElementById('mmList');
-    const count = document.getElementById('mmCount');
-
-    results.style.display = 'block';
-
-    if (!data.orders || data.orders.length === 0) {
-      count.textContent = '0';
-      list.innerHTML = '<p style="font-size:13px;color:#9CA3AF;text-align:center;padding:16px 0">Nenhuma música encontrada para este e-mail/telefone.</p>';
-    } else {
-      count.textContent = data.orders.length;
-      list.innerHTML = data.orders.map(order => {
-        const date = new Date(order.createdAt).toLocaleDateString('pt-BR', { day:'numeric', month:'short', year:'numeric' });
-        const badge = order.status === 'paid' || order.status === 'delivered'
-          ? '<span class="mm-badge paid">✓ PAGO</span>'
-          : '<span class="mm-badge preview">PRÉVIA DISPONÍVEL</span>';
-        return '<div class="mm-music-card" onclick="window.location.href=\'/preview?orderId=' + order.id + '\'">' +
-          '<div class="mm-music-info"><h4>Para ' + (order.nomeRecebe || 'você') + ' ' + badge + '</h4><p>Criada em ' + date + '</p></div>' +
-          '<span class="mm-arrow">→</span></div>';
-      }).join('');
-    }
-  } catch(e) {
-    document.getElementById('mmResults').style.display = 'block';
-    document.getElementById('mmList').innerHTML = '<p style="font-size:13px;color:#EF4444;text-align:center;padding:16px 0">Erro ao buscar. Tente novamente.</p>';
-  }
-
-  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg> Buscar';
-  btn.disabled = false;
+  if(!val){document.getElementById('modalEmailInput').focus();return}
+  const btn=document.querySelector('.modal-btn');btn.innerHTML='⏳ Buscando...';btn.disabled=true;
+  try{
+    const res=await fetch('/workers/minhas?q='+encodeURIComponent(val));
+    const data=await res.json();
+    const results=document.getElementById('mmResults');const list=document.getElementById('mmList');const count=document.getElementById('mmCount');
+    results.style.display='block';
+    if(!data.orders||data.orders.length===0){count.textContent='0';list.innerHTML='<p style="font-size:13px;color:#9CA3AF;text-align:center;padding:16px 0">Nenhuma música encontrada.</p>';}
+    else{count.textContent=data.orders.length;list.innerHTML=data.orders.map(order=>{const date=new Date(order.createdAt).toLocaleDateString('pt-BR',{day:'numeric',month:'short',year:'numeric'});const badge=order.status==='paid'||order.status==='delivered'?'<span class="mm-badge paid">✓ PAGO</span>':'<span class="mm-badge preview">PRÉVIA</span>';return'<div class="mm-music-card" onclick="window.location.href=\'/preview?orderId='+order.id+'\'"><div class="mm-music-info"><h4>Para '+(order.nomeRecebe||'você')+' '+badge+'</h4><p>Criada em '+date+'</p></div><span class="mm-arrow">→</span></div>';}).join('');}
+  }catch(e){document.getElementById('mmResults').style.display='block';document.getElementById('mmList').innerHTML='<p style="font-size:13px;color:#EF4444;text-align:center;padding:16px 0">Erro ao buscar. Tente novamente.</p>';}
+  btn.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg> Buscar';btn.disabled=false;
 }
-
-function closeQuizFromModal(){
-  document.getElementById('modalMinhas').style.display='none';
-  document.body.style.overflow='';
-  openQuiz();
-}
+function closeQuizFromModal(){document.getElementById('modalMinhas').style.display='none';document.body.style.overflow='';openQuiz()}
 </script>
 
-<!-- ===== QUIZ MODAL ===== -->
+<!-- QUIZ MODAL -->
 <div id="quizModal" style="display:none;position:fixed;inset:0;z-index:200;overflow-y:auto;background:linear-gradient(180deg,#F7F2FC 0%,#F9F1FA 50%,#F6F1FB 100%)">
 <style>
-/* QUIZ BASE */
 .quiz-wrap{max-width:700px;margin:0 auto;padding:32px 20px 60px}
-.quiz-header{text-align:center;margin-bottom:28px}
 .quiz-logo{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:28px;font-weight:700;font-size:16px;color:#111827}
 .quiz-logo img{width:36px;height:36px;object-fit:contain;border-radius:8px}
-.quiz-title{font-size:clamp(26px,4vw,40px);font-weight:800;color:#111827;margin-bottom:8px}
-.quiz-sub{font-size:14px;color:#6B7280}
+.quiz-title{font-size:clamp(26px,4vw,40px);font-weight:800;color:#111827;margin-bottom:8px;text-align:center}
+.quiz-sub{font-size:14px;color:#6B7280;text-align:center;margin-bottom:28px}
 .quiz-progress-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
 .quiz-step-label{font-size:13px;color:#6B7280}
 .quiz-step-label strong{color:#111827}
@@ -992,121 +417,80 @@ function closeQuizFromModal(){
 .quiz-card{background:white;border-radius:24px;padding:36px 32px;box-shadow:0 10px 40px rgba(255,77,141,.09)}
 .quiz-card-title{font-size:clamp(20px,3vw,26px);font-weight:800;color:#111827;margin-bottom:6px}
 .quiz-card-sub{font-size:13px;color:#6B7280;margin-bottom:24px}
-/* sections inside card */
 .quiz-section-label{font-size:14px;font-weight:600;color:#374151;margin-bottom:12px}
-/* option buttons */
 .quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
-.quiz-options.single{grid-template-columns:1fr}
-.quiz-opt{
-  background:white;border:1.5px solid #E5E7EB;border-radius:12px;
-  padding:12px 16px;text-align:left;cursor:pointer;
-  font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#111827;
-  transition:all .2s;
-}
+.quiz-opt{background:white;border:1.5px solid #E5E7EB;border-radius:12px;padding:12px 16px;text-align:left;cursor:pointer;font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#111827;transition:all .2s}
 .quiz-opt:hover{border-color:#FF4D8D;color:#FF4D8D}
 .quiz-opt.selected{border-color:#FF4D8D;background:#FFF0F6;color:#FF4D8D;font-weight:600}
 .quiz-opt small{display:block;font-size:11px;color:#9CA3AF;font-weight:400;margin-top:2px}
 .quiz-opt.selected small{color:#FF6A9C}
-/* inputs */
 .quiz-label{font-size:13px;font-weight:600;color:#374151;margin-bottom:6px;display:flex;align-items:center;justify-content:space-between}
-/* grammar correction button */
-.btn-grammar{
-  display:inline-flex;align-items:center;gap:5px;
-  background:none;border:1.5px solid #E5E7EB;border-radius:999px;
-  padding:3px 10px;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;color:#9CA3AF;
-  cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0;
-}
+.btn-grammar{display:inline-flex;align-items:center;gap:5px;background:none;border:1.5px solid #E5E7EB;border-radius:999px;padding:3px 10px;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;color:#9CA3AF;cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0}
 .btn-grammar:hover{border-color:#FF4D8D;color:#FF4D8D;background:#FFF0F6}
 .btn-grammar.loading{color:#FF4D8D;border-color:#FF4D8D;pointer-events:none}
 .btn-grammar.done{color:#10B981;border-color:#10B981;background:#ECFDF5}
 .btn-grammar svg{width:12px;height:12px;flex-shrink:0}
 @keyframes spin{to{transform:rotate(360deg)}}
 .btn-grammar.loading svg{animation:spin .7s linear infinite}
-.quiz-input,.quiz-textarea{
-  width:100%;border:1.5px solid #E5E7EB;border-radius:12px;
-  padding:12px 16px;font-family:'Poppins',sans-serif;font-size:14px;color:#111827;
-  outline:none;transition:border .2s;background:white;
-  margin-bottom:16px;
-}
+.quiz-input,.quiz-textarea{width:100%;border:1.5px solid #E5E7EB;border-radius:12px;padding:12px 16px;font-family:'Poppins',sans-serif;font-size:14px;color:#111827;outline:none;transition:border .2s;background:white;margin-bottom:16px}
 .quiz-input:focus,.quiz-textarea:focus{border-color:#FF4D8D}
 .quiz-textarea{resize:vertical;min-height:110px}
 .quiz-hint{font-size:11px;color:#9CA3AF;margin-top:-10px;margin-bottom:16px;line-height:1.5}
-/* footer nav */
 .quiz-nav{display:flex;align-items:center;justify-content:space-between;margin-top:28px}
-.quiz-btn-back{
-  display:flex;align-items:center;gap:6px;
-  background:white;border:1.5px solid #E5E7EB;border-radius:999px;
-  padding:11px 22px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;color:#374151;
-  cursor:pointer;transition:all .2s;
-}
+.quiz-btn-back{display:flex;align-items:center;gap:6px;background:white;border:1.5px solid #E5E7EB;border-radius:999px;padding:11px 22px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;color:#374151;cursor:pointer;transition:all .2s}
 .quiz-btn-back:hover{border-color:#FF4D8D;color:#FF4D8D}
-.quiz-btn-next{
-  display:flex;align-items:center;gap:6px;
-  background:#FF4D8D;border:none;border-radius:999px;
-  padding:12px 28px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;color:white;
-  cursor:pointer;box-shadow:0 6px 20px rgba(255,77,141,.3);transition:all .25s;
-}
+.quiz-btn-next{display:flex;align-items:center;gap:6px;background:#FF4D8D;border:none;border-radius:999px;padding:12px 28px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;color:white;cursor:pointer;box-shadow:0 6px 20px rgba(255,77,141,.3);transition:all .25s}
 .quiz-btn-next:hover{background:#e0356d;transform:scale(1.03)}
-.quiz-btn-next:disabled{background:#F9A8C9;box-shadow:none;cursor:not-allowed;transform:none}
-.quiz-btn-generate{
-  display:flex;align-items:center;gap:8px;
-  background:#10B981;border:none;border-radius:999px;
-  padding:13px 30px;font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:white;
-  cursor:pointer;box-shadow:0 6px 20px rgba(16,185,129,.3);transition:all .25s;
-}
+.quiz-btn-generate{display:flex;align-items:center;gap:8px;background:#10B981;border:none;border-radius:999px;padding:13px 30px;font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:white;cursor:pointer;box-shadow:0 6px 20px rgba(16,185,129,.3);transition:all .25s}
 .quiz-btn-generate:hover{background:#059669;transform:scale(1.03)}
 .quiz-divider{height:1px;background:#F3F4F6;margin:20px 0}
-/* error shake */
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 .shake{animation:shake .3s ease}
 .quiz-error{font-size:12px;color:#EF4444;margin-top:-10px;margin-bottom:12px;display:none}
-/* step visibility */
 .quiz-step{display:none}
 .quiz-step.active{display:block}
-/* whatsapp note */
 .quiz-wa-note{font-size:12px;color:#6B7280;margin-top:-6px;margin-bottom:16px}
 .quiz-wa-note span{color:#FF4D8D;font-weight:600}
-/* success banner */
 .quiz-success-banner{background:#ECFDF5;border:1.5px solid #6EE7B7;border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:13px;color:#065F46;font-weight:500;margin-bottom:16px}
-@media(max-width:520px){
-  .quiz-card{padding:24px 18px}
-  .quiz-options{grid-template-columns:1fr}
-}
+
+/* ── LOADING SCREEN — FIXED ── */
+.qload-ring{position:relative;width:160px;height:160px;margin:0 auto 32px;flex-shrink:0;overflow:hidden}
+.qload-ring svg{position:absolute;top:0;left:0;width:160px;height:160px;transform:rotate(-90deg)}
+.qload-ring-bg{fill:none;stroke:#E5E7EB;stroke-width:8}
+.qload-ring-fill{fill:none;stroke:url(#ringGrad);stroke-width:8;stroke-linecap:round;stroke-dasharray:440;stroke-dashoffset:440;transition:stroke-dashoffset .6s ease}
+.qload-center{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;pointer-events:none}
+.qload-heart{width:44px;height:44px;background:linear-gradient(135deg,#FF4D8D,#FF6A9C);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(255,77,141,.35);animation:heartPulse 1s ease infinite;flex-shrink:0}
+@keyframes heartPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.qload-pct{font-size:16px;font-weight:800;color:#111827;line-height:1}
+.qload-status{font-size:17px;font-style:italic;color:#374151;font-weight:600;margin-bottom:32px;min-height:28px}
+.qload-steps{display:flex;flex-direction:column;gap:10px;max-width:380px;margin:0 auto 28px}
+.qload-step{display:flex;align-items:center;gap:12px;background:white;border-radius:14px;padding:14px 18px;font-size:14px;font-weight:500;color:#374151;border:1.5px solid #E5E7EB;transition:all .5s}
+.qload-step.done{background:#ECFDF5;border-color:#6EE7B7;color:#065F46}
+.qload-step.active{background:#FFF0F6;border-color:#FF4D8D;color:#FF4D8D}
+.qload-step-icon{width:28px;height:28px;border-radius:50%;border:2px solid #E5E7EB;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#F3F4F6;transition:all .5s}
+.qload-step.done .qload-step-icon{background:#10B981;border-color:#10B981}
+.qload-step.active .qload-step-icon{background:#FF4D8D;border-color:#FF4D8D;animation:pulseRing .9s ease infinite}
+@keyframes pulseRing{0%,100%{box-shadow:0 0 0 0 rgba(255,77,141,.4)}50%{box-shadow:0 0 0 7px rgba(255,77,141,0)}}
+.qload-note{font-size:13px;color:#9CA3AF;line-height:1.7}
+@media(max-width:520px){.quiz-card{padding:24px 18px}.quiz-options{grid-template-columns:1fr}}
 </style>
 
 <div class="quiz-wrap">
-  <!-- Logo -->
-  <div class="quiz-logo">
-    <img src="images/logo.jpg" alt="LoveTune"/>
-    <span>LoveTune</span>
-  </div>
-
-  <!-- Header -->
-  <div class="quiz-header">
-    <h1 class="quiz-title">Vamos compor a sua música</h1>
-    <p class="quiz-sub">Respire fundo. Suas respostas viram letra em poucos minutos.</p>
-  </div>
-
-  <!-- Progress -->
+  <div class="quiz-logo"><img src="images/logo.jpg" alt="LoveTune"/><span>LoveTune</span></div>
+  <h1 class="quiz-title">Vamos compor a sua música</h1>
+  <p class="quiz-sub">Respire fundo. Suas respostas viram letra em poucos minutos.</p>
   <div class="quiz-progress-row">
     <span class="quiz-step-label">Passo <strong id="qStepNum">1</strong> de 7</span>
     <div class="quiz-bar" id="qBar">
-      <div class="quiz-bar-seg" data-seg="1"></div>
-      <div class="quiz-bar-seg" data-seg="2"></div>
-      <div class="quiz-bar-seg" data-seg="3"></div>
-      <div class="quiz-bar-seg" data-seg="4"></div>
-      <div class="quiz-bar-seg" data-seg="5"></div>
-      <div class="quiz-bar-seg" data-seg="6"></div>
-      <div class="quiz-bar-seg" data-seg="7"></div>
+      <div class="quiz-bar-seg" data-seg="1"></div><div class="quiz-bar-seg" data-seg="2"></div><div class="quiz-bar-seg" data-seg="3"></div><div class="quiz-bar-seg" data-seg="4"></div><div class="quiz-bar-seg" data-seg="5"></div><div class="quiz-bar-seg" data-seg="6"></div><div class="quiz-bar-seg" data-seg="7"></div>
     </div>
   </div>
 
-  <!-- ===== STEP 1 ===== -->
+  <!-- STEP 1 -->
   <div class="quiz-step active" id="qStep1">
     <div class="quiz-card">
       <h2 class="quiz-card-title">Pra quem é essa música?</h2>
       <p class="quiz-card-sub">Selecione quem vai receber e qual a ocasião.</p>
-
       <div class="quiz-section-label">Essa música é para...</div>
       <div class="quiz-options" id="q1dest">
         <button class="quiz-opt" data-val="Meu namorado / marido / noivo">Meu namorado / marido / noivo</button>
@@ -1123,12 +507,10 @@ function closeQuizFromModal(){
         <button class="quiz-opt" data-val="Minha irmã">Minha irmã</button>
         <button class="quiz-opt" data-val="Meu avô">Meu avô</button>
         <button class="quiz-opt" data-val="Minha avó">Minha avó</button>
-        <button class="quiz-opt single" data-val="Outro"><span>Outro</span><small>Descreva quem é</small></button>
+        <button class="quiz-opt" data-val="Outro" style="grid-column:1/-1"><span>Outro</span><small>Descreva quem é</small></button>
       </div>
       <div class="quiz-error" id="err1dest">Selecione para quem é a música.</div>
-
       <div class="quiz-divider"></div>
-
       <div class="quiz-section-label">Qual a ocasião?</div>
       <div class="quiz-options" id="q1ocas">
         <button class="quiz-opt" data-val="Aniversário"><span>Aniversário</span><small>Presente musical pro dia dela(e)</small></button>
@@ -1137,7 +519,7 @@ function closeQuizFromModal(){
         <button class="quiz-opt" data-val="Aniversário de namoro / casamento">Aniversário de namoro / casamento</button>
         <button class="quiz-opt" data-val="Pedido de casamento"><span>Pedido de casamento</span><small>Um 'sim' com trilha sonora</small></button>
         <button class="quiz-opt" data-val="Casamento"><span>Casamento</span><small>Para a cerimônia ou dança dos noivos</small></button>
-        <button class="quiz-opt" data-val="Reconquista / Pedido de desculpas"><span>Reconquista / Pedido de desculpas</span><small>Quando uma mensagem já não basta</small></button>
+        <button class="quiz-opt" data-val="Reconquista / Pedido de desculpas"><span>Reconquista</span><small>Quando uma mensagem já não basta</small></button>
         <button class="quiz-opt" data-val="Dia das mães">Dia das mães</button>
         <button class="quiz-opt" data-val="Dia dos pais">Dia dos pais</button>
         <button class="quiz-opt" data-val="Homenagem / Saudade"><span>Homenagem / Saudade</span><small>Para quem se foi ou está longe</small></button>
@@ -1146,7 +528,6 @@ function closeQuizFromModal(){
         <button class="quiz-opt" data-val="Outra ocasião">Outra ocasião</button>
       </div>
       <div class="quiz-error" id="err1ocas">Selecione a ocasião.</div>
-
       <div class="quiz-nav">
         <button class="quiz-btn-back" onclick="closeQuiz()">← Voltar</button>
         <button class="quiz-btn-next" onclick="goStep(2)">Continuar →</button>
@@ -1154,19 +535,16 @@ function closeQuizFromModal(){
     </div>
   </div>
 
-  <!-- ===== STEP 2 ===== -->
+  <!-- STEP 2 -->
   <div class="quiz-step" id="qStep2">
     <div class="quiz-card">
       <h2 class="quiz-card-title">Como vocês se chamam?</h2>
       <p class="quiz-card-sub">Toda canção começa com um nome. Me conta dois.</p>
-
       <div class="quiz-label">Seu primeiro nome</div>
       <input class="quiz-input" id="q2seuNome" type="text" placeholder="Ex: Ana"/>
-
       <div class="quiz-label">Nome de <span id="q2labelDest">quem vai receber</span></div>
       <input class="quiz-input" id="q2nomeRecebe" type="text" placeholder="A pessoa que vai receber a música"/>
-      <p class="quiz-hint">Escreva o nome exatamente como é falado, com acentos (ex.: Letícia, André) — assim a pronúncia sai certinha na música.</p>
-
+      <p class="quiz-hint">Escreva o nome exatamente como é falado, com acentos (ex.: Letícia, André).</p>
       <div class="quiz-nav">
         <button class="quiz-btn-back" onclick="goStep(1)">← Voltar</button>
         <button class="quiz-btn-next" onclick="goStep(3)">Continuar →</button>
@@ -1175,21 +553,15 @@ function closeQuizFromModal(){
     </div>
   </div>
 
-  <!-- ===== STEP 3 ===== -->
+  <!-- STEP 3 -->
   <div class="quiz-step" id="qStep3">
     <div class="quiz-card">
       <h2 class="quiz-card-title">Há quanto tempo?</h2>
       <p class="quiz-card-sub">Quanto mais específico, mais forte o impacto na letra.</p>
-
       <div class="quiz-label">Há quanto tempo vocês se conhecem / convivem?</div>
       <input class="quiz-input" id="q3tempo" type="text" placeholder="Ex: 5 anos, desde 2018, a vida inteira..."/>
-
-      <div class="quiz-label" style="justify-content:space-between">
-        Conte um pouco sobre a relação de vocês
-        <button class="btn-grammar" onclick="corrigirGramatica('q3relacao',this)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>Corrigir gramática</button>
-      </div>
-      <textarea class="quiz-textarea" id="q3relacao" placeholder="Ex: Sempre fomos próximos, somos parecidos em tudo, costumávamos..."></textarea>
-
+      <div class="quiz-label" style="justify-content:space-between">Conte um pouco sobre a relação de vocês<button class="btn-grammar" onclick="corrigirGramatica('q3relacao',this)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>Corrigir</button></div>
+      <textarea class="quiz-textarea" id="q3relacao" placeholder="Ex: Sempre fomos próximos, somos parecidos em tudo..."></textarea>
       <div class="quiz-nav">
         <button class="quiz-btn-back" onclick="goStep(2)">← Voltar</button>
         <button class="quiz-btn-next" onclick="goStep(4)">Continuar →</button>
@@ -1198,21 +570,15 @@ function closeQuizFromModal(){
     </div>
   </div>
 
-  <!-- ===== STEP 4 ===== -->
+  <!-- STEP 4 -->
   <div class="quiz-step" id="qStep4">
     <div class="quiz-card">
       <h2 class="quiz-card-title">O que essa união representa?</h2>
-      <p class="quiz-card-sub">Pode escrever como está no seu peito. Só você vai ler.</p>
-
-      <div class="quiz-label" style="justify-content:space-between">
-        Conte brevemente
-        <button class="btn-grammar" onclick="corrigirGramatica('q4uniao',this)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>Corrigir gramática</button>
-      </div>
-      <textarea class="quiz-textarea" id="q4uniao" placeholder="Ex: Somos um casal de 8 anos. A música será tocada na entrada da noiva / na dança dos noivos..."></textarea>
-
-      <div class="quiz-label">Quanto tempo juntos até chegar no casamento? <span style="font-weight:400;color:#9CA3AF">(opcional)</span></div>
+      <p class="quiz-card-sub">Pode escrever como está no seu peito.</p>
+      <div class="quiz-label" style="justify-content:space-between">Conte brevemente<button class="btn-grammar" onclick="corrigirGramatica('q4uniao',this)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>Corrigir</button></div>
+      <textarea class="quiz-textarea" id="q4uniao" placeholder="Ex: Somos um casal de 8 anos..."></textarea>
+      <div class="quiz-label">Quanto tempo juntos? <span style="font-weight:400;color:#9CA3AF">(opcional)</span></div>
       <input class="quiz-input" id="q4tempoCasamento" type="text" placeholder="Ex: 8 anos"/>
-
       <div class="quiz-nav">
         <button class="quiz-btn-back" onclick="goStep(3)">← Voltar</button>
         <button class="quiz-btn-next" onclick="goStep(5)">Continuar →</button>
@@ -1221,24 +587,15 @@ function closeQuizFromModal(){
     </div>
   </div>
 
-  <!-- ===== STEP 5 ===== -->
+  <!-- STEP 5 -->
   <div class="quiz-step" id="qStep5">
     <div class="quiz-card">
       <h2 class="quiz-card-title">O que torna ela especial?</h2>
       <p class="quiz-card-sub">Detalhes reais geram letras que emocionam de verdade.</p>
-
-      <div class="quiz-label" style="justify-content:space-between">
-        As belas qualidades dela
-        <button class="btn-grammar" onclick="corrigirGramatica('q5qualidades',this)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>Corrigir gramática</button>
-      </div>
-      <textarea class="quiz-textarea" id="q5qualidades" placeholder="Ela é paciente, engraçada, piedosa? O que faz dessa pessoa alguém incrível pra você?"></textarea>
-
-      <div class="quiz-label" style="justify-content:space-between">
-        Uma memória marcante
-        <button class="btn-grammar" onclick="corrigirGramatica('q5memoria',this)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>Corrigir gramática</button>
-      </div>
-      <textarea class="quiz-textarea" id="q5memoria" placeholder="Ex: A viagem que fizemos, aquela música que tocava no carro, o dia em que..."></textarea>
-
+      <div class="quiz-label" style="justify-content:space-between">As belas qualidades dela<button class="btn-grammar" onclick="corrigirGramatica('q5qualidades',this)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>Corrigir</button></div>
+      <textarea class="quiz-textarea" id="q5qualidades" placeholder="Ela é paciente, engraçada, piedosa?"></textarea>
+      <div class="quiz-label" style="justify-content:space-between">Uma memória marcante<button class="btn-grammar" onclick="corrigirGramatica('q5memoria',this)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>Corrigir</button></div>
+      <textarea class="quiz-textarea" id="q5memoria" placeholder="Ex: A viagem que fizemos, aquela música que tocava no carro..."></textarea>
       <div class="quiz-nav">
         <button class="quiz-btn-back" onclick="goStep(4)">← Voltar</button>
         <button class="quiz-btn-next" onclick="goStep(6)">Continuar →</button>
@@ -1247,31 +604,25 @@ function closeQuizFromModal(){
     </div>
   </div>
 
-  <!-- ===== STEP 6 ===== -->
+  <!-- STEP 6 -->
   <div class="quiz-step" id="qStep6">
     <div class="quiz-card">
       <h2 class="quiz-card-title">O que você gostaria de dizer?</h2>
       <p class="quiz-card-sub">Aquela frase que nunca saiu. Ela vira o refrão.</p>
-
-      <div class="quiz-label" style="justify-content:space-between">
-        Mensagem final
-        <button class="btn-grammar" onclick="corrigirGramatica('q6mensagem',this)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>Corrigir gramática</button>
-      </div>
-      <textarea class="quiz-textarea" id="q6mensagem" placeholder="Ex: Eu te admiro, sou grato por tudo, você mudou a minha vida..."></textarea>
+      <div class="quiz-label" style="justify-content:space-between">Mensagem final<button class="btn-grammar" onclick="corrigirGramatica('q6mensagem',this)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>Corrigir</button></div>
+      <textarea class="quiz-textarea" id="q6mensagem" placeholder="Ex: Eu te admiro, sou grato por tudo..."></textarea>
       <div class="quiz-error" id="err6mensagem"></div>
-
       <div class="quiz-divider"></div>
       <div class="quiz-section-label" style="margin-bottom:14px">Estilo musical</div>
       <div class="quiz-options" id="q6estilo">
         <button class="quiz-opt" data-val="Pop Romântico"><span>Pop Romântico</span><small>Refrão grudento, emocional</small></button>
         <button class="quiz-opt" data-val="Sertanejo"><span>Sertanejo</span><small>Violão, voz sentida</small></button>
         <button class="quiz-opt" data-val="R&B"><span>R&B</span><small>Sensual, lento, sussurrado</small></button>
-        <button class="quiz-opt" data-val="Samba e Pagode"><span>Samba e Pagode</span><small>Cavaquinho, pandeiro, clima de roda</small></button>
+        <button class="quiz-opt" data-val="Samba e Pagode"><span>Samba e Pagode</span><small>Cavaquinho, pandeiro</small></button>
         <button class="quiz-opt" data-val="Gospel"><span>Gospel</span><small>Fé, perdão, coral suave</small></button>
         <button class="quiz-opt" data-val="MPB"><span>MPB</span><small>Poética, delicada</small></button>
       </div>
       <div class="quiz-error" id="err6estilo" style="margin-bottom:8px"></div>
-
       <div class="quiz-divider"></div>
       <div class="quiz-section-label" style="margin-bottom:14px">Tom emocional</div>
       <div class="quiz-options" id="q6tom">
@@ -1279,13 +630,12 @@ function closeQuizFromModal(){
         <button class="quiz-opt" data-val="Celebração"><span>Celebração</span><small>Alegre, data feliz</small></button>
         <button class="quiz-opt" data-val="Gratidão"><span>Gratidão</span><small>Agradecimento sincero</small></button>
         <button class="quiz-opt" data-val="Saudade"><span>Saudade</span><small>Memória que emociona</small></button>
-        <button class="quiz-opt" data-val="Pedido de desculpas"><span>Pedido de desculpas</span><small>Humildade e responsabilidade</small></button>
-        <button class="quiz-opt" data-val="Segunda chance"><span>Segunda chance</span><small>Esperança com maturidade</small></button>
+        <button class="quiz-opt" data-val="Pedido de desculpas"><span>Pedido de desculpas</span><small>Humildade</small></button>
+        <button class="quiz-opt" data-val="Segunda chance"><span>Segunda chance</span><small>Esperança</small></button>
         <button class="quiz-opt" data-val="Homenagem"><span>Homenagem</span><small>Respeitoso, emocionado</small></button>
-        <button class="quiz-opt" data-val="Alegre e descontraído"><span>Alegre e descontraído</span><small>Leve, bem-humorado</small></button>
+        <button class="quiz-opt" data-val="Alegre e descontraído"><span>Alegre</span><small>Leve, bem-humorado</small></button>
       </div>
       <div class="quiz-error" id="err6tom" style="margin-bottom:8px"></div>
-
       <div class="quiz-divider"></div>
       <div class="quiz-section-label" style="margin-bottom:14px">Voz do cantor(a)</div>
       <div class="quiz-options" id="q6voz">
@@ -1293,7 +643,6 @@ function closeQuizFromModal(){
         <button class="quiz-opt" data-val="Masculina"><span>Masculina</span><small>Voz de homem</small></button>
       </div>
       <div class="quiz-error" id="err6voz" style="margin-bottom:8px"></div>
-
       <div class="quiz-nav">
         <button class="quiz-btn-back" onclick="goStep(5)">← Voltar</button>
         <button class="quiz-btn-next" onclick="goStep(7)">Continuar →</button>
@@ -1301,30 +650,20 @@ function closeQuizFromModal(){
     </div>
   </div>
 
-  <!-- ===== STEP 7 ===== -->
+  <!-- STEP 7 -->
   <div class="quiz-step" id="qStep7">
     <div class="quiz-card">
       <h2 class="quiz-card-title">Pra onde enviamos sua música?</h2>
-      <p class="quiz-card-sub">Usamos seu e-mail para te enviar o link da música e o WhatsApp para mandar uma amostra gratuita e avisar quando ficar pronta.</p>
-
-      <div class="quiz-label">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
-        Seu melhor e-mail
-      </div>
+      <p class="quiz-card-sub">Usamos seu e-mail para enviar o link e o WhatsApp para avisar quando ficar pronta.</p>
+      <div class="quiz-label">Seu melhor e-mail</div>
       <input class="quiz-input" id="q7email" type="email" placeholder="voce@exemplo.com"/>
-
-      <div class="quiz-label">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-        WhatsApp (com DDD)
-      </div>
+      <div class="quiz-label">WhatsApp (com DDD)</div>
       <input class="quiz-input" id="q7whatsapp" type="tel" placeholder="(11) 91234-5678"/>
-      <p class="quiz-wa-note">Enviaremos uma <span>amostra gratuita</span> da sua música no WhatsApp. Nada de spam — promessa.</p>
-
+      <p class="quiz-wa-note">Enviaremos uma <span>amostra gratuita</span> no WhatsApp. Nada de spam.</p>
       <div class="quiz-success-banner" id="q7success" style="display:none">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
         Sucesso!
       </div>
-
       <div class="quiz-error" id="err7" style="margin-bottom:12px"></div>
       <div class="quiz-nav">
         <button class="quiz-btn-back" onclick="goStep(6)">← Voltar</button>
@@ -1336,30 +675,8 @@ function closeQuizFromModal(){
     </div>
   </div>
 
-  <!-- ===== LOADING SCREEN ===== -->
+  <!-- LOADING -->
   <div id="qLoading" style="display:none;text-align:center;padding:40px 20px">
-    <style>
-    .qload-ring{position:relative;width:160px;height:160px;margin:0 auto 32px;flex-shrink:0}
-.qload-ring svg{position:absolute;top:0;left:0;width:160px;height:160px;transform:rotate(-90deg)}
-.qload-ring-bg{fill:none;stroke:#E5E7EB;stroke-width:8}
-.qload-ring-fill{fill:none;stroke:url(#ringGrad);stroke-width:8;stroke-linecap:round;stroke-dasharray:440;stroke-dashoffset:440;transition:stroke-dashoffset .6s ease}
-.qload-center{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
-.qload-heart{width:48px;height:48px;background:linear-gradient(135deg,#FF4D8D,#FF6A9C);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(255,77,141,.35);animation:heartPulse 1s ease infinite;flex-shrink:0}
-@keyframes heartPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
-.qload-pct{font-size:18px;font-weight:800;color:#111827;line-height:1}
-    .qload-pct{font-size:20px;font-weight:800;color:#111827;line-height:1}
-    .qload-status{font-size:17px;font-style:italic;color:#374151;font-weight:600;margin-bottom:32px;min-height:28px}
-    .qload-steps{display:flex;flex-direction:column;gap:10px;max-width:380px;margin:0 auto 28px}
-    .qload-step{display:flex;align-items:center;gap:12px;background:white;border-radius:14px;padding:14px 18px;font-size:14px;font-weight:500;color:#374151;border:1.5px solid #E5E7EB;transition:all .5s}
-    .qload-step.done{background:#ECFDF5;border-color:#6EE7B7;color:#065F46}
-    .qload-step.active{background:#FFF0F6;border-color:#FF4D8D;color:#FF4D8D}
-    .qload-step-icon{width:28px;height:28px;border-radius:50%;border:2px solid #E5E7EB;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#F3F4F6;transition:all .5s}
-    .qload-step.done .qload-step-icon{background:#10B981;border-color:#10B981}
-    .qload-step.active .qload-step-icon{background:#FF4D8D;border-color:#FF4D8D;animation:pulseRing .9s ease infinite}
-    @keyframes pulseRing{0%,100%{box-shadow:0 0 0 0 rgba(255,77,141,.4)}50%{box-shadow:0 0 0 7px rgba(255,77,141,0)}}
-    .qload-note{font-size:13px;color:#9CA3AF;line-height:1.7}
-    </style>
-
     <div class="qload-ring">
       <svg width="160" height="160" viewBox="0 0 160 160" style="display:block">
         <defs>
@@ -1378,432 +695,135 @@ function closeQuizFromModal(){
         <div class="qload-pct"><span id="qloadPct">0</span>%</div>
       </div>
     </div>
-
     <p class="qload-status" id="qloadStatus">Preparando sua música...</p>
-
     <div class="qload-steps">
-      <div class="qload-step" id="qls1">
-        <div class="qload-step-icon">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        Escrevendo a letra
-      </div>
-      <div class="qload-step" id="qls2">
-        <div class="qload-step-icon">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        Compondo a melodia
-      </div>
-      <div class="qload-step" id="qls3">
-        <div class="qload-step-icon">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        Gravando e mixando
-      </div>
+      <div class="qload-step" id="qls1"><div class="qload-step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Escrevendo a letra</div>
+      <div class="qload-step" id="qls2"><div class="qload-step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Compondo a melodia</div>
+      <div class="qload-step" id="qls3"><div class="qload-step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Gravando e mixando</div>
     </div>
-
-    <p class="qload-note">Essa parte costuma levar cerca de 1 a 2 minutos.<br>Não feche essa janela.</p>
+    <p class="qload-note">Essa parte costuma levar cerca de 1 a 2 minutos.<br>Não feche essa janela. <!-- v2 --></p>
   </div>
 
-</div><!-- /quiz-wrap -->
-</div><!-- /quizModal -->
+</div>
+</div>
 
 <script>
-// ---- Quiz state ----
-const qData = { dest:'', ocas:'', seuNome:'', nomeRecebe:'', tempo:'', relacao:'', uniao:'', tempoCasamento:'', qualidades:'', memoria:'', mensagem:'', estilo:'', tom:'', voz:'', email:'', whatsapp:'' };
-let qCurrent = 1;
-
-function openQuiz(){
-  document.getElementById('quizModal').style.display='block';
-  document.body.style.overflow='hidden';
-  updateBar(1);
-  document.getElementById('quizModal').scrollTo(0,0);
-}
-function closeQuiz(){
-  document.getElementById('quizModal').style.display='none';
-  document.body.style.overflow='';
-}
-
-// Wire all CTA green buttons
-document.querySelectorAll('a.cta-green').forEach(btn=>{
-  btn.addEventListener('click', e=>{ e.preventDefault(); openQuiz(); });
-});
-
-// Option selection (single choice per group)
+const qData={dest:'',ocas:'',seuNome:'',nomeRecebe:'',tempo:'',relacao:'',uniao:'',tempoCasamento:'',qualidades:'',memoria:'',mensagem:'',estilo:'',tom:'',voz:'',email:'',whatsapp:''};
+let qCurrent=1;
+function openQuiz(){document.getElementById('quizModal').style.display='block';document.body.style.overflow='hidden';updateBar(1);document.getElementById('quizModal').scrollTo(0,0)}
+function closeQuiz(){document.getElementById('quizModal').style.display='none';document.body.style.overflow=''}
+document.querySelectorAll('a.cta-green').forEach(btn=>{btn.addEventListener('click',e=>{e.preventDefault();openQuiz()})});
 document.querySelectorAll('.quiz-options').forEach(group=>{
   group.querySelectorAll('.quiz-opt').forEach(btn=>{
     btn.addEventListener('click',()=>{
       group.querySelectorAll('.quiz-opt').forEach(b=>b.classList.remove('selected'));
       btn.classList.add('selected');
-      const id = group.id;
-      if(id==='q1dest'){ qData.dest=btn.dataset.val; hideErr('err1dest'); }
-      if(id==='q1ocas'){ qData.ocas=btn.dataset.val; hideErr('err1ocas'); }
-      if(id==='q6estilo'){ qData.estilo=btn.dataset.val; hideErr('err6estilo'); }
-      if(id==='q6tom'){ qData.tom=btn.dataset.val; hideErr('err6tom'); }
-      if(id==='q6voz'){ qData.voz=btn.dataset.val; hideErr('err6voz'); }
+      const id=group.id;
+      if(id==='q1dest'){qData.dest=btn.dataset.val;hideErr('err1dest')}
+      if(id==='q1ocas'){qData.ocas=btn.dataset.val;hideErr('err1ocas')}
+      if(id==='q6estilo'){qData.estilo=btn.dataset.val;hideErr('err6estilo')}
+      if(id==='q6tom'){qData.tom=btn.dataset.val;hideErr('err6tom')}
+      if(id==='q6voz'){qData.voz=btn.dataset.val;hideErr('err6voz')}
     });
   });
 });
-
-// Helper: show/hide inline errors
-function showErr(id, msg){
-  const el=document.getElementById(id);
-  if(!el) return;
-  el.textContent=msg||el.textContent;
-  el.style.display='block';
-  // shake parent card
-  el.closest('.quiz-card').classList.add('shake');
-  setTimeout(()=>el.closest('.quiz-card').classList.remove('shake'),400);
-}
-function hideErr(id){ const el=document.getElementById(id); if(el) el.style.display='none'; }
-
-// Helper: mark input invalid
-function markInvalid(id){
-  const el=document.getElementById(id);
-  if(!el) return;
-  el.style.borderColor='#EF4444';
-  el.addEventListener('input',()=>{ el.style.borderColor=''; },{ once:true });
-}
-
-function updateBar(step){
-  qCurrent=step;
-  document.getElementById('qStepNum').textContent=step;
-  document.querySelectorAll('.quiz-bar-seg').forEach(seg=>{
-    seg.classList.toggle('done', parseInt(seg.dataset.seg)<=step);
-  });
-}
-
-function showStep(n){
-  document.querySelectorAll('.quiz-step').forEach(s=>s.classList.remove('active'));
-  document.getElementById('qStep'+n).classList.add('active');
-  updateBar(n);
-  document.getElementById('quizModal').scrollTo(0,0);
-}
-
+function showErr(id,msg){const el=document.getElementById(id);if(!el)return;el.textContent=msg||el.textContent;el.style.display='block';const card=el.closest('.quiz-card');if(card){card.classList.add('shake');setTimeout(()=>card.classList.remove('shake'),400)}}
+function hideErr(id){const el=document.getElementById(id);if(el)el.style.display='none'}
+function markInvalid(id){const el=document.getElementById(id);if(!el)return;el.style.borderColor='#EF4444';el.addEventListener('input',()=>{el.style.borderColor=''},{ once:true })}
+function updateBar(step){qCurrent=step;document.getElementById('qStepNum').textContent=step;document.querySelectorAll('.quiz-bar-seg').forEach(seg=>{seg.classList.toggle('done',parseInt(seg.dataset.seg)<=step)})}
+function showStep(n){document.querySelectorAll('.quiz-step').forEach(s=>s.classList.remove('active'));document.getElementById('qStep'+n).classList.add('active');updateBar(n);document.getElementById('quizModal').scrollTo(0,0)}
 function goStep(n){
-  const from = qCurrent;
-
-  // ---- STEP 1 → 2 ----
-  if(from===1 && n===2){
-    let ok=true;
-    if(!qData.dest){ showErr('err1dest','Selecione para quem é a música.'); ok=false; }
-    if(!qData.ocas){ showErr('err1ocas','Selecione a ocasião.'); ok=false; }
-    if(!ok) return;
-    document.getElementById('q2labelDest').textContent=qData.dest.toLowerCase();
-  }
-
-  // ---- STEP 2 → 3 ----
-  if(from===2 && n===3){
-    const nome1=document.getElementById('q2seuNome').value.trim();
-    const nome2=document.getElementById('q2nomeRecebe').value.trim();
-    let ok=true;
-    if(!nome1){ markInvalid('q2seuNome'); showErr('err2','Preencha seu nome.'); ok=false; }
-    else if(!nome2){ markInvalid('q2nomeRecebe'); showErr('err2','Preencha o nome de quem vai receber.'); ok=false; }
-    if(!ok) return;
-    hideErr('err2');
-    qData.seuNome=nome1; qData.nomeRecebe=nome2;
-  }
-
-  // ---- STEP 3 → 4 ----
-  if(from===3 && n===4){
-    const t=document.getElementById('q3tempo').value.trim();
-    const r=document.getElementById('q3relacao').value.trim();
-    let ok=true;
-    if(!t){ markInvalid('q3tempo'); showErr('err3','Conte há quanto tempo vocês se conhecem.'); ok=false; }
-    else if(r.length < 20){ markInvalid('q3relacao'); showErr('err3','Conte um pouco mais sobre a relação de vocês (mínimo 20 caracteres).'); ok=false; }
-    if(!ok) return;
-    hideErr('err3');
-    qData.tempo=t; qData.relacao=r;
-  }
-
-  // ---- STEP 4 → 5 ----
-  if(from===4 && n===5){
-    const u=document.getElementById('q4uniao').value.trim();
-    if(u.length < 20){ markInvalid('q4uniao'); showErr('err4','Conte um pouco mais sobre o que essa união representa (mínimo 20 caracteres).'); return; }
-    hideErr('err4');
-    qData.uniao=u;
-    qData.tempoCasamento=document.getElementById('q4tempoCasamento').value.trim();
-  }
-
-  // ---- STEP 5 → 6 ----
-  if(from===5 && n===6){
-    const q=document.getElementById('q5qualidades').value.trim();
-    const m=document.getElementById('q5memoria').value.trim();
-    let ok=true;
-    if(q.length < 20){ markInvalid('q5qualidades'); showErr('err5','Descreva as qualidades dela com um pouco mais de detalhe (mínimo 20 caracteres).'); ok=false; }
-    else if(m.length < 20){ markInvalid('q5memoria'); showErr('err5','Compartilhe uma memória com mais detalhes (mínimo 20 caracteres).'); ok=false; }
-    if(!ok) return;
-    hideErr('err5');
-    qData.qualidades=q; qData.memoria=m;
-  }
-
-  // ---- STEP 6 → 7 ----
-  if(from===6 && n===7){
-    const msg=document.getElementById('q6mensagem').value.trim();
-    let ok=true;
-    if(msg.length < 20){ markInvalid('q6mensagem'); showErr('err6mensagem','Escreva um pouco mais na mensagem final (mínimo 20 caracteres).'); ok=false; }
-    if(!qData.estilo){ showErr('err6estilo','Escolha o estilo musical.'); ok=false; }
-    if(!qData.tom){ showErr('err6tom','Escolha o tom emocional.'); ok=false; }
-    if(!qData.voz){ showErr('err6voz','Escolha a voz do cantor(a).'); ok=false; }
-    if(!ok) return;
-    hideErr('err6mensagem');
-    qData.mensagem=msg;
-  }
-
+  const from=qCurrent;
+  if(from===1&&n===2){let ok=true;if(!qData.dest){showErr('err1dest','Selecione para quem é a música.');ok=false}if(!qData.ocas){showErr('err1ocas','Selecione a ocasião.');ok=false}if(!ok)return;document.getElementById('q2labelDest').textContent=qData.dest.toLowerCase()}
+  if(from===2&&n===3){const n1=document.getElementById('q2seuNome').value.trim();const n2=document.getElementById('q2nomeRecebe').value.trim();let ok=true;if(!n1){markInvalid('q2seuNome');showErr('err2','Preencha seu nome.');ok=false}else if(!n2){markInvalid('q2nomeRecebe');showErr('err2','Preencha o nome de quem vai receber.');ok=false}if(!ok)return;hideErr('err2');qData.seuNome=n1;qData.nomeRecebe=n2}
+  if(from===3&&n===4){const t=document.getElementById('q3tempo').value.trim();const r=document.getElementById('q3relacao').value.trim();let ok=true;if(!t){markInvalid('q3tempo');showErr('err3','Conte há quanto tempo vocês se conhecem.');ok=false}else if(r.length<20){markInvalid('q3relacao');showErr('err3','Conte um pouco mais (mínimo 20 caracteres).');ok=false}if(!ok)return;hideErr('err3');qData.tempo=t;qData.relacao=r}
+  if(from===4&&n===5){const u=document.getElementById('q4uniao').value.trim();if(u.length<20){markInvalid('q4uniao');showErr('err4','Conte um pouco mais (mínimo 20 caracteres).');return}hideErr('err4');qData.uniao=u;qData.tempoCasamento=document.getElementById('q4tempoCasamento').value.trim()}
+  if(from===5&&n===6){const q=document.getElementById('q5qualidades').value.trim();const m=document.getElementById('q5memoria').value.trim();let ok=true;if(q.length<20){markInvalid('q5qualidades');showErr('err5','Descreva as qualidades com mais detalhe (mínimo 20 caracteres).');ok=false}else if(m.length<20){markInvalid('q5memoria');showErr('err5','Compartilhe uma memória com mais detalhes (mínimo 20 caracteres).');ok=false}if(!ok)return;hideErr('err5');qData.qualidades=q;qData.memoria=m}
+  if(from===6&&n===7){const msg=document.getElementById('q6mensagem').value.trim();let ok=true;if(msg.length<20){markInvalid('q6mensagem');showErr('err6mensagem','Escreva um pouco mais (mínimo 20 caracteres).');ok=false}if(!qData.estilo){showErr('err6estilo','Escolha o estilo musical.');ok=false}if(!qData.tom){showErr('err6tom','Escolha o tom emocional.');ok=false}if(!qData.voz){showErr('err6voz','Escolha a voz do cantor(a).');ok=false}if(!ok)return;hideErr('err6mensagem');qData.mensagem=msg}
   showStep(n);
 }
-
 async function submitQuiz(){
-  const email=document.getElementById('q7email').value.trim();
-  const wa=document.getElementById('q7whatsapp').value.trim();
+  const email=document.getElementById('q7email').value.trim();const wa=document.getElementById('q7whatsapp').value.trim();
   let ok=true;
-  if(!email || !email.includes('@')){ markInvalid('q7email'); showErr('err7','Informe um e-mail válido.'); ok=false; }
-  else if(wa.length < 10){ markInvalid('q7whatsapp'); showErr('err7','Informe um WhatsApp válido com DDD.'); ok=false; }
-  if(!ok) return;
-  hideErr('err7');
-  qData.email=email; qData.whatsapp=wa;
-
-  // Mostrar loading
+  if(!email||!email.includes('@')){markInvalid('q7email');showErr('err7','Informe um e-mail válido.');ok=false}
+  else if(wa.length<10){markInvalid('q7whatsapp');showErr('err7','Informe um WhatsApp válido com DDD.');ok=false}
+  if(!ok)return;hideErr('err7');qData.email=email;qData.whatsapp=wa;
   document.querySelectorAll('.quiz-step').forEach(s=>s.style.display='none');
   document.querySelector('.quiz-progress-row').style.display='none';
   document.getElementById('qLoading').style.display='block';
   document.getElementById('quizModal').scrollTo(0,0);
-
-  // Inicia em 0%
-  setLoadingProgress(0, 'Preparando sua música...');
-
-  try {
-    // FASE 1: Gerar letra (0% → 30%)
-    console.log('Chamando /workers/generate...');
-    let animTimer = animateProgress(0, 25, 4000, 'Escrevendo a letra...');
-    setLoadStep(1, 'active');
-
-    const response = await fetch('/workers/generate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(qData)
-    });
-
-    // Cancela animação anterior e vai direto para 30%
+  setLoadingProgress(0,'Preparando sua música...');
+  try{
+    let animTimer=animateProgress(0,25,4000,'Escrevendo a letra...');
+    setLoadStep(1,'active');
+    const response=await fetch('/workers/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(qData)});
     clearInterval(animTimer);
-
-    const result = await response.json();
-    console.log('Result:', JSON.stringify(result));
-    if (!result.success) throw new Error(result.error || 'Erro ao gerar música');
-
-    const { orderId } = result;
-
-    // Letra pronta → 30%
-    setLoadingProgress(30, 'Letra criada! Compondo a melodia...');
-    setLoadStep(1, 'done');
-    setLoadStep(2, 'active');
-
-    // FASE 2: Polling áudio (30% → 95%)
-    let attempts = 0;
-    const maxAttempts = 60; // ~3 minutos
-    let currentPct = 30;
-
-    const poll = async () => {
-      if (attempts >= maxAttempts) {
-        setLoadingProgress(95, 'Finalizando... você receberá por e-mail em breve!');
-        return;
-      }
+    const result=await response.json();
+    if(!result.success)throw new Error(result.error||'Erro ao gerar música');
+    const{orderId}=result;
+    setLoadingProgress(30,'Letra criada! Compondo a melodia...');
+    setLoadStep(1,'done');setLoadStep(2,'active');
+    let attempts=0,currentPct=30;
+    const poll=async()=>{
+      if(attempts>=60){setLoadingProgress(95,'Finalizando... você receberá por e-mail em breve!');return}
       attempts++;
-
-      // Avança progresso gradualmente de 30 a 92%
-      if (currentPct < 92) {
-        currentPct = Math.min(92, currentPct + (attempts < 10 ? 3 : attempts < 20 ? 2 : 1));
-        setLoadingProgress(currentPct, getLoadingStatus(currentPct));
-      }
-
-      const statusRes = await fetch('/workers/status?orderId=' + orderId);
-      const statusData = await statusRes.json();
-
-      if (statusData.status === 'ready') {
-        // Áudio pronto!
-        setLoadStep(2, 'done');
-        setLoadStep(3, 'active');
-        setLoadingProgress(95, 'Gravando e mixando...');
-
-        setTimeout(() => {
-          setLoadStep(3, 'done');
-          setLoadingProgress(100, '🎵 Sua música está pronta!');
-          setTimeout(() => {
-            window.location.href = '/preview?orderId=' + orderId;
-          }, 1200);
-        }, 1500);
-      } else {
-        setTimeout(poll, 3000);
-      }
+      if(currentPct<92){currentPct=Math.min(92,currentPct+(attempts<10?3:attempts<20?2:1));setLoadingProgress(currentPct,getLoadingStatus(currentPct))}
+      const statusRes=await fetch('/workers/status?orderId='+orderId);
+      const statusData=await statusRes.json();
+      if(statusData.status==='ready'){
+        setLoadStep(2,'done');setLoadStep(3,'active');setLoadingProgress(95,'Gravando e mixando...');
+        setTimeout(()=>{setLoadStep(3,'done');setLoadingProgress(100,'🎵 Sua música está pronta!');setTimeout(()=>{window.location.href='/preview?orderId='+orderId},1200)},1500);
+      }else{setTimeout(poll,3000)}
     };
-
-    setTimeout(poll, 4000);
-
-  } catch(err) {
+    setTimeout(poll,4000);
+  }catch(err){
     console.error(err);
-    setLoadingProgress(0, '');
-    document.getElementById('qloadStatus').textContent = 'Erro ao gerar música. Tente novamente.';
+    setLoadingProgress(0,'');
+    document.getElementById('qloadStatus').textContent='Erro ao gerar música. Tente novamente.';
   }
 }
-
-function getLoadingStatus(pct) {
-  if (pct < 40) return 'Compondo a melodia...';
-  if (pct < 60) return 'Afinando os instrumentos...';
-  if (pct < 75) return 'Adicionando a voz...';
-  if (pct < 88) return 'Gravando e mixando...';
-  return 'Quase pronta...';
+function getLoadingStatus(pct){if(pct<40)return'Compondo a melodia...';if(pct<60)return'Afinando os instrumentos...';if(pct<75)return'Adicionando a voz...';if(pct<88)return'Gravando e mixando...';return'Quase pronta...'}
+function setLoadingProgress(pct,status){
+  const circumference=2*Math.PI*70;
+  const ring=document.getElementById('qloadRingFill');
+  const pctEl=document.getElementById('qloadPct');
+  const statusEl=document.getElementById('qloadStatus');
+  if(ring)ring.style.strokeDashoffset=circumference-(pct/100)*circumference;
+  if(pctEl)pctEl.textContent=pct;
+  if(statusEl&&status)statusEl.textContent=status;
 }
-
-function setLoadingProgress(pct, status) {
-  const circumference = 2 * Math.PI * 70;
-  const ring = document.getElementById('qloadRingFill');
-  const pctEl = document.getElementById('qloadPct');
-  const statusEl = document.getElementById('qloadStatus');
-  if (ring) ring.style.strokeDashoffset = circumference - (pct / 100) * circumference;
-  if (pctEl) pctEl.textContent = pct;
-  if (statusEl && status) statusEl.textContent = status;
-}
-
-function animateProgress(from, to, duration, status) {
-  const steps = 20;
-  const interval = duration / steps;
-  const increment = (to - from) / steps;
-  let current = from;
-  const timer = setInterval(() => {
-    current = Math.min(to, current + increment);
-    setLoadingProgress(Math.round(current), status);
-    if (current >= to) clearInterval(timer);
-  }, interval);
+function animateProgress(from,to,duration,status){
+  const steps=20,interval=duration/steps,increment=(to-from)/steps;let current=from;
+  const timer=setInterval(()=>{current=Math.min(to,current+increment);setLoadingProgress(Math.round(current),status);if(current>=to)clearInterval(timer)},interval);
   return timer;
 }
+function setLoadStep(n,state){const el=document.getElementById('qls'+n);el.classList.remove('active','done');if(state)el.classList.add(state)}
 
-function startLoadingAnimation(){
-  // Mantida por compatibilidade mas não usada mais
-}
-
-function setLoadStep(n, state){
-  const el = document.getElementById('qls'+n);
-  el.classList.remove('active','done');
-  if(state) el.classList.add(state);
-}
-
-// ===== CAROUSEL PLAYER =====
-const exTracks = [
-  { name: 'Porque Amar Você é Certeza', genre: 'Sertanejo',       dur: '3:44', src: 'audios/1.mp3' },
-  { name: '18 Anos',                    genre: 'Tema Aniversário', dur: '3:07', src: 'audios/2.mp3' },
-  { name: 'A Gente Se Encontrou',       genre: 'Pagode',           dur: '2:37', src: 'audios/3.mp3' },
-  { name: 'Meu Tesouro',               genre: 'Pai para filha',   dur: '3:34', src: 'audios/4.mp3' },
-];
-let exCurrent = 0;
-let exAudio = new Audio();
-let exIsPlaying = false;
-
-function updateExUI() {
-  const t = exTracks[exCurrent];
-  document.getElementById('exTrackName').textContent = t.name;
-  document.getElementById('exTrackGenre').textContent = t.genre;
-  document.getElementById('exDur').textContent = t.dur;
-  document.getElementById('exTc').textContent = '0:00';
-  document.getElementById('exPf').style.width = '0%';
-  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === exCurrent));
-}
-
-exAudio.addEventListener('timeupdate', () => {
-  if (!exAudio.duration) return;
-  document.getElementById('exPf').style.width = (exAudio.currentTime / exAudio.duration * 100) + '%';
-  const m = Math.floor(exAudio.currentTime / 60);
-  const s = String(Math.floor(exAudio.currentTime % 60)).padStart(2, '0');
-  document.getElementById('exTc').textContent = m + ':' + s;
-});
-
-exAudio.addEventListener('ended', () => {
-  exIsPlaying = false;
-  document.getElementById('vinylDisc').classList.remove('spinning');
-  document.getElementById('exPlayIcon').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
-  window.nextTrack();
-});
-
-window.toggleExMain = function() {
-  if (exIsPlaying) {
-    exAudio.pause();
-    exIsPlaying = false;
-    document.getElementById('vinylDisc').classList.remove('spinning');
-    document.getElementById('exPlayIcon').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
-  } else {
-    if (!exAudio.src || exAudio.src !== window.location.origin + '/' + exTracks[exCurrent].src) {
-      exAudio.src = exTracks[exCurrent].src;
-    }
-    exAudio.play();
-    exIsPlaying = true;
-    document.getElementById('vinylDisc').classList.add('spinning');
-    document.getElementById('exPlayIcon').innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
-  }
-};
-
-window.seekExMain = function(e) {
-  const pct = e.offsetX / e.currentTarget.offsetWidth;
-  exAudio.currentTime = pct * (exAudio.duration || 0);
-};
-
-window.goToTrack = function(n) {
-  exAudio.pause();
-  exIsPlaying = false;
-  document.getElementById('vinylDisc').classList.remove('spinning');
-  document.getElementById('exPlayIcon').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
-  exCurrent = n;
-  exAudio.src = exTracks[n].src;
-  updateExUI();
-};
-
-window.nextTrack = function() { window.goToTrack((exCurrent + 1) % exTracks.length); };
-window.prevTrack = function() { window.goToTrack((exCurrent + exTracks.length - 1) % exTracks.length); };
-
-// Init
+// CAROUSEL
+const exTracks=[{name:'Porque Amar Você é Certeza',genre:'Sertanejo',dur:'3:44',src:'audios/1.mp3'},{name:'18 Anos',genre:'Tema Aniversário',dur:'3:07',src:'audios/2.mp3'},{name:'A Gente Se Encontrou',genre:'Pagode',dur:'2:37',src:'audios/3.mp3'},{name:'Meu Tesouro',genre:'Pai para filha',dur:'3:34',src:'audios/4.mp3'}];
+let exCurrent=0,exAudio=new Audio(),exIsPlaying=false;
+function updateExUI(){const t=exTracks[exCurrent];document.getElementById('exTrackName').textContent=t.name;document.getElementById('exTrackGenre').textContent=t.genre;document.getElementById('exDur').textContent=t.dur;document.getElementById('exTc').textContent='0:00';document.getElementById('exPf').style.width='0%';document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===exCurrent))}
+exAudio.addEventListener('timeupdate',()=>{if(!exAudio.duration)return;document.getElementById('exPf').style.width=(exAudio.currentTime/exAudio.duration*100)+'%';const m=Math.floor(exAudio.currentTime/60);const s=String(Math.floor(exAudio.currentTime%60)).padStart(2,'0');document.getElementById('exTc').textContent=m+':'+s});
+exAudio.addEventListener('ended',()=>{exIsPlaying=false;document.getElementById('vinylDisc').classList.remove('spinning');document.getElementById('exPlayIcon').innerHTML='<polygon points="5,3 19,12 5,21"/>';window.nextTrack()});
+window.toggleExMain=function(){if(exIsPlaying){exAudio.pause();exIsPlaying=false;document.getElementById('vinylDisc').classList.remove('spinning');document.getElementById('exPlayIcon').innerHTML='<polygon points="5,3 19,12 5,21"/>';}else{if(!exAudio.src||exAudio.src!==window.location.origin+'/'+exTracks[exCurrent].src)exAudio.src=exTracks[exCurrent].src;exAudio.play();exIsPlaying=true;document.getElementById('vinylDisc').classList.add('spinning');document.getElementById('exPlayIcon').innerHTML='<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>'}};
+window.seekExMain=function(e){const pct=e.offsetX/e.currentTarget.offsetWidth;exAudio.currentTime=pct*(exAudio.duration||0)};
+window.goToTrack=function(n){exAudio.pause();exIsPlaying=false;document.getElementById('vinylDisc').classList.remove('spinning');document.getElementById('exPlayIcon').innerHTML='<polygon points="5,3 19,12 5,21"/>';exCurrent=n;exAudio.src=exTracks[n].src;updateExUI()};
+window.nextTrack=function(){window.goToTrack((exCurrent+1)%exTracks.length)};
+window.prevTrack=function(){window.goToTrack((exCurrent+exTracks.length-1)%exTracks.length)};
 updateExUI();
 
-function formatCPF(input){
-  let v = input.value.replace(/\D/g,'').substring(0,11);
-  v = v.replace(/(\d{3})(\d)/,'$1.$2');
-  v = v.replace(/(\d{3})(\d)/,'$1.$2');
-  v = v.replace(/(\d{3})(\d{1,2})$/,'$1-$2');
-  input.value = v;
-}
-
-async function corrigirGramatica(textareaId, btn){
-  const el = document.getElementById(textareaId);
-  const texto = el.value.trim();
-  if(!texto || texto.length < 5) return;
-
-  const iconeStar = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>';
-  const iconeCheck = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
-
-  btn.classList.add('loading');
-  btn.innerHTML = iconeStar + 'Corrigindo...';
-
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        messages: [{
-          role: 'user',
-          content: `Corrija apenas os erros gramaticais e ortográficos do texto abaixo em português brasileiro. Mantenha exatamente o mesmo estilo, tom, vocabulário e conteúdo da pessoa. Não reescreva, não melhore, não adicione nada. Retorne SOMENTE o texto corrigido, sem explicações, sem aspas, sem introdução.\n\nTexto: ${texto}`
-        }]
-      })
-    });
-    const data = await res.json();
-    const corrigido = data.content?.[0]?.text?.trim();
-    if(corrigido){ el.value = corrigido; el.style.borderColor='#10B981'; setTimeout(()=>{el.style.borderColor='';},2000); }
-    btn.classList.remove('loading');
-    btn.classList.add('done');
-    btn.innerHTML = iconeCheck + 'Corrigido!';
-    setTimeout(()=>{ btn.classList.remove('done'); btn.innerHTML = iconeStar + 'Corrigir gramática'; }, 3000);
-  } catch(e) {
-    btn.classList.remove('loading');
-    btn.innerHTML = iconeStar + 'Corrigir gramática';
-  }
+async function corrigirGramatica(textareaId,btn){
+  const el=document.getElementById(textareaId);const texto=el.value.trim();if(!texto||texto.length<5)return;
+  const iconeStar='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>';
+  const iconeCheck='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+  btn.classList.add('loading');btn.innerHTML=iconeStar+'Corrigindo...';
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,messages:[{role:'user',content:'Corrija apenas os erros gramaticais e ortográficos do texto abaixo em português brasileiro. Mantenha exatamente o mesmo estilo, tom, vocabulário e conteúdo da pessoa. Não reescreva, não melhore, não adicione nada. Retorne SOMENTE o texto corrigido, sem explicações, sem aspas, sem introdução.\n\nTexto: '+texto}]})});
+    const data=await res.json();const corrigido=data.content?.[0]?.text?.trim();
+    if(corrigido){el.value=corrigido;el.style.borderColor='#10B981';setTimeout(()=>{el.style.borderColor=''},2000)}
+    btn.classList.remove('loading');btn.classList.add('done');btn.innerHTML=iconeCheck+'Corrigido!';
+    setTimeout(()=>{btn.classList.remove('done');btn.innerHTML=iconeStar+'Corrigir'},3000);
+  }catch(e){btn.classList.remove('loading');btn.innerHTML=iconeStar+'Corrigir'}
 }
 </script>
 </body>
