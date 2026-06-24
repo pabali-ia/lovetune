@@ -453,14 +453,7 @@ function closeQuizFromModal(){document.getElementById('modalMinhas').style.displ
 .quiz-success-banner{background:#ECFDF5;border:1.5px solid #6EE7B7;border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:13px;color:#065F46;font-weight:500;margin-bottom:16px}
 
 /* ── LOADING SCREEN — FIXED ── */
-.qload-ring-wrap{display:flex;flex-direction:column;align-items:center;margin:0 auto 32px;position:relative;width:200px;height:200px}
-.qload-ring-wrap svg{position:absolute;top:0;left:0;width:200px;height:200px;transform:rotate(-90deg)}
-.qload-ring-bg{fill:none;stroke:#E5E7EB;stroke-width:6}
-.qload-ring-fill{fill:none;stroke:url(#ringGrad);stroke-width:6;stroke-linecap:round;stroke-dasharray:565;stroke-dashoffset:565;transition:stroke-dashoffset .6s ease}
-.qload-center{position:absolute;top:0;left:0;width:200px;height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
-.qload-heart{width:56px;height:56px;background:linear-gradient(135deg,#FF4D8D,#FF6A9C);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(255,77,141,.4);flex-shrink:0;animation:heartGlow 1.5s ease infinite}
-@keyframes heartGlow{0%,100%{box-shadow:0 6px 20px rgba(255,77,141,.4)}50%{box-shadow:0 6px 28px rgba(255,77,141,.7)}}
-.qload-pct{font-size:18px;font-weight:800;color:#111827;line-height:1}
+/* loading ring now pure SVG */
 .qload-status{font-size:17px;font-style:italic;color:#374151;font-weight:600;margin-bottom:32px;min-height:28px}
 .qload-steps{display:flex;flex-direction:column;gap:10px;max-width:380px;margin:0 auto 28px}
 .qload-step{display:flex;align-items:center;gap:12px;background:white;border-radius:14px;padding:14px 18px;font-size:14px;font-weight:500;color:#374151;border:1.5px solid #E5E7EB;transition:all .5s}
@@ -676,7 +669,7 @@ function closeQuizFromModal(){document.getElementById('modalMinhas').style.displ
 
   <!-- LOADING -->
   <div id="qLoading" style="display:none;text-align:center;padding:40px 20px">
-    <div class="qload-ring-wrap">
+    <div style="display:flex;justify-content:center;margin-bottom:32px">
       <svg width="200" height="200" viewBox="0 0 200 200" style="display:block">
         <defs>
           <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -684,15 +677,22 @@ function closeQuizFromModal(){document.getElementById('modalMinhas').style.displ
             <stop offset="100%" stop-color="#FF8C42"/>
           </linearGradient>
         </defs>
-        <circle class="qload-ring-bg" cx="100" cy="100" r="90"/>
-        <circle class="qload-ring-fill" id="qloadRingFill" cx="100" cy="100" r="90"/>
+        <!-- Ring background -->
+        <circle fill="none" stroke="#E5E7EB" stroke-width="8" cx="100" cy="100" r="80"/>
+        <!-- Ring fill -->
+        <circle id="qloadRingFill" fill="none" stroke="url(#ringGrad)" stroke-width="8" stroke-linecap="round"
+          cx="100" cy="100" r="80"
+          stroke-dasharray="503"
+          stroke-dashoffset="503"
+          transform="rotate(-90 100 100)"
+          style="transition:stroke-dashoffset .6s ease"/>
+        <!-- Heart circle background -->
+        <circle cx="100" cy="92" r="34" fill="#FF4D8D"/>
+        <!-- Heart icon -->
+        <path d="M100 108 C100 108 84 96 84 87 C84 81 89 77 94 77 C97 77 100 80 100 80 C100 80 103 77 106 77 C111 77 116 81 116 87 C116 96 100 108 100 108Z" fill="white"/>
+        <!-- Percentage text -->
+        <text id="qloadPct" x="100" y="140" text-anchor="middle" font-family="Poppins,sans-serif" font-size="18" font-weight="800" fill="#111827">0%</text>
       </svg>
-      <div class="qload-center">
-        <div class="qload-heart">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-        </div>
-        <div class="qload-pct"><span id="qloadPct">0</span>%</div>
-      </div>
     </div>
     <p class="qload-status" id="qloadStatus">Preparando sua música...</p>
     <div class="qload-steps">
@@ -783,12 +783,12 @@ async function submitQuiz(){
 }
 function getLoadingStatus(pct){if(pct<40)return'Compondo a melodia...';if(pct<60)return'Afinando os instrumentos...';if(pct<75)return'Adicionando a voz...';if(pct<88)return'Gravando e mixando...';return'Quase pronta...'}
 function setLoadingProgress(pct,status){
-  const circumference=2*Math.PI*90;
+  const circumference=2*Math.PI*80;
   const ring=document.getElementById('qloadRingFill');
-  const pctEl=document.getElementById('qloadPct');
+  const pctEl=document.getElementById('qloadPct'); // SVG text element
   const statusEl=document.getElementById('qloadStatus');
   if(ring)ring.style.strokeDashoffset=circumference-(pct/100)*circumference;
-  if(pctEl)pctEl.textContent=pct;
+  if(pctEl)pctEl.textContent=pct+'%';
   if(statusEl&&status)statusEl.textContent=status;
 }
 function animateProgress(from,to,duration,status){
