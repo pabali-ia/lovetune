@@ -66,7 +66,11 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(180deg,#F7F2FC 
 <script>
 const params  = new URLSearchParams(window.location.search);
 // PerfectPay passa o orderId como utm_content na URL
-const orderId = params.get('orderId') || params.get('utm_content') || '';
+// Prioriza utm_content pois orderId pode vir como literal {utm_content}
+const rawOrderId = params.get('orderId') || '';
+const utmContent = params.get('utm_content') || '';
+// Se orderId parecer uma variável não substituída, usa utm_content
+const orderId = (rawOrderId && !rawOrderId.includes('{')) ? rawOrderId : utmContent;
 
 async function carregarMusica() {
   if(!orderId) {
