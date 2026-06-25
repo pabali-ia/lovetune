@@ -65,7 +65,8 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(180deg,#F7F2FC 
 
 <script>
 const params  = new URLSearchParams(window.location.search);
-const orderId = params.get('orderId');
+// PerfectPay passa o orderId como utm_content na URL
+const orderId = params.get('orderId') || params.get('utm_content') || '';
 
 async function carregarMusica() {
   if(!orderId) {
