@@ -69,11 +69,16 @@ export async function onRequestPost(context) {
       });
     }
 
-    // ── CARTÃO — redirect direto PerfectPay ───────────────────
+    // ── CARTÃO — redirect PerfectPay com orderId ──────────────
     if (method === 'card') {
+      // Passa orderId via tracker_id (campo customizável da PerfectPay)
+      const checkoutUrl = 'https://go.perfectpay.com.br/PPU38CQDEO0'
+        + '?tracker_id=' + encodeURIComponent(orderId)
+        + '&utm_content=' + encodeURIComponent(orderId);
+
       return new Response(JSON.stringify({
         success: true,
-        paymentUrl: 'https://go.perfectpay.com.br/PPU38CQDEO0',
+        paymentUrl: checkoutUrl,
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });
