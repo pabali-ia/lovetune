@@ -5,25 +5,25 @@ export async function onRequestPost(context) {
     const body = await request.json();
     console.log('PerfectPay webhook:', JSON.stringify(body));
 
-    // PerfectPay envia status "approved", "complete" ou "APPROVED"
-    const status = body.status || body.sale_status || '';
-    if(status !== 'approved' && status !== 'complete' && status !== 'APPROVED') {
+    // PerfectPay usa sale_status_enum_key
+    const status = body.sale_status_enum_key || body.status || body.sale_status || '';
+    const aprovado = status === 'approved' || status === 'complete' || status === 'APPROVED';
+
+    if(!aprovado) {
       console.log('Evento ignorado, status:', status);
       return new Response('Ignorado', { status: 200 });
     }
 
-    // orderId — captura de todos os campos possíveis
+    // orderId vem no utm_content
     const orderId =
+      body.metadata?.utm_content ||
       body.tracker_id ||
       body.utm_content ||
       body.metadata?.orderId ||
-      body.metadata_orderId ||
-      body.client_metadata?.orderId ||
-      body.order_id ||
       '';
 
     if(!orderId) {
-      console.error('orderId não encontrado. Body completo:', JSON.stringify(body));
+      console.error('orderId não encontrado. Body:', JSON.stringify(body));
       return new Response('orderId missing', { status: 400 });
     }
 
@@ -57,9 +57,7 @@ export async function onRequestPost(context) {
       body: JSON.stringify({ orderId })
     });
 
-    if(!deliveryRes.ok) {
-      console.error('Delivery falhou:', await deliveryRes.text());
-    }
+    console.log('Delivery status:', deliveryRes.status);
 
     return new Response('OK', { status: 200 });
 
