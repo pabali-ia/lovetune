@@ -8,25 +8,15 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Poppins',sans-serif;background:linear-gradient(180deg,#F7F2FC 0%,#F9F1FA 50%,#F6F1FB 100%);min-height:100vh;padding:0 0 48px}
-
-/* HEADER */
 .header{text-align:center;padding:24px 20px 0}
 .header img{width:80px;height:auto}
-
-/* HERO */
 .hero{text-align:center;padding:20px 20px 0}
 .eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;color:#9CA3AF;text-transform:uppercase;margin-bottom:6px}
 .music-title{font-family:'Dancing Script',cursive;font-size:42px;color:#FF4D8D;margin-bottom:8px;line-height:1.1}
 .listen-hint{font-size:13px;color:#FF4D8D;display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:16px}
-
-/* PLAYER CARD */
 .player-card{background:white;border-radius:20px;padding:24px 20px 20px;max-width:480px;margin:0 auto 16px;box-shadow:0 8px 32px rgba(255,77,141,.1)}
 .vinyl-wrap{position:relative;width:180px;height:180px;margin:0 auto 12px}
-.vinyl{width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;
-  animation:vinylSpin 4s linear infinite;animation-play-state:paused;
-  background:repeating-radial-gradient(circle at 50%, #111 0px, #1a1a2e 2px, #111 4px, #1e1e3a 6px, #111 8px);
-  box-shadow:0 8px 28px rgba(0,0,0,.35);
-}
+.vinyl{width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;animation:vinylSpin 4s linear infinite;animation-play-state:paused;background:repeating-radial-gradient(circle at 50%,#111 0px,#1a1a2e 2px,#111 4px,#1e1e3a 6px,#111 8px);box-shadow:0 8px 28px rgba(0,0,0,.35)}
 .vinyl.playing{animation-play-state:running}
 @keyframes vinylSpin{to{transform:rotate(360deg)}}
 .vinyl-center{position:absolute;width:56px;height:56px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.15)}
@@ -52,16 +42,22 @@ audio{display:none}
 .pctrl:hover{background:#FF4D8D;color:white}
 .pctrl.main{width:54px;height:54px;background:#FF4D8D;color:white;box-shadow:0 6px 16px rgba(255,77,141,.35)}
 .pctrl.main:hover{background:#e0356d}
-
-/* ACTION BTNS */
 .action-btns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:480px;margin:0 auto 8px}
 .abtn{display:flex;align-items:center;gap:6px;background:white;border:1.5px solid #E5E7EB;border-radius:999px;padding:8px 16px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;color:#374151;cursor:pointer;transition:all .2s}
 .abtn:hover{border-color:#FF4D8D;color:#FF4D8D}
 .abtn svg{width:14px;height:14px;flex-shrink:0}
+.abtn.paid{background:#10B981;border-color:#10B981;color:white}
+.abtn.paid:hover{background:#059669;border-color:#059669;color:white}
 .btn-criar{display:flex;align-items:center;gap:6px;background:none;border:none;font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;color:#9CA3AF;cursor:pointer;margin:0 auto;padding:4px 0}
 .btn-criar:hover{color:#FF4D8D}
 
-/* LETRA */
+/* BANNER PAGO */
+.paid-banner{background:linear-gradient(135deg,#ECFDF5 0%,#D1FAE5 100%);border:1.5px solid #6EE7B7;border-radius:16px;padding:20px;max-width:480px;margin:0 auto 16px;text-align:center}
+.paid-banner h3{font-size:16px;font-weight:800;color:#065F46;margin-bottom:6px}
+.paid-banner p{font-size:13px;color:#059669;margin-bottom:16px}
+.btn-download-full{display:flex;align-items:center;justify-content:center;gap:8px;background:#10B981;border:none;border-radius:999px;padding:14px 32px;font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:white;cursor:pointer;width:100%;box-shadow:0 8px 24px rgba(16,185,129,.3);transition:all .25s;text-decoration:none}
+.btn-download-full:hover{background:#059669;transform:scale(1.02)}
+
 .letra-card{background:white;border-radius:16px;padding:20px;max-width:480px;margin:0 auto 16px;box-shadow:0 4px 16px rgba(255,77,141,.06);max-height:340px;overflow-y:auto;position:relative}
 .letra-card::-webkit-scrollbar{width:4px}
 .letra-card::-webkit-scrollbar-thumb{background:#FF4D8D;border-radius:2px}
@@ -73,8 +69,6 @@ audio{display:none}
 .letra-tag.verso{background:#F0FFF4;color:#059669}
 .letra-card p{font-size:13px;color:#374151;line-height:1.8;white-space:pre-line}
 .letra-fade{position:sticky;bottom:0;height:48px;background:linear-gradient(to bottom,transparent,white);pointer-events:none;margin:-4px -20px 0}
-
-/* OFERTA */
 .oferta-card{background:white;border-radius:20px;padding:24px 20px;max-width:480px;margin:0 auto 16px;box-shadow:0 8px 32px rgba(255,77,141,.1)}
 .promo-banner{background:#FFF0F6;border-radius:10px;padding:8px 16px;text-align:center;margin-bottom:16px}
 .promo-banner-label{font-size:11px;color:#FF4D8D;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:8px}
@@ -93,8 +87,6 @@ audio{display:none}
 .price-old{font-size:14px;color:#9CA3AF;text-decoration:line-through}
 .price-new{font-size:36px;font-weight:800;color:#10B981}
 .price-new-label{font-size:14px;font-weight:400;color:#6B7280}
-
-/* PAYMENT FLOW */
 .payment-area{margin-bottom:8px}
 .btn-liberar{display:flex;align-items:center;justify-content:center;gap:8px;background:#10B981;border:none;border-radius:999px;padding:15px 32px;font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:white;cursor:pointer;width:100%;box-shadow:0 8px 24px rgba(16,185,129,.3);transition:all .25s}
 .btn-liberar:hover{background:#059669;transform:scale(1.02)}
@@ -107,8 +99,6 @@ audio{display:none}
 .btn-cartao:hover{border-color:#374151}
 .btn-cartao:disabled{opacity:.7;cursor:not-allowed}
 .seguro{font-size:11px;color:#9CA3AF;text-align:center;display:flex;align-items:center;justify-content:center;gap:12px;margin-top:10px;flex-wrap:wrap}
-
-/* PIX INLINE PANEL */
 .pix-panel{display:none;border:1.5px solid #D1FAE5;border-radius:16px;padding:20px;margin-top:12px;background:linear-gradient(135deg,#F0FDF9 0%,#ECFDF5 100%)}
 .pix-panel.visible{display:block}
 .pix-panel-header{display:flex;align-items:center;gap:8px;margin-bottom:16px;justify-content:center}
@@ -128,8 +118,6 @@ audio{display:none}
 .pix-note{font-size:11px;color:#9CA3AF;text-align:center;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:4px}
 .pix-expiry{font-weight:700;color:#059669}
 .pix-status-ok{color:#059669;font-weight:700;font-size:13px;text-align:center}
-
-/* QR CARD */
 .qr-card{background:white;border-radius:20px;padding:20px;max-width:480px;margin:0 auto;box-shadow:0 4px 16px rgba(255,77,141,.06)}
 .qr-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .qr-header svg{color:#FF4D8D;flex-shrink:0}
@@ -144,18 +132,15 @@ audio{display:none}
 .btn-copy{display:flex;align-items:center;justify-content:center;gap:6px;background:white;border:1.5px solid #E5E7EB;border-radius:999px;padding:10px 20px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#374151;cursor:pointer;transition:all .2s}
 .btn-copy:hover{border-color:#FF4D8D;color:#FF4D8D}
 .qr-note{font-size:11px;color:#9CA3AF;margin-top:6px;text-align:center}
-
 .container{max-width:480px;margin:0 auto;padding:0 16px}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <img src="images/logo.png" alt="LoveTune"/>
 </div>
 
-<!-- HERO -->
 <div class="hero container">
   <p class="eyebrow">SUA MÚSICA</p>
   <h1 class="music-title" id="musicTitle">Para você</h1>
@@ -165,7 +150,6 @@ audio{display:none}
   </p>
 </div>
 
-<!-- PLAYER -->
 <div class="container">
   <div class="player-card">
     <div class="vinyl-wrap">
@@ -184,7 +168,7 @@ audio{display:none}
         <span class="eq-bar" style="height:8px"></span>
       </span>
       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-      Prévia gratuita
+      <span id="previewLabel">Prévia gratuita</span>
     </div>
     <div class="progress-wrap" onclick="seekTo(event)">
       <div class="progress-bar"><div class="progress-fill" id="pFill"></div></div>
@@ -205,7 +189,7 @@ audio{display:none}
 
   <!-- ACTION BUTTONS -->
   <div class="action-btns">
-    <button class="abtn" onclick="baixarMusica()">
+    <button class="abtn" id="btnBaixarMusica" onclick="baixarMusica()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Baixar música
     </button>
@@ -225,6 +209,16 @@ audio{display:none}
     </button>
   </div>
 
+  <!-- BANNER PAGO — aparece só após pagamento -->
+  <div class="paid-banner" id="paidBanner" style="display:none">
+    <h3>🎉 Sua música está liberada!</h3>
+    <p>Clique abaixo para baixar o MP3 completo em alta qualidade.</p>
+    <a id="btnDownloadFull" class="btn-download-full" href="#" download>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Baixar música completa (MP3)
+    </a>
+  </div>
+
   <!-- LETRA -->
   <div class="letra-card" id="letraCard" style="display:none">
     <h3>Letra</h3>
@@ -232,8 +226,8 @@ audio{display:none}
     <div class="letra-fade"></div>
   </div>
 
-  <!-- OFERTA -->
-  <div class="oferta-card">
+  <!-- OFERTA — esconde após pagamento -->
+  <div class="oferta-card" id="ofertaCard">
     <div class="promo-banner">
       <p class="promo-banner-label">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
@@ -248,45 +242,24 @@ audio{display:none}
       </div>
       <p class="promo-sub">Após esse horário, o preço volta para R$ 97,00</p>
     </div>
-
     <h2 class="oferta-title">Libere a música completa e envie para ele(a)</h2>
     <p class="oferta-sub">Essa prévia é só um respiro. A versão completa tem o refrão final, a ponte e o momento mais emocionante.</p>
-
     <div class="features">
-      <div class="feat">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        MP3 em alta qualidade
-      </div>
-      <div class="feat">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-        Letra completa
-      </div>
-      <div class="feat">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-        Link privado
-      </div>
-      <div class="feat">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        Garantia de 7 dias
-      </div>
+      <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>MP3 em alta qualidade</div>
+      <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Letra completa</div>
+      <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>Link privado</div>
+      <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Garantia de 7 dias</div>
     </div>
-
     <div class="price-row">
       <span class="price-old">R$ 97</span>
       <span class="price-new">R$ 37</span>
       <span class="price-new-label">à vista no Pix</span>
     </div>
-
-    <!-- ── PAYMENT AREA ── -->
     <div class="payment-area" id="paymentArea">
-
-      <!-- Step 1: botão único -->
       <button class="btn-liberar" id="btnLiberar" onclick="mostrarBotoesPagamento()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
         Liberar minha música agora
       </button>
-
-      <!-- Step 2: dois botões PIX / Cartão -->
       <div class="payment-buttons" id="paymentButtons">
         <button class="btn-pix" id="btnPix" onclick="gerarPix()">
           <svg width="16" height="16" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 7.5h4.5v4.5H7.5zM7.5 20H12v4.5H7.5zM20 7.5h4.5V12H20zM20 20h4.5v4.5H20zM13.5 13.5h5v5h-5z"/></svg>
@@ -297,8 +270,6 @@ audio{display:none}
           Pagar com Cartão
         </button>
       </div>
-
-      <!-- Step 3: PIX inline panel -->
       <div class="pix-panel" id="pixPanel">
         <div class="pix-panel-header">
           <svg width="18" height="18" viewBox="0 0 32 32" fill="#059669" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 7.5h4.5v4.5H7.5zM7.5 20H12v4.5H7.5zM20 7.5h4.5V12H20zM20 20h4.5v4.5H20zM13.5 13.5h5v5h-5z"/></svg>
@@ -326,9 +297,7 @@ audio{display:none}
           A música é liberada automaticamente após o pagamento
         </p>
       </div>
-
-    </div><!-- /payment-area -->
-
+    </div>
     <div class="seguro">
       <span>🔒 Pagamento 100% seguro via PIX ou cartão</span>
       <span>✓ Acesso imediato após aprovação</span>
@@ -362,25 +331,25 @@ audio{display:none}
     </div>
   </div>
 
-</div><!-- /container -->
+</div>
 
 <script>
-// ─── STATE ────────────────────────────────────────────────────
 const params   = new URLSearchParams(window.location.search);
 const orderId  = params.get('orderId');
+const paidParam = params.get('paid'); // ?paid=true vindo do redirect do cartão
 const audio    = document.getElementById('audioEl');
 const vinyl    = document.getElementById('vinyl');
 let isPaid     = false;
+let fullAudioUrl = '';
 let pixCode    = '';
 let pixPollTimer = null;
 let pixExpiryTimer = null;
-let pixSecondsLeft = 30 * 60; // 30 min
+let pixSecondsLeft = 30 * 60;
 
 // ─── INIT ─────────────────────────────────────────────────────
 const hoje = new Date();
 document.getElementById('dataHoje').textContent = hoje.toLocaleDateString('pt-BR');
 
-// Countdown promoção
 let promoTotal = 9 * 3600 + 9 * 60 + 58;
 setInterval(() => {
   if(promoTotal <= 0) return;
@@ -390,18 +359,81 @@ setInterval(() => {
   document.getElementById('cS').textContent = String(promoTotal%60).padStart(2,'0');
 }, 1000);
 
+// ─── ATIVAR ESTADO PAGO ───────────────────────────────────────
+function ativarEstadoPago(audioUrl) {
+  isPaid = true;
+  fullAudioUrl = audioUrl || '';
+
+  // Remove limite de preview no player
+  audio.removeEventListener('timeupdate', limitarPreview);
+
+  // Atualiza label do player
+  const label = document.getElementById('previewLabel');
+  if(label) label.textContent = 'Música completa';
+
+  // Botão baixar vira verde
+  const btnBaixar = document.getElementById('btnBaixarMusica');
+  if(btnBaixar) btnBaixar.classList.add('paid');
+
+  // Esconde oferta, mostra banner de download
+  document.getElementById('ofertaCard').style.display = 'none';
+  const banner = document.getElementById('paidBanner');
+  banner.style.display = 'block';
+
+  // Configura link de download
+  if(fullAudioUrl) {
+    const btnDl = document.getElementById('btnDownloadFull');
+    btnDl.href = fullAudioUrl;
+    btnDl.setAttribute('download', 'minha-musica-lovetune.mp3');
+  }
+
+  // Carrega áudio completo no player
+  if(fullAudioUrl && audio.src !== fullAudioUrl) {
+    audio.src = fullAudioUrl;
+    audio.load();
+  }
+}
+
 // ─── LOAD PREVIEW ─────────────────────────────────────────────
 async function loadPreview(){
   if(!orderId) return;
   try {
     const res  = await fetch(`/workers/status?orderId=${orderId}`);
     const data = await res.json();
+
     if(data.audioUrl){ audio.src = data.audioUrl; audio.load(); }
     if(data.letra){ renderLetra(data.letra); document.getElementById('letraCard').style.display = 'block'; }
     if(data.nomeRecebe) document.getElementById('musicTitle').textContent = 'Para ' + data.nomeRecebe;
-    // Se já pago, marcar estado
-    if(data.status === 'paid' || data.status === 'delivered') isPaid = true;
+
+    // Já está pago/entregue
+    if(data.status === 'paid' || data.status === 'delivered') {
+      ativarEstadoPago(data.audioUrl || '');
+    }
+    // Veio de redirect do cartão (?paid=true) mas status ainda não atualizou
+    else if(paidParam === 'true') {
+      // Polling até confirmar
+      aguardarConfirmacaoPagamento();
+    }
   } catch(e){ console.error(e); }
+}
+
+// Polling quando cliente volta do checkout de cartão
+function aguardarConfirmacaoPagamento() {
+  let attempts = 0;
+  const poll = async () => {
+    attempts++;
+    if(attempts > 24) return; // 2 min
+    try {
+      const res = await fetch('/workers/status?orderId=' + orderId);
+      const data = await res.json();
+      if(data.status === 'paid' || data.status === 'delivered') {
+        ativarEstadoPago(data.audioUrl || '');
+        return;
+      }
+    } catch(e){}
+    setTimeout(poll, 5000);
+  };
+  setTimeout(poll, 3000);
 }
 
 // ─── RENDER LETRA ─────────────────────────────────────────────
@@ -429,6 +461,44 @@ function renderLetra(texto){
 
 // ─── PLAYER ──────────────────────────────────────────────────
 const PREVIEW_LIMIT = 60;
+
+function limitarPreview() {
+  const cur = Math.min(audio.currentTime, PREVIEW_LIMIT);
+  document.getElementById('pFill').style.width = (cur/PREVIEW_LIMIT*100)+'%';
+  document.getElementById('tCur').textContent = fmt(cur);
+  if(audio.currentTime >= PREVIEW_LIMIT){
+    audio.pause(); audio.currentTime = PREVIEW_LIMIT;
+    vinyl.classList.remove('playing');
+    document.getElementById('equalizer').classList.remove('active');
+    document.getElementById('playIcon').innerHTML='<polygon points="5,3 19,12 5,21"/>';
+  }
+}
+
+function timeUpdatePaid() {
+  if(!audio.duration) return;
+  const pct = (audio.currentTime / audio.duration) * 100;
+  document.getElementById('pFill').style.width = pct + '%';
+  document.getElementById('tCur').textContent = fmt(audio.currentTime);
+}
+
+audio.addEventListener('timeupdate', function() {
+  if(isPaid) { timeUpdatePaid(); }
+  else { limitarPreview(); }
+});
+
+audio.addEventListener('loadedmetadata',()=>{
+  if(isPaid) {
+    document.getElementById('tTot').textContent = fmt(audio.duration);
+  } else {
+    document.getElementById('tTot').textContent = fmt(PREVIEW_LIMIT);
+  }
+});
+audio.addEventListener('ended',()=>{
+  vinyl.classList.remove('playing');
+  document.getElementById('equalizer').classList.remove('active');
+  document.getElementById('playIcon').innerHTML='<polygon points="5,3 19,12 5,21"/>';
+});
+
 function togglePlay(){
   if(audio.paused){
     audio.play();
@@ -442,31 +512,18 @@ function togglePlay(){
     document.getElementById('playIcon').innerHTML='<polygon points="5,3 19,12 5,21"/>';
   }
 }
-function seek(s){ audio.currentTime = Math.max(0, Math.min(PREVIEW_LIMIT, audio.currentTime+s)); }
-function seekTo(e){ const pct = e.offsetX/e.currentTarget.offsetWidth; audio.currentTime = Math.min(PREVIEW_LIMIT, pct*(audio.duration||0)); }
+function seek(s){ audio.currentTime = Math.max(0, Math.min(isPaid ? (audio.duration||99999) : PREVIEW_LIMIT, audio.currentTime+s)); }
+function seekTo(e){ const pct = e.offsetX/e.currentTarget.offsetWidth; audio.currentTime = isPaid ? pct*(audio.duration||0) : Math.min(PREVIEW_LIMIT, pct*(audio.duration||0)); }
 function fmt(s){ return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'); }
-audio.addEventListener('timeupdate',()=>{
-  const cur = Math.min(audio.currentTime, PREVIEW_LIMIT);
-  document.getElementById('pFill').style.width = (cur/PREVIEW_LIMIT*100)+'%';
-  document.getElementById('tCur').textContent = fmt(cur);
-  if(audio.currentTime >= PREVIEW_LIMIT){
-    audio.pause(); audio.currentTime = PREVIEW_LIMIT;
-    vinyl.classList.remove('playing');
-    document.getElementById('equalizer').classList.remove('active');
-    document.getElementById('playIcon').innerHTML='<polygon points="5,3 19,12 5,21"/>';
-  }
-});
-audio.addEventListener('loadedmetadata',()=>{ document.getElementById('tTot').textContent = fmt(PREVIEW_LIMIT); });
-audio.addEventListener('ended',()=>{
-  vinyl.classList.remove('playing');
-  document.getElementById('equalizer').classList.remove('active');
-  document.getElementById('playIcon').innerHTML='<polygon points="5,3 19,12 5,21"/>';
-});
 
 // ─── ACTION BUTTONS ───────────────────────────────────────────
 function baixarMusica(){
   if(!isPaid){ scrollToOffer(); return; }
-  if(audio.src) window.open(audio.src);
+  // Download forçado
+  const a = document.createElement('a');
+  a.href = fullAudioUrl || audio.src;
+  a.download = 'minha-musica-lovetune.mp3';
+  a.click();
 }
 function compartilharLink(){ navigator.clipboard.writeText(window.location.href).then(()=>toast('Link copiado!')); }
 function copiarLink(){ navigator.clipboard.writeText(window.location.href).then(()=>toast('Link copiado!')); }
@@ -478,78 +535,50 @@ function scrollToOffer(){
 function toast(msg){
   const t = document.createElement('div');
   t.textContent = msg;
-  t.style.cssText='position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:#111827;color:white;padding:10px 20px;border-radius:999px;font-size:13px;font-weight:500;z-index:9999;animation:fadeIn .2s';
+  t.style.cssText='position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:#111827;color:white;padding:10px 20px;border-radius:999px;font-size:13px;font-weight:500;z-index:9999';
   document.body.appendChild(t);
   setTimeout(()=>t.remove(), 2200);
 }
-
-// ─── STEP 1 → 2: mostrar botões PIX/Cartão ────────────────────
 function mostrarBotoesPagamento(){
   document.getElementById('btnLiberar').style.display = 'none';
   const pb = document.getElementById('paymentButtons');
   pb.classList.add('visible');
   pb.scrollIntoView({ behavior:'smooth', block:'nearest' });
 }
-
-// ─── STEP 2A: PIX via AbacatePay ──────────────────────────────
 async function gerarPix(){
   const btn = document.getElementById('btnPix');
   btn.innerHTML = '<span style="display:inline-block;width:14px;height:14px;border:2px solid white;border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite;margin-right:6px"></span>Gerando PIX...';
   btn.disabled = true;
   document.getElementById('btnCartao').disabled = true;
-
   try {
-    const res  = await fetch('/workers/payment', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ orderId, method: 'pix' })
-    });
+    const res = await fetch('/workers/payment', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ orderId, method:'pix' }) });
     const data = await res.json();
     if(!res.ok) throw new Error(data.error || 'Erro ao gerar PIX');
-
-    // AbacatePay retorna: pixCode (string copia-e-cola), pixQrCodeImage (base64 ou URL)
-    pixCode = data.pixCode || data.brCode || data.pix_code || '';
-    const qrImage = data.pixQrCodeImage || data.qr_code_image || data.qrCodeImage || '';
-
+    pixCode = data.pixCode || data.brCode || '';
+    const qrImage = data.pixQrCodeImage || '';
     if(!pixCode) throw new Error('Código PIX não retornado');
-
     mostrarPixPanel(pixCode, qrImage);
   } catch(e){
-    console.error(e);
-    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 7.5h4.5v4.5H7.5zM7.5 20H12v4.5H7.5zM20 7.5h4.5V12H20zM20 20h4.5v4.5H20zM13.5 13.5h5v5h-5z"/></svg> Pagar com PIX';
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 32 32" fill="white"><path d="M7.5 7.5h4.5v4.5H7.5zM7.5 20H12v4.5H7.5zM20 7.5h4.5V12H20zM20 20h4.5v4.5H20zM13.5 13.5h5v5h-5z"/></svg> Pagar com PIX';
     btn.disabled = false;
     document.getElementById('btnCartao').disabled = false;
     alert('Erro ao gerar PIX: ' + e.message);
   }
 }
-
 function mostrarPixPanel(code, qrImage){
-  // Resetar botões
   const btn = document.getElementById('btnPix');
-  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 7.5h4.5v4.5H7.5zM7.5 20H12v4.5H7.5zM20 7.5h4.5V12H20zM20 20h4.5v4.5H20zM13.5 13.5h5v5h-5z"/></svg> Pagar com PIX';
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 32 32" fill="white"><path d="M7.5 7.5h4.5v4.5H7.5zM7.5 20H12v4.5H7.5zM20 7.5h4.5V12H20zM20 20h4.5v4.5H20zM13.5 13.5h5v5h-5z"/></svg> Pagar com PIX';
   btn.disabled = false;
   document.getElementById('btnCartao').disabled = false;
-
-  // Preencher código
   document.getElementById('pixCodeBox').textContent = code;
-
-  // QR code
   const qrWrap = document.getElementById('pixQrWrap');
   if(qrImage){
-    // Se vier como base64 sem prefixo, adicionar
     const src = qrImage.startsWith('data:') || qrImage.startsWith('http') ? qrImage : 'data:image/png;base64,' + qrImage;
     qrWrap.innerHTML = `<img src="${src}" alt="QR Code PIX" style="width:200px;height:200px;border-radius:12px;border:1px solid #E5E7EB;display:block;margin:0 auto"/>`;
-  } else {
-    // sem imagem, manter placeholder
-    document.getElementById('pixQrPlaceholder').style.display = 'flex';
   }
-
-  // Mostrar panel
   const panel = document.getElementById('pixPanel');
   panel.classList.add('visible');
   panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
-
-  // Timer de expiração (30 min)
   pixSecondsLeft = 30 * 60;
   clearInterval(pixExpiryTimer);
   pixExpiryTimer = setInterval(() => {
@@ -558,48 +587,33 @@ function mostrarPixPanel(code, qrImage){
     const s = String(pixSecondsLeft%60).padStart(2,'0');
     const el = document.getElementById('pixExpiry');
     if(el) el.textContent = `${m}:${s}`;
-    if(pixSecondsLeft <= 0){
-      clearInterval(pixExpiryTimer);
-      clearTimeout(pixPollTimer);
-      const status = document.getElementById('pixStatus');
-      if(status) status.innerHTML = '<span style="color:#EF4444">⏰ PIX expirado. Gere um novo.</span>';
-    }
+    if(pixSecondsLeft <= 0){ clearInterval(pixExpiryTimer); }
   }, 1000);
-
-  // Polling de status
   iniciarPollingPix();
 }
-
-// ─── COPIAR PIX ───────────────────────────────────────────────
 function copiarCodigoPix(){
   if(!pixCode) return;
   navigator.clipboard.writeText(pixCode).then(() => {
     const btn = document.getElementById('btnCopiarPix');
     btn.classList.add('copied');
     btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copiado!';
-    setTimeout(() => {
-      btn.classList.remove('copied');
-      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copiar';
-    }, 3000);
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copiar'; }, 3000);
   });
 }
-
-// ─── POLLING STATUS ───────────────────────────────────────────
 function iniciarPollingPix(){
   clearTimeout(pixPollTimer);
   let pollCount = 0;
   const poll = async () => {
     pollCount++;
-    if(pollCount > 72) return; // 6 min (72 × 5s)
+    if(pollCount > 72) return;
     try {
-      const res  = await fetch('/workers/status?orderId=' + orderId);
+      const res = await fetch('/workers/status?orderId=' + orderId);
       const data = await res.json();
       if(data.status === 'paid' || data.status === 'delivered'){
         clearInterval(pixExpiryTimer);
-        isPaid = true;
         const status = document.getElementById('pixStatus');
         if(status) status.innerHTML = '<span class="pix-status-ok">✅ Pagamento confirmado! Liberando sua música...</span>';
-        setTimeout(() => { window.location.href = '/preview?orderId=' + orderId + '&paid=true'; }, 1800);
+        setTimeout(() => { ativarEstadoPago(data.audioUrl || ''); }, 1500);
         return;
       }
     } catch(e){}
@@ -607,68 +621,48 @@ function iniciarPollingPix(){
   };
   pixPollTimer = setTimeout(poll, 5000);
 }
-
-// ─── STEP 2B: CARTÃO via AbacatePay ───────────────────────────
 async function gerarCartao(){
   const btn = document.getElementById('btnCartao');
   btn.innerHTML = '⏳ Aguarde...';
   btn.disabled = true;
   document.getElementById('btnPix').disabled = true;
-
   try {
-    const res  = await fetch('/workers/payment', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ orderId, method: 'card' })
-    });
+    const res = await fetch('/workers/payment', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ orderId, method:'card' }) });
     const data = await res.json();
     if(!res.ok) throw new Error(data.error || 'Erro ao abrir checkout');
-
-    // AbacatePay retorna paymentUrl para o checkout de cartão
-    const url = data.paymentUrl || data.checkoutUrl || data.checkout_url || '';
+    const url = data.paymentUrl || data.checkoutUrl || '';
     if(!url) throw new Error('URL de checkout não retornada');
     window.location.href = url;
-
   } catch(e){
-    console.error(e);
     btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> Pagar com Cartão';
     btn.disabled = false;
     document.getElementById('btnPix').disabled = false;
     alert('Erro: ' + e.message);
   }
 }
-
-// ─── QR CODE COMPARTILHAR ─────────────────────────────────────
 function gerarQRCode(){
   if(!orderId) return;
   const url = window.location.origin + '/preview?orderId=' + orderId;
   const qrApiUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(url);
-
   const img = document.createElement('img');
   img.src = qrApiUrl;
   img.style.cssText = 'width:110px;height:110px;border-radius:10px;display:block';
   img.alt = 'QR Code';
-
   const qrImg = document.getElementById('qrImg');
   qrImg.innerHTML = '';
   qrImg.appendChild(img);
-
   window._qrImageUrl = qrApiUrl;
-  window._qrPageUrl  = url;
 }
-
 function baixarQRReal(){
-  if(!window._qrImageUrl){ alert('QR Code ainda carregando, tente em instantes.'); return; }
+  if(!window._qrImageUrl){ alert('QR Code ainda carregando.'); return; }
   const a = document.createElement('a');
   a.href = window._qrImageUrl + '&format=png';
   a.download = 'lovetune-qrcode.png';
   a.target = '_blank';
   a.click();
 }
-
 function baixarQR(){ baixarQRReal(); }
 
-// ─── START ────────────────────────────────────────────────────
 loadPreview();
 gerarQRCode();
 </script>
