@@ -31,9 +31,9 @@ export async function onRequestPost(context) {
       console.log('Áudio não encontrado no R2, usando previewUrl');
     }
 
-    // Fallback: usa previewUrl do KV (URL do Suno)
+    // Fallback: usa audioUrl (R2) ou previewUrl do KV
     if (!audioUrl) {
-      audioUrl = order.previewUrl || order.audioUrl || '';
+      audioUrl = order.audioUrl || order.previewUrl || '';
     }
 
     if (!audioUrl) {
