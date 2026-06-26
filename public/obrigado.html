@@ -3,147 +3,74 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title>Sua Música Está Pronta – LoveTune</title>
+<title>Obrigado – LoveTune</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Poppins',sans-serif;background:linear-gradient(180deg,#F7F2FC 0%,#F9F1FA 50%,#F6F1FB 100%);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
-.card{background:white;border-radius:28px;padding:40px 32px;max-width:480px;width:100%;box-shadow:0 16px 56px rgba(255,77,141,.12);text-align:center}
-.logo{width:72px;height:auto;margin-bottom:24px}
-.icon{width:64px;height:64px;background:#ECFDF5;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
-.title{font-size:26px;font-weight:800;color:#111827;margin-bottom:8px}
-.subtitle{font-size:14px;color:#6B7280;margin-bottom:28px;line-height:1.6}
-.music-name{font-family:'Dancing Script',cursive;font-size:28px;color:#FF4D8D;margin-bottom:24px}
-.btn-download{display:flex;align-items:center;justify-content:center;gap:10px;background:#10B981;border:none;border-radius:999px;padding:16px 32px;font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;color:white;cursor:pointer;width:100%;box-shadow:0 8px 24px rgba(16,185,129,.3);transition:all .25s;text-decoration:none;margin-bottom:12px}
-.btn-download:hover{background:#059669;transform:scale(1.02)}
-.btn-preview{display:flex;align-items:center;justify-content:center;gap:8px;background:white;border:1.5px solid #E5E7EB;border-radius:999px;padding:13px 32px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;color:#374151;cursor:pointer;width:100%;text-decoration:none;transition:all .2s;margin-bottom:24px}
-.btn-preview:hover{border-color:#FF4D8D;color:#FF4D8D}
-.note{font-size:11px;color:#9CA3AF;line-height:1.6}
-.loading{font-size:14px;color:#6B7280;margin:20px 0}
-.spinner{display:inline-block;width:20px;height:20px;border:3px solid #E5E7EB;border-top-color:#10B981;border-radius:50%;animation:spin .8s linear infinite;margin-right:8px;vertical-align:middle}
-@keyframes spin{to{transform:rotate(360deg)}}
-.error{background:#FEF2F2;border:1px solid #FECACA;border-radius:12px;padding:16px;color:#DC2626;font-size:13px;margin-top:16px}
+.card{background:white;border-radius:28px;padding:48px 32px;max-width:460px;width:100%;box-shadow:0 16px 56px rgba(255,77,141,.12);text-align:center}
+.logo{width:72px;height:auto;margin-bottom:28px}
+.icon{width:72px;height:72px;background:#ECFDF5;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px}
+.title{font-size:26px;font-weight:800;color:#111827;margin-bottom:12px}
+.music-name{font-family:'Dancing Script',cursive;font-size:32px;color:#FF4D8D;margin-bottom:20px}
+.msg{font-size:15px;color:#6B7280;line-height:1.7;margin-bottom:28px}
+.msg strong{color:#111827}
+.email-box{background:#F0FDF4;border:1.5px solid #6EE7B7;border-radius:16px;padding:20px;margin-bottom:28px}
+.email-box p{font-size:13px;color:#065F46;line-height:1.6}
+.email-box svg{margin-bottom:8px}
+.btn-novo{display:inline-flex;align-items:center;gap:8px;background:none;border:1.5px solid #E5E7EB;border-radius:999px;padding:12px 28px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;color:#6B7280;cursor:pointer;text-decoration:none;transition:all .2s}
+.btn-novo:hover{border-color:#FF4D8D;color:#FF4D8D}
+.note{font-size:11px;color:#9CA3AF;margin-top:20px;line-height:1.6}
 </style>
 </head>
 <body>
-
 <div class="card">
   <img src="images/logo.png" alt="LoveTune" class="logo"/>
 
   <div class="icon">
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
       <polyline points="22 4 12 14.01 9 11.01"/>
     </svg>
   </div>
 
   <h1 class="title">Pagamento confirmado! 🎉</h1>
-  <p class="subtitle">Sua música personalizada está pronta para download.</p>
 
   <div id="musicName" class="music-name" style="display:none"></div>
 
-  <div id="loadingState">
-    <p class="loading"><span class="spinner"></span>Preparando seu download...</p>
+  <div class="email-box">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto 10px"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+    <p><strong>Sua música foi enviada para o seu e-mail!</strong><br/>Verifique sua caixa de entrada — e também a pasta de <strong>spam</strong>, só por garantia.</p>
   </div>
 
-  <div id="downloadState" style="display:none">
-    <a id="btnDownload" class="btn-download" href="#" download="minha-musica-lovetune.mp3">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Baixar minha música (MP3)
-    </a>
-    <a id="btnPreview" class="btn-preview" href="#">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-      Ver página da música
-    </a>
-    <p class="note">🔒 Seu link é exclusivo e permanente.<br/>Também enviamos por e-mail para você.</p>
-  </div>
+  <p class="msg">Em alguns minutos você receberá um e-mail da <strong>LoveTune</strong> com o link para ouvir e baixar sua música personalizada. 🎵</p>
 
-  <div id="errorState" style="display:none">
-    <div class="error" id="errorMsg">Erro ao carregar sua música.</div>
-  </div>
+  <a href="/" class="btn-novo">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+    Criar outra música
+  </a>
+
+  <p class="note">Dúvidas? Fale com a gente em contato@meulovetune.com.br</p>
 </div>
 
 <script>
 const params  = new URLSearchParams(window.location.search);
-// PerfectPay passa o orderId como utm_content na URL
-// Prioriza utm_content pois orderId pode vir como literal {utm_content}
 const rawOrderId = params.get('orderId') || '';
 const utmContent = params.get('utm_content') || '';
-// Se orderId parecer uma variável não substituída, usa utm_content
 const orderId = (rawOrderId && !rawOrderId.includes('{')) ? rawOrderId : utmContent;
 
-async function carregarMusica() {
-  if(!orderId) {
-    mostrarErro('Link inválido. orderId não encontrado.');
-    return;
-  }
-
-  let tentativas = 0;
-  const maxTentativas = 24; // 2 min
-
-  const poll = async () => {
-    tentativas++;
-    if(tentativas > maxTentativas) {
-      mostrarErro('Tempo esgotado. Verifique seu e-mail para o link de download.');
-      return;
-    }
-
-    try {
-      const res  = await fetch('/workers/status?orderId=' + orderId);
-      const data = await res.json();
-
-      // Atualiza nome da música
+if(orderId) {
+  fetch('/workers/status?orderId=' + orderId)
+    .then(r => r.json())
+    .then(data => {
       if(data.nomeRecebe) {
-        const nameEl = document.getElementById('musicName');
-        nameEl.textContent = 'Para ' + data.nomeRecebe;
-        nameEl.style.display = 'block';
+        const el = document.getElementById('musicName');
+        el.textContent = 'Para ' + data.nomeRecebe;
+        el.style.display = 'block';
       }
-
-      if(data.status === 'delivered' && data.audioUrl) {
-        mostrarDownload(data.audioUrl);
-        return;
-      }
-
-      if(data.status === 'paid') {
-        // Aguarda delivery processar
-        setTimeout(poll, 5000);
-        return;
-      }
-
-      if(data.error) {
-        mostrarErro('Erro: ' + data.error);
-        return;
-      }
-
-      setTimeout(poll, 5000);
-
-    } catch(e) {
-      console.error(e);
-      setTimeout(poll, 5000);
-    }
-  };
-
-  poll();
+    })
+    .catch(() => {});
 }
-
-function mostrarDownload(audioUrl) {
-  document.getElementById('loadingState').style.display = 'none';
-  document.getElementById('downloadState').style.display = 'block';
-
-  const btnDownload = document.getElementById('btnDownload');
-  btnDownload.href = audioUrl;
-
-  const btnPreview = document.getElementById('btnPreview');
-  btnPreview.href = '/preview?orderId=' + orderId;
-}
-
-function mostrarErro(msg) {
-  document.getElementById('loadingState').style.display = 'none';
-  document.getElementById('errorState').style.display = 'block';
-  document.getElementById('errorMsg').textContent = msg;
-}
-
-carregarMusica();
 </script>
 </body>
 </html>
