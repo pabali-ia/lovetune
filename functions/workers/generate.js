@@ -28,6 +28,13 @@ export async function onRequestPost(context) {
     });
 
     const letraData = await letraResponse.json();
+    console.log('AIML response status:', letraResponse.status);
+    console.log('AIML response:', JSON.stringify(letraData).substring(0, 300));
+
+    if (!letraData.choices || !letraData.choices[0]) {
+      throw new Error('AIML nao retornou choices: ' + JSON.stringify(letraData));
+    }
+
     const letra = letraData.choices[0].message.content;
 
     // 2. Gerar áudio com Suno API
@@ -43,6 +50,11 @@ export async function onRequestPost(context) {
     const estiloPrompt = estiloMap[data.estilo] || 'pop romântico brasileiro';
     const vozPrompt = data.voz === 'Feminina' ? ', voz feminina' : ', voz masculina';
 
+    const titulo = ('Para ' + (data.nomeRecebe || data.dest || 'você')).substring(0, 70);
+
+    const origin = new URL(request.url).origin;
+    const callBackUrl = origin + '/workers/webhook';
+
     const sunoResponse = await fetch('https://api.sunoapi.org/api/v1/generate', {
       method: 'POST',
       headers: {
@@ -52,12 +64,12 @@ export async function onRequestPost(context) {
       body: JSON.stringify({
         prompt: letra,
         style: estiloPrompt + vozPrompt,
-        title: 'Para ' + data.nomeRecebe,
+        title: titulo,
         customMode: true,
         instrumental: false,
         model: 'V4',
         negativeTags: 'heavy metal, rap, aggressive',
-        callBackUrl: 'https://lovetune.pages.dev/functions/workers/webhook'
+        callBackUrl,
       })
     });
 
@@ -70,7 +82,6 @@ export async function onRequestPost(context) {
       throw new Error('Suno nao retornou taskId: ' + JSON.stringify(sunoData));
     }
 
-    // 3. Salvar pedido no KV
     const orderId = crypto.randomUUID();
     await env.ORDERS.put(orderId, JSON.stringify({
       ...data,
