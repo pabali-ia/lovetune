@@ -754,11 +754,16 @@ async function submitQuiz(){
     const poll=async()=>{
       if(attempts>=60){setLoadingProgress(95,'Finalizando... você receberá por e-mail em breve!');return}
       attempts++;
-      if(currentPct<92){currentPct=Math.min(92,currentPct+(attempts<10?3:attempts<20?2:1));setLoadingProgress(currentPct,getLoadingStatus(currentPct))}
+      if(currentPct<96){currentPct=Math.min(96,currentPct+(attempts<10?3:attempts<20?2:1));setLoadingProgress(currentPct,getLoadingStatus(currentPct));
+        // Ativa step 2 visualmente em 50%
+        if(currentPct>=50&&currentPct<98){setLoadStep(2,'active');}
+        // Ativa step 3 visualmente em 96%
+        if(currentPct>=96){setLoadStep(2,'done');setLoadStep(3,'active');}
+      }
       const statusRes=await fetch('/workers/status?orderId='+orderId);
       const statusData=await statusRes.json();
       if(statusData.status==='ready'){
-        setLoadStep(2,'done');setLoadStep(3,'active');setLoadingProgress(95,'Gravando e mixando...');
+        setLoadStep(2,'done');setLoadStep(3,'active');setLoadingProgress(98,'Gravando e mixando...');
         setTimeout(()=>{setLoadStep(3,'done');setLoadingProgress(100,'🎵 Sua música está pronta!');setTimeout(()=>{window.location.href='/preview?orderId='+orderId},1200)},1500);
       }else{setTimeout(poll,3000)}
     };
@@ -769,7 +774,7 @@ async function submitQuiz(){
     document.getElementById('qloadStatus').textContent='Erro ao gerar música. Tente novamente.';
   }
 }
-function getLoadingStatus(pct){if(pct<40)return'Compondo a melodia...';if(pct<60)return'Afinando os instrumentos...';if(pct<75)return'Adicionando a voz...';if(pct<88)return'Gravando e mixando...';return'Quase pronta...'}
+function getLoadingStatus(pct){if(pct<50)return'Compondo a melodia...';if(pct<70)return'Afinando os instrumentos...';if(pct<85)return'Adicionando a voz...';if(pct<96)return'Gravando e mixando...';return'Quase pronta...'}
 function setLoadingProgress(pct,status){
   const circumference=2*Math.PI*80;
   const ring=document.getElementById('qloadRingFill');
