@@ -23,16 +23,11 @@ header{position:sticky;top:0;z-index:100;background:transparent;padding:14px 40p
 .hero-title{font-size:clamp(32px,5vw,56px);font-weight:800;line-height:1.15;color:#111827;max-width:760px;margin:0 auto 20px}
 .hero-title .pink{color:#FF4D8D}
 .hero-sub{font-size:15px;color:#FF4D8D;font-weight:600;margin-bottom:20px}
-.video-frame{position:relative;width:100%;max-width:340px;margin:0 auto 10px;border:3px solid #FF4D8D;border-radius:20px;overflow:hidden;background:#1a1a2e;aspect-ratio:9/16;box-shadow:0 20px 60px rgba(255,77,141,.2)}
-.video-inner{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,#1a1a2e 0%,#16213e 100%);gap:12px;padding:24px}
-.play-btn{width:64px;height:64px;background:#FF4D8D;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;box-shadow:0 8px 24px rgba(255,77,141,.4);transition:transform .25s,box-shadow .25s}
-.play-btn:hover{transform:scale(1.1);box-shadow:0 12px 32px rgba(255,77,141,.5)}
-.play-btn svg{width:28px;height:28px;fill:white;margin-left:4px}
-.video-caption{font-size:12px;color:#6B7280;margin-bottom:24px;display:flex;align-items:center;gap:6px}
 .cta-green{display:inline-flex;align-items:center;gap:8px;background:#10B981;border:none;border-radius:999px;padding:16px 36px;font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;color:white;cursor:pointer;text-decoration:none;box-shadow:0 8px 24px rgba(16,185,129,.3);transition:all .25s}
 .cta-green:hover{background:#059669;transform:scale(1.03);box-shadow:0 12px 32px rgba(16,185,129,.4)}
 .cta-row{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:8px}
 .cta-side{font-size:13px;color:#6B7280}
+.video-caption{font-size:12px;color:#6B7280;margin-bottom:24px;display:flex;align-items:center;gap:6px}
 .section{padding:72px 24px}
 .section-title{font-size:clamp(22px,3.5vw,32px);font-weight:800;color:#111827;text-align:center;margin-bottom:8px}
 .section-sub{font-size:14px;color:#6B7280;text-align:center;margin-bottom:40px}
@@ -128,10 +123,13 @@ footer{background:white;border-top:1px solid rgba(255,77,141,.08);padding:56px 4
   <div class="badge fade-up delay-1">✨ A PLATAFORMA #1 DE MÚSICAS PERSONALIZADAS</div>
   <h1 class="hero-title fade-up delay-2">O presente que ela(e) <span class="pink">nunca vai esquecer</span> — Uma <span class="pink">música</span> feita só pra vocês.</h1>
   <p class="hero-sub fade-up delay-3">Veja o vídeo abaixo</p>
+
+  <!-- FIX 1: Novo embed VTurb 4:3 -->
   <div style="width:100%;max-width:400px;margin:0 auto 10px;border:3px solid #FF4D8D;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(255,77,141,.2);">
-    <vturb-smartplayer id="vid-6a3d762cac7ae1f318440aa0" style="display:block;margin:0 auto;width:100%;max-width:400px;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:216.70428893905193% 0 0;z-index:0;background-color:black;"></div></vturb-smartplayer>
-    <script type="text/javascript">var s=document.createElement("script");s.src="https://scripts.converteai.net/d7915a4f-dc2b-41db-a2cb-0ae78d864b42/players/6a3d762cac7ae1f318440aa0/v4/player.js";s.async=!0;document.head.appendChild(s);</script>
+    <vturb-smartplayer id="vid-6a3f343a88e2c7a969bbe054" style="display:block;margin:0 auto;width:100%;max-width:400px;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:133.33333333333331% 0 0;z-index:0;background-color:black;"></div></vturb-smartplayer>
+    <script type="text/javascript">var s=document.createElement("script");s.src="https://scripts.converteai.net/d7915a4f-dc2b-41db-a2cb-0ae78d864b42/players/6a3f343a88e2c7a969bbe054/v4/player.js";s.async=!0;document.head.appendChild(s);</script>
   </div>
+
   <p class="video-caption fade-up delay-4">
     <svg width="14" height="14" fill="none" stroke="#6B7280" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5"/><path d="M17.5 2.5a2.121 2.121 0 013 3L12 14l-4 1 1-4z"/></svg>
     Verifique se o som está ligado
@@ -443,9 +441,6 @@ function closeQuizFromModal(){document.getElementById('modalMinhas').style.displ
 .quiz-wa-note{font-size:12px;color:#6B7280;margin-top:-6px;margin-bottom:16px}
 .quiz-wa-note span{color:#FF4D8D;font-weight:600}
 .quiz-success-banner{background:#ECFDF5;border:1.5px solid #6EE7B7;border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:13px;color:#065F46;font-weight:500;margin-bottom:16px}
-
-/* ── LOADING SCREEN — FIXED ── */
-/* loading ring now pure SVG */
 .qload-status{font-size:17px;font-style:italic;color:#374151;font-weight:600;margin-bottom:32px;min-height:28px}
 .qload-steps{display:flex;flex-direction:column;gap:10px;max-width:380px;margin:0 auto 28px}
 .qload-step{display:flex;align-items:center;gap:12px;background:white;border-radius:14px;padding:14px 18px;font-size:14px;font-weight:500;color:#374151;border:1.5px solid #E5E7EB;transition:all .5s}
@@ -571,12 +566,12 @@ function closeQuizFromModal(){document.getElementById('modalMinhas').style.displ
     </div>
   </div>
 
-  <!-- STEP 5 -->
+  <!-- STEP 5 — FIX 2: título e labels dinâmicos baseado no gênero -->
   <div class="quiz-step" id="qStep5">
     <div class="quiz-card">
-      <h2 class="quiz-card-title">O que torna ela especial?</h2>
+      <h2 class="quiz-card-title">O que torna <span id="q5destTitle">ela</span> especial?</h2>
       <p class="quiz-card-sub">Detalhes reais geram letras que emocionam de verdade.</p>
-      <div class="quiz-label" style="justify-content:space-between">As belas qualidades dela<button class="btn-grammar" onclick="corrigirGramatica('q5qualidades',this)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>Corrigir</button></div>
+      <div class="quiz-label" style="justify-content:space-between">As belas qualidades <span id="q5destLabel">dela</span><button class="btn-grammar" onclick="corrigirGramatica('q5qualidades',this)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>Corrigir</button></div>
       <textarea class="quiz-textarea" id="q5qualidades" placeholder="Ela é paciente, engraçada, piedosa?"></textarea>
       <div class="quiz-label" style="justify-content:space-between">Uma memória marcante<button class="btn-grammar" onclick="corrigirGramatica('q5memoria',this)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>Corrigir</button></div>
       <textarea class="quiz-textarea" id="q5memoria" placeholder="Ex: A viagem que fizemos, aquela música que tocava no carro..."></textarea>
@@ -669,25 +664,14 @@ function closeQuizFromModal(){document.getElementById('modalMinhas').style.displ
             <stop offset="100%" stop-color="#FF8C42"/>
           </linearGradient>
         </defs>
-        <!-- Ring background -->
         <circle fill="none" stroke="#E5E7EB" stroke-width="8" cx="100" cy="100" r="80"/>
-        <!-- Ring fill -->
-        <circle id="qloadRingFill" fill="none" stroke="url(#ringGrad)" stroke-width="8" stroke-linecap="round"
-          cx="100" cy="100" r="80"
-          stroke-dasharray="503"
-          stroke-dashoffset="503"
-          transform="rotate(-90 100 100)"
-          style="transition:stroke-dashoffset .6s ease"/>
-        <!-- Heart circle pulse ring -->
+        <circle id="qloadRingFill" fill="none" stroke="url(#ringGrad)" stroke-width="8" stroke-linecap="round" cx="100" cy="100" r="80" stroke-dasharray="503" stroke-dashoffset="503" transform="rotate(-90 100 100)" style="transition:stroke-dashoffset .6s ease"/>
         <circle cx="100" cy="92" r="34" fill="#FF4D8D" opacity="0.25">
           <animate attributeName="r" values="34;44;34" dur="1.5s" repeatCount="indefinite"/>
           <animate attributeName="opacity" values="0.25;0;0.25" dur="1.5s" repeatCount="indefinite"/>
         </circle>
-        <!-- Heart circle background -->
         <circle cx="100" cy="92" r="34" fill="#FF4D8D"/>
-        <!-- Heart icon -->
         <path d="M100 108 C100 108 84 96 84 87 C84 81 89 77 94 77 C97 77 100 80 100 80 C100 80 103 77 106 77 C111 77 116 81 116 87 C116 96 100 108 100 108Z" fill="white"/>
-        <!-- Percentage text -->
         <text id="qloadPct" x="100" y="148" text-anchor="middle" font-family="Poppins,sans-serif" font-size="18" font-weight="800" fill="#111827">0%</text>
       </svg>
     </div>
@@ -697,7 +681,7 @@ function closeQuizFromModal(){document.getElementById('modalMinhas').style.displ
       <div class="qload-step" id="qls2"><div class="qload-step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Compondo a melodia</div>
       <div class="qload-step" id="qls3"><div class="qload-step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Gravando e mixando</div>
     </div>
-    <p class="qload-note">Essa parte costuma levar cerca de 1 a 2 minutos.<br>Não feche essa janela. <!-- v2 --></p>
+    <p class="qload-note">Essa parte costuma levar cerca de 1 a 2 minutos.<br>Não feche essa janela.</p>
   </div>
 
 </div>
@@ -733,7 +717,14 @@ function goStep(n){
   if(from===1&&n===2){let ok=true;if(!qData.dest){showErr('err1dest','Selecione para quem é a música.');ok=false}if(!qData.ocas){showErr('err1ocas','Selecione a ocasião.');ok=false}if(!ok)return;document.getElementById('q2labelDest').textContent=qData.dest.toLowerCase()}
   if(from===2&&n===3){const n1=document.getElementById('q2seuNome').value.trim();const n2=document.getElementById('q2nomeRecebe').value.trim();let ok=true;if(!n1){markInvalid('q2seuNome');showErr('err2','Preencha seu nome.');ok=false}else if(!n2){markInvalid('q2nomeRecebe');showErr('err2','Preencha o nome de quem vai receber.');ok=false}if(!ok)return;hideErr('err2');qData.seuNome=n1;qData.nomeRecebe=n2}
   if(from===3&&n===4){const t=document.getElementById('q3tempo').value.trim();const r=document.getElementById('q3relacao').value.trim();let ok=true;if(!t){markInvalid('q3tempo');showErr('err3','Conte há quanto tempo vocês se conhecem.');ok=false}else if(r.length<20){markInvalid('q3relacao');showErr('err3','Conte um pouco mais (mínimo 20 caracteres).');ok=false}if(!ok)return;hideErr('err3');qData.tempo=t;qData.relacao=r}
-  if(from===4&&n===5){const u=document.getElementById('q4uniao').value.trim();if(u.length<20){markInvalid('q4uniao');showErr('err4','Conte um pouco mais (mínimo 20 caracteres).');return}hideErr('err4');qData.uniao=u;qData.tempoCasamento=document.getElementById('q4tempoCasamento').value.trim()}
+  if(from===4&&n===5){const u=document.getElementById('q4uniao').value.trim();if(u.length<20){markInvalid('q4uniao');showErr('err4','Conte um pouco mais (mínimo 20 caracteres).');return}hideErr('err4');qData.uniao=u;qData.tempoCasamento=document.getElementById('q4tempoCasamento').value.trim();
+    // FIX 2: atualiza pronome do step 5 baseado no gênero escolhido
+    const isMasc=qData.dest.startsWith('Meu');
+    const pr=isMasc?'ele':'ela';
+    const prPoss=isMasc?'dele':'dela';
+    const t5=document.getElementById('q5destTitle');const l5=document.getElementById('q5destLabel');
+    if(t5)t5.textContent=pr;if(l5)l5.textContent=prPoss;
+  }
   if(from===5&&n===6){const q=document.getElementById('q5qualidades').value.trim();const m=document.getElementById('q5memoria').value.trim();let ok=true;if(q.length<20){markInvalid('q5qualidades');showErr('err5','Descreva as qualidades com mais detalhe (mínimo 20 caracteres).');ok=false}else if(m.length<20){markInvalid('q5memoria');showErr('err5','Compartilhe uma memória com mais detalhes (mínimo 20 caracteres).');ok=false}if(!ok)return;hideErr('err5');qData.qualidades=q;qData.memoria=m}
   if(from===6&&n===7){const msg=document.getElementById('q6mensagem').value.trim();let ok=true;if(msg.length<20){markInvalid('q6mensagem');showErr('err6mensagem','Escreva um pouco mais (mínimo 20 caracteres).');ok=false}if(!qData.estilo){showErr('err6estilo','Escolha o estilo musical.');ok=false}if(!qData.tom){showErr('err6tom','Escolha o tom emocional.');ok=false}if(!qData.voz){showErr('err6voz','Escolha a voz do cantor(a).');ok=false}if(!ok)return;hideErr('err6mensagem');qData.mensagem=msg}
   showStep(n);
@@ -782,7 +773,7 @@ function getLoadingStatus(pct){if(pct<40)return'Compondo a melodia...';if(pct<60
 function setLoadingProgress(pct,status){
   const circumference=2*Math.PI*80;
   const ring=document.getElementById('qloadRingFill');
-  const pctEl=document.getElementById('qloadPct'); // SVG text element
+  const pctEl=document.getElementById('qloadPct');
   const statusEl=document.getElementById('qloadStatus');
   if(ring)ring.style.strokeDashoffset=circumference-(pct/100)*circumference;
   if(pctEl)pctEl.textContent=pct+'%';
@@ -795,7 +786,6 @@ function animateProgress(from,to,duration,status){
 }
 function setLoadStep(n,state){const el=document.getElementById('qls'+n);el.classList.remove('active','done');if(state)el.classList.add(state)}
 
-// CAROUSEL
 const exTracks=[{name:'Porque Amar Você é Certeza',genre:'Sertanejo',dur:'3:44',src:'audios/1.mp3'},{name:'18 Anos',genre:'Tema Aniversário',dur:'3:07',src:'audios/2.mp3'},{name:'A Gente Se Encontrou',genre:'Pagode',dur:'2:37',src:'audios/3.mp3'},{name:'Meu Tesouro',genre:'Pai para filha',dur:'3:34',src:'audios/4.mp3'}];
 let exCurrent=0,exAudio=new Audio(),exIsPlaying=false;
 function updateExUI(){const t=exTracks[exCurrent];document.getElementById('exTrackName').textContent=t.name;document.getElementById('exTrackGenre').textContent=t.genre;document.getElementById('exDur').textContent=t.dur;document.getElementById('exTc').textContent='0:00';document.getElementById('exPf').style.width='0%';document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===exCurrent))}
