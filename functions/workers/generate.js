@@ -10,29 +10,49 @@ export async function onRequestPost(context) {
   try {
     const data = await request.json();
 
-    // 1. Gerar letra com gpt-4o-mini via AIML
-    const letraResponse = await fetch('https://api.aimlapi.com/v1/chat/completions', {
+    // 1. Gerar letra com Llama 3.3 70B via Groq
+    const letraResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + env.AIML_TEXT_KEY,
+        'Authorization': 'Bearer ' + env.GROQ_KEY,
       },
       body: JSON.stringify({
-        model: 'gpt-4o-mini',
+        model: 'llama-3.3-70b-versatile',
         max_tokens: 1000,
         messages: [{
           role: 'user',
-          content: 'Crie uma letra de música personalizada em português brasileiro.\n\nPara: ' + data.dest + '\nOcasião: ' + data.ocas + '\nNomes: ' + data.seuNome + ' e ' + data.nomeRecebe + '\nTempo juntos: ' + data.tempo + '\nHistória: ' + data.relacao + '\nO que representa: ' + data.uniao + '\nQualidades: ' + data.qualidades + '\nMemória marcante: ' + data.memoria + '\nMensagem final: ' + data.mensagem + '\nEstilo musical: ' + data.estilo + '\nTom emocional: ' + data.tom + '\nVoz: ' + data.voz + '\n\nEscreva apenas a letra com: verso 1, pré-refrão, refrão, verso 2, refrão final. Use os nomes reais. Sem explicações, sem títulos de seção.'
+          // FIX BUG 1: música é para nomeRecebe, escrita por seuNome
+          content: 'Crie uma letra de música personalizada em português brasileiro.\n\n' +
+            'IMPORTANTE: A música é uma homenagem de ' + data.seuNome + ' PARA ' + data.nomeRecebe + '.\n' +
+            'A música deve falar SOBRE ' + data.nomeRecebe + ' e ser endereçada A ' + data.nomeRecebe + '.\n' +
+            'O narrador da música é ' + data.seuNome + ' cantando para ' + data.nomeRecebe + '.\n\n' +
+            'Para: ' + data.dest + '\n' +
+            'Ocasião: ' + data.ocas + '\n' +
+            'Quem escreve: ' + data.seuNome + '\n' +
+            'Quem recebe (protagonista da música): ' + data.nomeRecebe + '\n' +
+            'Tempo juntos: ' + data.tempo + '\n' +
+            'História: ' + data.relacao + '\n' +
+            'O que representa: ' + data.uniao + '\n' +
+            'Qualidades de ' + data.nomeRecebe + ': ' + data.qualidades + '\n' +
+            'Memória marcante: ' + data.memoria + '\n' +
+            'Mensagem final de ' + data.seuNome + ' para ' + data.nomeRecebe + ': ' + data.mensagem + '\n' +
+            'Estilo musical: ' + data.estilo + '\n' +
+            'Tom emocional: ' + data.tom + '\n' +
+            'Voz: ' + data.voz + '\n\n' +
+            'Escreva apenas a letra com: verso 1, pré-refrão, refrão, verso 2, refrão final. ' +
+            'Use os nomes reais. O nome ' + data.nomeRecebe + ' deve aparecer na letra. ' +
+            'Sem explicações, sem títulos de seção.'
         }]
       })
     });
 
     const letraData = await letraResponse.json();
-    console.log('AIML response status:', letraResponse.status);
-    console.log('AIML response:', JSON.stringify(letraData).substring(0, 300));
+    console.log('Groq response status:', letraResponse.status);
+    console.log('Groq response:', JSON.stringify(letraData).substring(0, 300));
 
     if (!letraData.choices || !letraData.choices[0]) {
-      throw new Error('AIML nao retornou choices: ' + JSON.stringify(letraData));
+      throw new Error('Groq nao retornou choices: ' + JSON.stringify(letraData));
     }
 
     const letra = letraData.choices[0].message.content;

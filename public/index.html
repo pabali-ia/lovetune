@@ -2,15 +2,6 @@
 <html lang="pt-BR">
 <head>
 
-<script>
-  window.pixelId = "6a40137a175d5db83ff96af2";
-  var a = document.createElement("script");
-  a.setAttribute("async", "");
-  a.setAttribute("defer", "");
-  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
-  document.head.appendChild(a);
-</script>
-
 <!-- TikTok Pixel Code Start -->
 <script>
 !function (w, d, t) {
@@ -19,11 +10,15 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
 
 
+
+
   ttq.load('D900TA3C77U79CKEJD5G');
   ttq.page();
 }(window, document, 'ttq');
 </script>
 <!-- TikTok Pixel Code End -->
+
+
 
 
 <!-- Meta Pixel Code -->
@@ -735,7 +730,19 @@ function closeQuizFromModal(){document.getElementById('modalMinhas').style.displ
 <script>
 const qData={dest:'',ocas:'',seuNome:'',nomeRecebe:'',tempo:'',relacao:'',uniao:'',tempoCasamento:'',qualidades:'',memoria:'',mensagem:'',estilo:'',tom:'',voz:'',email:'',whatsapp:''};
 let qCurrent=1;
-function openQuiz(){document.getElementById('quizModal').style.display='block';document.body.style.overflow='hidden';updateBar(1);document.getElementById('quizModal').scrollTo(0,0)}
+function openQuiz(){
+  // FIX BUG 2: pausa o VTurb ao abrir o quiz
+  try{
+    const vturb=document.getElementById('vid-6a3f343a88e2c7a969bbe054');
+    if(vturb&&vturb.pause)vturb.pause();
+    // tenta pausar via postMessage
+    const iframe=vturb?vturb.querySelector('iframe'):null;
+    if(iframe)iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo"}','*');
+    // pausa qualquer video/audio na pagina
+    document.querySelectorAll('video,audio').forEach(m=>{try{m.pause()}catch(e){}});
+  }catch(e){}
+  document.getElementById('quizModal').style.display='block';document.body.style.overflow='hidden';updateBar(1);document.getElementById('quizModal').scrollTo(0,0)
+}
 function closeQuiz(){document.getElementById('quizModal').style.display='none';document.body.style.overflow=''}
 document.querySelectorAll('a.cta-green').forEach(btn=>{btn.addEventListener('click',e=>{e.preventDefault();openQuiz()})});
 document.querySelectorAll('.quiz-options').forEach(group=>{
