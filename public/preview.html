@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title>Sua Música – LoveTune</title>
+<title>Sua Música – NossaMelodia</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -138,7 +138,7 @@ audio{display:none}
 <body>
 
 <div class="header">
-  <img src="images/logo.png" alt="LoveTune"/>
+  <img src="images/logo.png" alt="NossaMelodia"/>
 </div>
 
 <div class="hero container">
@@ -384,7 +384,7 @@ function ativarEstadoPago(audioUrl) {
   if(fullAudioUrl) {
     const btnDl = document.getElementById('btnDownloadFull');
     btnDl.href = fullAudioUrl;
-    btnDl.setAttribute('download', 'minha-musica-lovetune.mp3');
+    btnDl.setAttribute('download', 'minha-musica-nossamelodia.mp3');
   }
 
   // Carrega áudio completo no player
@@ -522,7 +522,7 @@ function baixarMusica(){
   // Download forçado
   const a = document.createElement('a');
   a.href = fullAudioUrl || audio.src;
-  a.download = 'minha-musica-lovetune.mp3';
+  a.download = 'minha-musica-nossamelodia.mp3';
   a.click();
 }
 function compartilharLink(){ navigator.clipboard.writeText(window.location.href).then(()=>toast('Link copiado!')); }
@@ -657,7 +657,7 @@ function baixarQRReal(){
   if(!window._qrImageUrl){ alert('QR Code ainda carregando.'); return; }
   const a = document.createElement('a');
   a.href = window._qrImageUrl + '&format=png';
-  a.download = 'lovetune-qrcode.png';
+  a.download = 'nossamelodia-qrcode.png';
   a.target = '_blank';
   a.click();
 }
