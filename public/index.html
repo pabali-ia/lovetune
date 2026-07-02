@@ -127,8 +127,8 @@ footer{background:white;border-top:1px solid rgba(255,77,141,.08);padding:56px 4
 
   <!-- FIX 1: Novo embed VTurb 4:3 -->
   <div style="width:100%;max-width:400px;margin:0 auto 10px;border:3px solid #FF4D8D;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(255,77,141,.2);">
-    <vturb-smartplayer id="vid-6a3f343a88e2c7a969bbe054" style="display:block;margin:0 auto;width:100%;max-width:400px;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:133.33333333333331% 0 0;z-index:0;background-color:black;"></div></vturb-smartplayer>
-    <script type="text/javascript">var s=document.createElement("script");s.src="https://scripts.converteai.net/d7915a4f-dc2b-41db-a2cb-0ae78d864b42/players/6a3f343a88e2c7a969bbe054/v4/player.js";s.async=!0;document.head.appendChild(s);</script>
+    <vturb-smartplayer id="vid-6a45c4104395e2f407d3aeab" style="display:block;margin:0 auto;width:100%;max-width:400px;"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:133.33333333333331% 0 0;z-index:0;background-color:black;"></div></vturb-smartplayer>
+    <script type="text/javascript">var s=document.createElement("script");s.src="https://scripts.converteai.net/d7915a4f-dc2b-41db-a2cb-0ae78d864b42/players/6a45c4104395e2f407d3aeab/v4/player.js";s.async=!0;document.head.appendChild(s);</script>
   </div>
 
   <p class="video-caption fade-up delay-4">
@@ -703,7 +703,7 @@ const qData={dest:'',ocas:'',seuNome:'',nomeRecebe:'',qualidades:'',memoria:'',m
 
 function openQuiz(){
   try{
-    const vturb=document.getElementById('vid-6a3f343a88e2c7a969bbe054');
+    const vturb=document.getElementById('vid-6a45c4104395e2f407d3aeab');
     if(vturb&&vturb.pause)vturb.pause();
     const iframe=vturb?vturb.querySelector('iframe'):null;
     if(iframe)iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo"}','*');
@@ -843,7 +843,7 @@ async function qSubmitQuiz(){
     setTimeout(poll,4000);
   }catch(err){
     console.error(err);
-    document.getElementById('qloadStatus').textContent='Erro ao gerar música. Tente novamente.';
+    document.getElementById('qloadStatus').textContent='Erro ao gerar música: '+(err.message||'tente novamente.');
   }
 }
 
