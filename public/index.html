@@ -672,11 +672,11 @@ textarea.qz-input{min-height:100px;resize:none;line-height:1.6;padding:14px 40px
         <circle fill="none" stroke="#E5E7EB" stroke-width="8" cx="100" cy="100" r="80"/>
         <circle id="qloadRingFill" fill="none" stroke="url(#ringGrad)" stroke-width="8" stroke-linecap="round" cx="100" cy="100" r="80" stroke-dasharray="503" stroke-dashoffset="503" transform="rotate(-90 100 100)" style="transition:stroke-dashoffset .6s ease"/>
         <circle cx="100" cy="92" r="34" fill="#FF4D8D" opacity="0.25">
-          <animate attributeName="r" values="34;50;34" dur="1.2s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0.3;0;0.3" dur="1.2s" repeatCount="indefinite"/>
+          <animate attributeName="r" values="34;40;34" dur="1.6s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.15;0;0.15" dur="1.6s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="100" cy="92" r="34" fill="#FF4D8D" style="animation:heartbeat 1.2s ease infinite;transform-origin:100px 92px"/>
-        <path d="M100 108 C100 108 84 96 84 87 C84 81 89 77 94 77 C97 77 100 80 100 80 C100 80 103 77 106 77 C111 77 116 81 116 87 C116 96 100 108 100 108Z" fill="white" style="animation:heartbeat 1.2s ease infinite;transform-origin:100px 92px"/>
+        <circle cx="100" cy="92" r="34" fill="#FF4D8D" style="animation:heartbeat 1.6s ease infinite;transform-origin:100px 92px"/>
+        <path d="M100 108 C100 108 84 96 84 87 C84 81 89 77 94 77 C97 77 100 80 100 80 C100 80 103 77 106 77 C111 77 116 81 116 87 C116 96 100 108 100 108Z" fill="white" style="animation:heartbeat 1.6s ease infinite;transform-origin:100px 92px"/>
         <text id="qloadPct" x="100" y="148" text-anchor="middle" font-family="Poppins,sans-serif" font-size="18" font-weight="800" fill="#111827">0%</text>
       </svg>
     </div>
@@ -696,7 +696,7 @@ textarea.qz-input{min-height:100px;resize:none;line-height:1.6;padding:14px 40px
   .qload-step.pending .qload-step-icon,.qload-step.active .qload-step-icon{background:#EF4444;border-color:#EF4444}
   @keyframes pulseRing{0%,100%{box-shadow:0 0 0 0 rgba(255,77,141,.6)}50%{box-shadow:0 0 0 14px rgba(255,77,141,0)}}
   @keyframes spinIcon{to{transform:rotate(360deg)}}
-  @keyframes heartbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.22)}30%{transform:scale(1)}45%{transform:scale(1.12)}60%{transform:scale(1)}}
+  @keyframes heartbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.08)}30%{transform:scale(1)}45%{transform:scale(1.04)}60%{transform:scale(1)}}
   </style>
 
 </div>
@@ -886,14 +886,26 @@ function animateProgress(from,to,duration,status){
 }
 function setLoadStep(n,state){
   const el=document.getElementById('qls'+n);
-  el.classList.remove('active','done','pending');
   const iconEl=document.getElementById('qls'+n+'-icon');
+  if(!el)return;
   if(state==='done'){
-    el.classList.add('done');
-    if(iconEl)iconEl.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    el.style.background='#ECFDF5';
+    el.style.border='1.5px solid #6EE7B7';
+    el.style.color='#065F46';
+    if(iconEl){
+      iconEl.style.background='#10B981';
+      iconEl.style.border='2px solid #10B981';
+      iconEl.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    }
   } else {
-    el.classList.add('pending');
-    if(iconEl)iconEl.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="animation:spinIcon .8s linear infinite"><circle cx="12" cy="12" r="9" stroke="rgba(255,255,255,0.3)" stroke-width="3" fill="none"/><path d="M12 3a9 9 0 0 1 9 9" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/></svg>';
+    el.style.background='#FFF5F5';
+    el.style.border='1.5px solid #FCA5A5';
+    el.style.color='#991B1B';
+    if(iconEl){
+      iconEl.style.background='#EF4444';
+      iconEl.style.border='2px solid #EF4444';
+      iconEl.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="animation:spinIcon .8s linear infinite"><circle cx="12" cy="12" r="9" stroke="rgba(255,255,255,0.3)" stroke-width="3" fill="none"/><path d="M12 3a9 9 0 0 1 9 9" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/></svg>';
+    }
   }
 }
 
