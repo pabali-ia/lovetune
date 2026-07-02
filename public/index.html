@@ -653,8 +653,9 @@ textarea.qz-input{min-height:100px;resize:none;line-height:1.6;padding:14px 40px
     <p class="qz-sub" style="margin-top:-8px">Enviaremos uma <strong>amostra gratuita</strong> no WhatsApp. Nada de spam.</p>
     <div class="qz-field-group" id="qErrFinal" style="color:#EF4444;font-size:13px;display:none;margin-bottom:8px"></div>
 
-    <button class="qz-btn-continue show" id="qbtn4" onclick="qSubmitQuiz()">
-      🎵 Gerar minha música
+    <button class="qz-btn-continue show" id="qbtn4" onclick="qSubmitQuiz()" style="background:linear-gradient(135deg,#F5C518 0%,#E6A800 100%);color:#1a1a1a;box-shadow:0 8px 24px rgba(245,197,24,.4);">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      Gerar minha música
     </button>
   </div>
 
@@ -671,28 +672,31 @@ textarea.qz-input{min-height:100px;resize:none;line-height:1.6;padding:14px 40px
         <circle fill="none" stroke="#E5E7EB" stroke-width="8" cx="100" cy="100" r="80"/>
         <circle id="qloadRingFill" fill="none" stroke="url(#ringGrad)" stroke-width="8" stroke-linecap="round" cx="100" cy="100" r="80" stroke-dasharray="503" stroke-dashoffset="503" transform="rotate(-90 100 100)" style="transition:stroke-dashoffset .6s ease"/>
         <circle cx="100" cy="92" r="34" fill="#FF4D8D" opacity="0.25">
-          <animate attributeName="r" values="34;44;34" dur="1.5s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0.25;0;0.25" dur="1.5s" repeatCount="indefinite"/>
+          <animate attributeName="r" values="34;50;34" dur="1.2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.3;0;0.3" dur="1.2s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="100" cy="92" r="34" fill="#FF4D8D"/>
+        <circle cx="100" cy="92" r="34" fill="#FF4D8D" style="animation:heartbeat 1.2s ease infinite"/>
         <path d="M100 108 C100 108 84 96 84 87 C84 81 89 77 94 77 C97 77 100 80 100 80 C100 80 103 77 106 77 C111 77 116 81 116 87 C116 96 100 108 100 108Z" fill="white"/>
         <text id="qloadPct" x="100" y="148" text-anchor="middle" font-family="Poppins,sans-serif" font-size="18" font-weight="800" fill="#111827">0%</text>
       </svg>
     </div>
     <p class="qload-status" id="qloadStatus" style="font-size:17px;font-style:italic;color:#374151;font-weight:600;margin-bottom:32px;min-height:28px">Preparando sua música...</p>
     <div class="qload-steps" style="display:flex;flex-direction:column;gap:10px;max-width:380px;margin:0 auto 28px">
-      <div class="qload-step" id="qls1" style="display:flex;align-items:center;gap:12px;background:white;border-radius:14px;padding:14px 18px;font-size:14px;font-weight:500;color:#374151;border:1.5px solid #E5E7EB;transition:all .5s"><div class="qload-step-icon" style="width:28px;height:28px;border-radius:50%;border:2px solid #E5E7EB;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#F3F4F6;transition:all .5s"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Escrevendo a letra</div>
-      <div class="qload-step" id="qls2" style="display:flex;align-items:center;gap:12px;background:white;border-radius:14px;padding:14px 18px;font-size:14px;font-weight:500;color:#374151;border:1.5px solid #E5E7EB;transition:all .5s"><div class="qload-step-icon" style="width:28px;height:28px;border-radius:50%;border:2px solid #E5E7EB;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#F3F4F6;transition:all .5s"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Compondo a melodia</div>
-      <div class="qload-step" id="qls3" style="display:flex;align-items:center;gap:12px;background:white;border-radius:14px;padding:14px 18px;font-size:14px;font-weight:500;color:#374151;border:1.5px solid #E5E7EB;transition:all .5s"><div class="qload-step-icon" style="width:28px;height:28px;border-radius:50%;border:2px solid #E5E7EB;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#F3F4F6;transition:all .5s"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Gravando e mixando</div>
+      <div class="qload-step pending" id="qls1" style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border-radius:14px;padding:14px 18px;font-size:14px;font-weight:500;color:#991B1B;border:1.5px solid #FCA5A5;transition:all .5s"><div class="qload-step-icon" id="qls1-icon" style="width:28px;height:28px;border-radius:50%;border:2px solid #EF4444;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#EF4444;transition:all .5s"><svg id="qls1-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="animation:spinIcon .8s linear infinite"><circle cx="12" cy="12" r="9" stroke="rgba(255,255,255,0.3)" stroke-width="3" fill="none"/><path d="M12 3a9 9 0 0 1 9 9" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/></svg></div>Escrevendo a letra</div>
+      <div class="qload-step pending" id="qls2" style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border-radius:14px;padding:14px 18px;font-size:14px;font-weight:500;color:#991B1B;border:1.5px solid #FCA5A5;transition:all .5s"><div class="qload-step-icon" id="qls2-icon" style="width:28px;height:28px;border-radius:50%;border:2px solid #EF4444;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#EF4444;transition:all .5s"><svg id="qls2-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="animation:spinIcon .8s linear infinite"><circle cx="12" cy="12" r="9" stroke="rgba(255,255,255,0.3)" stroke-width="3" fill="none"/><path d="M12 3a9 9 0 0 1 9 9" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/></svg></div>Compondo a melodia</div>
+      <div class="qload-step pending" id="qls3" style="display:flex;align-items:center;gap:12px;background:#FFF5F5;border-radius:14px;padding:14px 18px;font-size:14px;font-weight:500;color:#991B1B;border:1.5px solid #FCA5A5;transition:all .5s"><div class="qload-step-icon" id="qls3-icon" style="width:28px;height:28px;border-radius:50%;border:2px solid #EF4444;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#EF4444;transition:all .5s"><svg id="qls3-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="animation:spinIcon .8s linear infinite"><circle cx="12" cy="12" r="9" stroke="rgba(255,255,255,0.3)" stroke-width="3" fill="none"/><path d="M12 3a9 9 0 0 1 9 9" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/></svg></div>Gravando e mixando</div>
     </div>
     <p style="font-size:13px;color:#9CA3AF;line-height:1.7">Essa parte costuma levar cerca de 1 a 2 minutos.<br>Não feche essa janela.</p>
   </div>
   <style>
   .qload-step.done{background:#ECFDF5;border-color:#6EE7B7;color:#065F46}
-  .qload-step.active{background:#FFF0F6;border-color:#FF4D8D;color:#FF4D8D}
+  .qload-step.pending{background:#FFF5F5;border-color:#FCA5A5;color:#991B1B}
+  .qload-step.active{background:#FFF5F5;border-color:#FCA5A5;color:#991B1B}
   .qload-step.done .qload-step-icon{background:#10B981;border-color:#10B981}
-  .qload-step.active .qload-step-icon{background:#FF4D8D;border-color:#FF4D8D;animation:pulseRing .9s ease infinite}
-  @keyframes pulseRing{0%,100%{box-shadow:0 0 0 0 rgba(255,77,141,.4)}50%{box-shadow:0 0 0 7px rgba(255,77,141,0)}}
+  .qload-step.pending .qload-step-icon,.qload-step.active .qload-step-icon{background:#EF4444;border-color:#EF4444}
+  @keyframes pulseRing{0%,100%{box-shadow:0 0 0 0 rgba(255,77,141,.6)}50%{box-shadow:0 0 0 14px rgba(255,77,141,0)}}
+  @keyframes spinIcon{to{transform:rotate(360deg)}}
+  @keyframes heartbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.15)}60%{transform:scale(1)}}
   </style>
 
 </div>
@@ -828,8 +832,8 @@ async function qSubmitQuiz(){
       if(attempts>=60){setLoadingProgress(95,'Finalizando... você receberá por e-mail em breve!');return}
       attempts++;
       if(currentPct<99){currentPct=Math.min(99,currentPct+(attempts<10?3:attempts<20?2:1));setLoadingProgress(currentPct,getLoadingStatus(currentPct));
-        if(currentPct>=10)setLoadStep(1,'done');
-        if(currentPct>=50)setLoadStep(2,'done');
+        if(currentPct>=5)setLoadStep(1,'done');
+        if(currentPct>=20)setLoadStep(2,'done');
       }
       const statusEl=document.getElementById('qloadStatus');
       if(statusEl&&currentPct>0&&currentPct<99)statusEl.textContent=getLoadingStatus(currentPct);
@@ -861,16 +865,27 @@ function setLoadingProgress(pct,status){
   if(ring)ring.style.strokeDashoffset=circumference-(pct/100)*circumference;
   if(pctEl)pctEl.textContent=pct+'%';
   if(statusEl&&status)statusEl.textContent=status;
-  if(pct>=10)setLoadStep(1,'done');
-  if(pct>=50){setLoadStep(1,'done');setLoadStep(2,'done')}
-  if(pct>=99){setLoadStep(1,'done');setLoadStep(2,'done');setLoadStep(3,'done')}
+  if(pct>=5)setLoadStep(1,'done');
+  if(pct>=20){setLoadStep(1,'done');setLoadStep(2,'done')}
+  if(pct>=95){setLoadStep(1,'done');setLoadStep(2,'done');setLoadStep(3,'done')}
 }
 function animateProgress(from,to,duration,status){
   const steps=20,interval=duration/steps,increment=(to-from)/steps;let current=from;
   const timer=setInterval(()=>{current=Math.min(to,current+increment);setLoadingProgress(Math.round(current),status);if(current>=to)clearInterval(timer)},interval);
   return timer;
 }
-function setLoadStep(n,state){const el=document.getElementById('qls'+n);el.classList.remove('active','done');if(state)el.classList.add(state)}
+function setLoadStep(n,state){
+  const el=document.getElementById('qls'+n);
+  el.classList.remove('active','done','pending');
+  const iconEl=document.getElementById('qls'+n+'-icon');
+  if(state==='done'){
+    el.classList.add('done');
+    if(iconEl)iconEl.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+  } else {
+    el.classList.add('pending');
+    if(iconEl)iconEl.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="animation:spinIcon .8s linear infinite"><circle cx="12" cy="12" r="9" stroke="rgba(255,255,255,0.3)" stroke-width="3" fill="none"/><path d="M12 3a9 9 0 0 1 9 9" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/></svg>';
+  }
+}
 
 // ── HELPERS ──
 function qShowField(id){var el=document.getElementById(id);if(el&&!el.classList.contains('show')){el.classList.add('show');el.scrollIntoView({behavior:'smooth',block:'nearest'})}}
