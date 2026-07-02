@@ -675,8 +675,8 @@ textarea.qz-input{min-height:100px;resize:none;line-height:1.6;padding:14px 40px
           <animate attributeName="r" values="34;50;34" dur="1.2s" repeatCount="indefinite"/>
           <animate attributeName="opacity" values="0.3;0;0.3" dur="1.2s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="100" cy="92" r="34" fill="#FF4D8D" style="animation:heartbeat 1.2s ease infinite"/>
-        <path d="M100 108 C100 108 84 96 84 87 C84 81 89 77 94 77 C97 77 100 80 100 80 C100 80 103 77 106 77 C111 77 116 81 116 87 C116 96 100 108 100 108Z" fill="white"/>
+        <circle cx="100" cy="92" r="34" fill="#FF4D8D" style="animation:heartbeat 1.2s ease infinite;transform-origin:100px 92px"/>
+        <path d="M100 108 C100 108 84 96 84 87 C84 81 89 77 94 77 C97 77 100 80 100 80 C100 80 103 77 106 77 C111 77 116 81 116 87 C116 96 100 108 100 108Z" fill="white" style="animation:heartbeat 1.2s ease infinite;transform-origin:100px 92px"/>
         <text id="qloadPct" x="100" y="148" text-anchor="middle" font-family="Poppins,sans-serif" font-size="18" font-weight="800" fill="#111827">0%</text>
       </svg>
     </div>
@@ -696,7 +696,7 @@ textarea.qz-input{min-height:100px;resize:none;line-height:1.6;padding:14px 40px
   .qload-step.pending .qload-step-icon,.qload-step.active .qload-step-icon{background:#EF4444;border-color:#EF4444}
   @keyframes pulseRing{0%,100%{box-shadow:0 0 0 0 rgba(255,77,141,.6)}50%{box-shadow:0 0 0 14px rgba(255,77,141,0)}}
   @keyframes spinIcon{to{transform:rotate(360deg)}}
-  @keyframes heartbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.15)}60%{transform:scale(1)}}
+  @keyframes heartbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.22)}30%{transform:scale(1)}45%{transform:scale(1.12)}60%{transform:scale(1)}}
   </style>
 
 </div>
@@ -847,7 +847,17 @@ async function qSubmitQuiz(){
     setTimeout(poll,4000);
   }catch(err){
     console.error(err);
-    document.getElementById('qloadStatus').textContent='Erro ao gerar música: '+(err.message||'tente novamente.');
+    // Estado de erro visual limpo
+    setLoadingProgress(0,'');
+    document.getElementById('qloadStatus').innerHTML=
+      '<div style="background:#FFF5F5;border:1.5px solid #FCA5A5;border-radius:16px;padding:20px 24px;max-width:360px;margin:0 auto">' +
+      '<div style="font-size:22px;margin-bottom:8px">😕</div>' +
+      '<div style="font-size:15px;font-weight:700;color:#991B1B;margin-bottom:6px">Erro ao gerar a música</div>' +
+      '<div style="font-size:12px;color:#B91C1C;margin-bottom:16px;word-break:break-word">' + (err.message||'Tente novamente.') + '</div>' +
+      '<button onclick="location.reload()" style="background:#FF4D8D;color:white;border:none;border-radius:999px;padding:10px 24px;font-family:Poppins,sans-serif;font-size:14px;font-weight:600;cursor:pointer">↩ Tentar novamente</button>' +
+      '</div>';
+    // Para os spinners
+    setLoadStep(1,'pending');setLoadStep(2,'pending');setLoadStep(3,'pending');
   }
 }
 
